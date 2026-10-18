@@ -13,10 +13,11 @@ Chat only is enough to use the dashboard. The code base is for changing it with 
 
 | Item | Version used for the reference run | Notes |
 |---|---|---|
-| Node.js | 22.x | the build, the tests and every tool are plain Node scripts |
+| Node.js | 22.x | the build, the tests and every tool are plain Node scripts. Only 22 was tested; package.json asks for 20 or later |
 | npm | 10.x | `npm install` in src/ |
 | Packages | acorn 8.19.0, esbuild 0.28.2, playwright-core 1.64.1, terser 5.51.2, d3 7.9.0 | from package.json; d3 is bundled into the page at build time |
-| Chromium | any recent build | only the browser suite and the screenshots need it. Set `CHROMIUM_PATH` to the binary, or put a Playwright browser under `PLAYWRIGHT_BROWSERS_PATH` or `/opt/pw-browsers` |
+| Chromium | any recent build | only the browser suite and the screenshots need it. Install one with `npx playwright-core install chromium` if you have none. Set `CHROMIUM_PATH` to the binary, or put a Playwright browser under `PLAYWRIGHT_BROWSERS_PATH` or `/opt/pw-browsers` |
+| unzip, bash | required by the browser suite and runall.sh | the kit test reads the page's zip with `unzip` |
 | Python 3 | optional | only helper scripts outside the code base use it |
 | OS | Linux or macOS | tests/lib/web.js looks for Chromium in the usual places |
 
@@ -43,6 +44,7 @@ bash runall.sh --full
 | data_rules | tests/data_rules.js | store shape: loads under the runtime parser, sizes, titles, catalogue | no |
 | static_scan | tests/static_scan.js | no dashes, no personal terms, no innerHTML, eval or inline handlers | no |
 | backup_verify | tests/backup_verify.js | tools/verify_backup.js against good and broken backups | no |
+| inject | tests/inject.js | the page on data full of markup, script tags and javascript: URLs: nothing runs, text shows as text | yes |
 | browser | tests/browser.js | the 10 pages at phone width, light and dark, folds, links, keyboard, backup kit built by the real page code | yes |
 
 The data folder `data_all/` holds the invented example dataset (also in demo_data/). Fixtures for the unit tests are in tests/fixtures/base (invented).
@@ -68,4 +70,4 @@ Needs an account that offers the Dashboard Artifact type, with the capabilities 
 
 ## Time
 
-A full run with the browser suite takes about seven minutes on a small machine; everything except the browser suite takes under one minute.
+A full run takes about eight minutes on a small machine (466 seconds measured on a clean unzip: 471 checks across 7 suites at version 1.0.0, plus the injection suite). Everything except the browser suites takes under one minute. `npm install` takes seconds and needs the network once; after that no network is needed.

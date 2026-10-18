@@ -4,11 +4,15 @@ Structure only: datasets, fields, screens, calculations, rules and routines. No 
 
 Two version series: feature versions (v1.1 and up) and page stages (stage numbers up to 6i) describe the dashboard; the bundle version (VERSION) numbers this package. A feature version never means a document version.
 
-How to use this file: a fresh chat reads the entries after the version its dashboard already has and builds them in order (PROMPTS.md, prompt 3).
+How to use this file: a fresh chat reads the entries after the version its dashboard already has and builds them in order (PROMPTS.md, prompt 16).
 
 ## Bundle 1.0.0 (page stage 6i)
 
 First standalone bundle: documents, templates, invented demo data with screenshots, code base zip, and the checks that tie them together (tools/check_docs.js, tools/verify_backup.js). Test totals for the code base are in REPORT.md.
+
+### Review fixes after 1.0.0 (security and completeness)
+
+Security: restore never publishes the page files from a kit; zip reading has size and name limits and the verify tool fails closed on hostile input; the test harness escapes data in its inline script; tools that empty an output folder refuse protected folders; .gitignore added; scheduled tasks no longer suggest automatic approval; SECURITY.md and SECURITY_REVIEW.md added; a new injection test (tests/inject.js) runs the real page on data full of markup and scripts. Completeness: AGENT_PROMPT.md and a first message; 18 prompts; a tax form row in INTAKE_GUIDE.md; the Google Drive table; REPORT.md and COMPLETENESS_REVIEW.md; designs of features that are not built marked as such; dataset descriptions made generic; the tile inventory waits for the page to settle (it was flaky under load); the dead code and size step added to the loop.
 
 ## Changes from v3.0 to page stage 6i (summary)
 

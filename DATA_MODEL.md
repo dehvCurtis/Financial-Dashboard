@@ -178,7 +178,7 @@ Settings for the age statistics: which benchmark rows each metric reads, the lab
 Everything you own that is not a retirement or investment holding: cash accounts, HSA cash, home, vehicles, receivables such as a pending tax refund.
 
 - Class: user. Key field: asset_id. File shape: array. Needed for a first build.
-- Doc title: "Other assets" (12 characters). Description: Truck, house, savings, checking, HSA cash and pending refund, as given or estimated.
+- Doc title: "Other assets" (12 characters). Description: Other assets the user has named, such as vehicles, property, cash accounts, HSA cash and refunds, as given or estimated.
 - Intake: interview, bank or brokerage statement, your own estimate. CSV view: assets_other.csv. Starter template: templates/assets_other.json
 - Read by calcs: nw_rows, nw_steps, home_calc, house_split, pending_calc, goals_calc, scores_calc, payoff_engine, coverage_calc, checks_calc, profile_calc
 - Shown on pages: bills, cash, data, debt, home, progress, tasks
@@ -202,7 +202,7 @@ Everything you own that is not a retirement or investment holding: cash accounts
 Return paths (cautious, base, optimistic, real), inflation, employer match, and the combined marginal tax rate used for take-home estimates.
 
 - Class: config. Key field: item. File shape: array. Needed for a first build.
-- Doc title: "Return assumptions" (18 characters). Description: Yearly returns after inflation, inflation, and the employer 401(k) match (0, stated by the owner).
+- Doc title: "Return assumptions" (18 characters). Description: Yearly returns after inflation, inflation, and the employer 401(k) match (as the user states it).
 - Intake: Claude proposes, you confirm. CSV view: assumptions.csv. Starter template: templates/assumptions.json
 - Read by calcs: contrib_calc, retire_model, pct_calc, scores_calc, coverage_calc
 - Shown on pages: bills, cash, home, progress, retirement, tasks
@@ -237,7 +237,7 @@ Dated reported balances per account. The basis of the cash chart, the weekly che
 Individual bank transactions grouped by direction, category and payee type, used to measure everyday spending and to explain drift.
 
 - Class: user. Key field: flow_id. File shape: array. Optional: add it when the situation applies.
-- Doc title: "Bank flows" (10 characters). Description: Every credit and debit from the credit union statements, one row per movement, with category and linked debt or account. Extracted values only.
+- Doc title: "Bank flows" (10 characters). Description: Every credit and debit from the bank statements, one row per movement, with category and linked debt or account. Extracted values only.
 - Intake: bank statement CSV. CSV view: bank_flows.csv. Starter template: templates/bank_flows.json
 - Read by calcs: none (drawn directly by the page)
 - Shown on pages: (not drawn directly; read by other calcs)
@@ -264,7 +264,7 @@ Individual bank transactions grouped by direction, category and payee type, used
 One row per bank statement period: opening and closing balance, credits, debits, interest and the figures printed on the statement.
 
 - Class: user. Key field: statement_id. File shape: array. Optional: add it when the situation applies.
-- Doc title: "Bank statements" (15 characters). Description: One row per credit union account statement: balances, totals, dividends, rates and loan or card fields. Extracted values only.
+- Doc title: "Bank statements" (15 characters). Description: One row per bank account statement: balances, totals, interest, rates and any loan or card fields. Extracted values only.
 - Intake: bank statement (PDF or CSV). CSV view: bank_statements.csv. Starter template: templates/bank_statements.json
 - Read by calcs: none (drawn directly by the page)
 - Shown on pages: (not drawn directly; read by other calcs)
@@ -330,7 +330,7 @@ Amounts of individual bills over time, linked to a bill row.
 Monthly bills with a user-entered name, category, monthly equivalent amount, essential flag, due day and how sure the amount is.
 
 - Class: user. Key field: bill_id. File shape: array. Needed for a first build.
-- Doc title: "Monthly bills" (13 characters). Description: Everyday monthly bills you have sent so far.
+- Doc title: "Monthly bills" (13 characters). Description: Monthly bills the user has named so far.
 - Intake: interview, bills and statements. CSV view: bills.csv. Starter template: templates/bills.json
 - Read by calcs: bills_calc, bills_takehome, bills_cat, dti_calc, pay_flow, scores_calc, payoff_engine, coverage_calc, checks_calc, runway_calc, profile_calc, checks_more_calc, paycheck_plan
 - Shown on pages: bills, cash, debt, home, pay, progress, tasks
@@ -762,7 +762,7 @@ Your chosen payoff strategy and extra monthly payment.
 Every line of each pay stub including the year-to-date fields.
 
 - Class: user. Key field: pay_date. File shape: array. Needed for a first build.
-- Doc title: "Pay stubs" (9 characters). Description: Ten semimonthly stubs, May to Oct 2026: taxes, deductions and take-home.
+- Doc title: "Pay stubs" (9 characters). Description: One row per pay stub: taxes, deductions and take-home.
 - Intake: pay stub (PDF). CSV view: paystubs.csv. Starter template: templates/paystubs.json
 - Read by calcs: paycheck_calc, paystub_baseline, bills_takehome, drift_calc, scores_calc, payoff_engine, plan_year_calc, coverage_calc, checks_calc, badges_calc, seasons_calc, stubcheck_calc, paycheck_plan
 - Shown on pages: bills, cash, debt, home, pay, progress, retirement, tasks

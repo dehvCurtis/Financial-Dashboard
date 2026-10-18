@@ -1,6 +1,18 @@
 # BACKUP_GOOGLE_DRIVE: keeping the monthly backup in your own Google Drive
 
-The page can only download a file; it cannot send one to a cloud drive. Claude, working in a session that has a Google Drive connection, can. This procedure is what "back up to Google Drive" means. Nothing is uploaded without the user asking in that turn.
+The page can only download a file; it cannot send one to a cloud drive. Claude, working in a session that has a Google Drive connection, can. This procedure is what "back up to Google Drive" means. Nothing is uploaded without the user asking in that turn, and Claude says which folder and which files before it uploads. The Drive connection is used for this folder only: Claude does not browse, read or change anything else in the user's Drive.
+
+## What, when, naming
+
+| Item | Rule |
+|---|---|
+| What | the Backup JSON and the Rebuild kit zip from Data and backup, plus a text copy of the manifest hashes |
+| When | on the 1st of each month (a reminder; SCHEDULED_TASKS.md), and before any upgrade or restore test |
+| Names | `dashboard-backup-YYYY-MM-DD.json`, `dashboard-kit-YYYY-MM-DD.zip` (written by the page), `CHECKSUMS.sha256` (made by Claude), inside the folder `Money Ops Backup YYYY-MM-DD` |
+| Where | `Money Ops Backups` in the user's own Drive, private, never shared by link |
+| Verify | `node tools/verify_backup.js <file>` on each file before upload, and a name and size comparison after |
+| Restore | download the newest folder, verify, then BACKUP_FORMAT.md section 8 |
+| Optional | Drive is optional. Without it the user keeps the two files in a private folder of their own |
 
 ## Definition of done
 

@@ -321,6 +321,8 @@ Nested columns allow-list: the only columns that may hold nested objects are the
 
 ### 5.5 OPTIONAL datasets (build only if your situation needs them; the agent asks)
 
+Status at page stage 6i: none of the datasets in this table is in the shipped page, the templates or demo_data (the page does not read them, and they have no DATA_MODEL.md entry). They are designs kept for an owner who asks for the feature: the old plan, target mix, picks, rollover and transfer tracker, the researched-ticker archive and the bank transaction table were removed or never built (see the Removed note in section 0.1). Do not build one unless the user asks; if one is built, add its template, demo file, DATA_MODEL entry, tile rows and tests in the same change.
+
 | Dataset | Purpose | Fields |
 |---|---|---|
 | mortgage_statements | A mortgage or HELOC with monthly statements | statement_date, principal_balance, rate, next_due, amount_due, principal_due, interest_due, escrow_due, late_fee, late_after, escrow_balance, prepay_penalty, maturity, last_month_paid, ytd_principal, ytd_interest, ytd_escrow, ytd_fees, ytd_total, kind (statement, annual_form_1098, escrow_analysis), source |
@@ -702,7 +704,7 @@ The page structure is four pages on the bottom bar plus a More sheet. One home p
 | Bar 3 | **Bills and spending** (label: Bills) | the Bills design (tiles, obligations, stacked bar, due strip, every bill, missing statements, changes, history), Everyday spending, next step | PLANNED |
 | Bar 4 | **Cash and Save for** (label: Cash) | runway with its This month box, balances, Cash balance over time, the Bills card with the number and link, Save for, dollar drift, gap per account, every account, next step | PLANNED structure; Save for PLANNED |
 | Bar 5 | **More** (opens a sheet) | the pages below | PLANNED |
-| More sheet | **Investments** | holdings, allocation, map, list, cost basis, growth, plus optional old plan, target mix, picks, rollover and transfers (hides when every transfer has landed or none exist) | OPTIONAL |
+| More sheet | **Investments** | holdings, allocation, map, list, cost basis, growth, plus, only if built later (section 5.5, not in the shipped page), an old plan, target mix, picks, rollover and transfers | OPTIONAL |
 | More sheet | **Retirement** | balance at the target age, tiles, 401(k) plan year and percent cards, what you will have, contributions, against your goal with pace steps, return paths, the Retirement card from Home | PLANNED structure |
 | More sheet | **Progress** (two views) | Scores view; Age ladder view | PLANNED structure |
 | More sheet | **Tasks** (two views) | the ranked task queue; Data to send, including the Planned and data to add list | PLANNED structure |
@@ -814,9 +816,9 @@ The weekly check-in card moves to Home. Check-ins feed drift (all accounts on th
 
 ### 10.5 More sheet pages
 
-**Investments (OPTIONAL, built if you have investments)**: `inv-tiles` (tiles and sparkline), `inv-class` (allocation), `inv-acct` (by account), `inv-tree` (map), `t-all` (every fund with a sparkline each), `inv-scatter` (gain against cost), `growth` (growth), optional old-plan cards `inv-planwf` and `inv-slope`, optional `inv-src` (old plan by source), optional target mix `inv-hi` (bullet bars), optional picks `cd-dumb`, `cd-d0`, `cd-d1`, and Rollover and transfers (`flow`, `ro-now`, `ro-after`, `card-legs`; hides when there are no transfers or all have landed). Reads holdings_calc, by_account, by_class, perf_series.
+**Investments (OPTIONAL, built if you have investments)**: `inv-tiles` (tiles and sparkline), `inv-class` (allocation), `inv-tree` (map), `t-all` (every fund with a sparkline each), `inv-scatter` (gain against cost), `growth` (growth), the old-plan cards `inv-planwf` and `inv-slope`, `inv-src` (old plan by source), and the second account section (`inv-hi-tiles`, `inv-hi`: bullet bars, one per fund). The target mix, picks, rollover and transfer cards of the first design are removed (section 5.5). Reads holdings_calc, by_account, by_class, perf_series.
 
-**Retirement (PLANNED structure)**: header (`ret-head`) and `ret-tiles`; the 401(k) percent card (`pct-ladder`, the percent slider and take-home cost) and the plan-year tile (`rt-plan`, section 8.4 and 11.6); `ret-chart` (balance by age, today and at the limit, goal range shaded, balance marked at the target age); `ret-stack`; `ret-ladder` (the extra-per-month slider and rungs); `ret-limits` (three bullet bars: what you put in against the limits); `ov-bullet` (two bullets: against your goal); `rt-pace` (pace steps to your own goal at 25, 50, 75 and 100 percent); return paths; the Retirement card from Home (`hm-ret`, two lines: shortfall and rollover when a rollover exists); `ns-retirement`. Removed with approval: the "balance by age at different 401(k) rates" chart (`pct-chart` with `pct-c1`). The percent card keeps its ladder and its chosen-percent save.
+**Retirement (PLANNED structure)**: header (`ret-head`) and `ret-tiles`; the 401(k) percent card (`pct-ladder`, the percent slider and take-home cost) and the plan-year tile (`rt-plan`, section 8.4 and 11.6); `ret-chart` (balance by age, today and at the limit, goal range shaded, balance marked at the target age); `ret-stack`; `ret-ladder` (the extra-per-month slider and rungs); `ret-limits` (three bullet bars: what you put in against the limits); `ov-bullet` (two bullets: against your goal); `rt-pace` (pace steps to your own goal at 25, 50, 75 and 100 percent); return paths; the Retirement card from Home (`hm-ret`: the balance at the target age and the gap to the goal); `ns-retirement`. Removed with approval: the "balance by age at different 401(k) rates" chart (`pct-chart` with `pct-c1`). The percent card keeps its ladder and its chosen-percent save.
 
 **Progress (PLANNED structure)**: Scores view: `hm-scores` (two rings, component bars, "What would raise it", Needs, "Show the math", the since-last-month line), `hm-cover` (three coverage rings and the check-in count line `hm-ckc`), `hm-recap` (weekly recap), `pg-weeks` (past weeks), `bd-body` (seasons and badges), `pg-quests` (quests), `pg-body` (coverage and milestones list). Age ladder view: `rt-ladder` and `hm-ladder` (the ladder, 5 rungs each), `rt-age` and `hm-age` (You and people your age, 5 metrics each), `hm-moves` (What would move you up one rung), `rt-bench` (the benchmark table with sources). Duplicates are kept until you approve dropping one.
 
@@ -840,7 +842,7 @@ Chart marks by id (SVG charts, rings, sparklines, ladders, bullet bars and meter
 | Bills | `cf-donut` as the stacked bar (1 for 1), `card-billhist` (2), `cf-ess` (1 meter), `b-due` (1 strip), `b-oblig` (1) |
 | Cash | `dr-bridge`, `dr-chart`, `cs-gap` (1 each), `cs-balhist` (new, 1), `cs-runway` (meter and ladder) |
 | Retirement | `ret-chart`, `ret-stack`, `ret-ladder`, `pct-ladder` (1 each), `ret-limits` (3 bullets), `ov-bullet` (2 bullets) |
-| Investments (OPTIONAL) | `inv-tiles` (svg and sparkline), `inv-class`, `inv-acct`, `inv-tree`, `inv-scatter`, `growth`, `inv-planwf`, `inv-slope`, `cd-dumb`, `cd-d0`, `cd-d1`, `inv-src`, `flow`, `ro-now`, `ro-after` (1 each), `t-all` (one svg and one sparkline per fund), `inv-hi` (bullets, one per fund) |
+| Investments (OPTIONAL) | `inv-tiles` (svg and sparkline), `inv-class`, `inv-tree`, `inv-scatter`, `growth`, `inv-planwf`, `inv-slope`, `inv-src` (1 each), `t-all` (one svg and one sparkline per fund), `inv-hi` (bullets, one per fund) |
 | Progress | `rt-ladder` (ladder with 5 rungs), `rt-pace` steps |
 | Tasks | `dq-meter` (1 meter) |
 | Pay | `pc-chart`, `cf-sankey` (1 each) |

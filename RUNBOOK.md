@@ -26,6 +26,10 @@ Contribution limits for the next year are announced. Add the row to contribution
 
 Review assumptions (growth rates, inflation, high rate cutoff), the profile answers, insurance, the milestones.
 
+## Fix a wrong number
+
+Do not edit blindly. Find the tile in TILES.md, read its source and as-of date, find the dataset row, and decide whether the row, a newer statement or the calc is wrong. Replace the row in place with the value the user gives (the user's amount stands until a statement proves otherwise), list every calc output that changed (tools/numbers.js and tools/calcdiff.js do this for code runs), run the checks, and publish only when the user says go.
+
 ## When something looks wrong
 
 | Symptom | First look |
@@ -39,4 +43,4 @@ Review assumptions (growth rates, inflation, high rate cutoff), the profile answ
 
 ## Before each code change
 
-The bundle carries no version control: copy src/ before large edits; run `node tools/depmap.js` to see which tests a change affects; keep the approved inventories (tests/lib/*_approved.json) in step with intended changes.
+Work on a branch or a copy of src/ before large edits (the repo is under version control, but never commit a backup or a statement); run `node tools/depmap.js` to see which tests a change affects; keep the approved inventories (tests/lib/*_approved.json) in step with intended changes.

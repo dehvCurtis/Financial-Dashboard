@@ -8,11 +8,6 @@
  "file_count": 126,
  "files": [
   {
-   "path": ".gen_ok",
-   "bytes": 24,
-   "sha256": "4442246a8518020358cd55b2f9955bc4f56e86547ad7eb864471e23e46d8b8f4"
-  },
-  {
    "path": ".gitignore",
    "bytes": 344,
    "sha256": "bac80b0dd7ea2c20607e89fd5b1fadd3a6bdfbe5f7fda264ff7a69edb23bc93b"
@@ -24,8 +19,8 @@
   },
   {
    "path": "ARCHITECTURE.md",
-   "bytes": 160253,
-   "sha256": "16027e7ccee333c66b621027e931bfdafc52c569a0a25625bb49f7baab37ee06"
+   "bytes": 160689,
+   "sha256": "408b6b5188228388a0f65bb12656aa80e71a076d919ba777f218a3a7a4666d3f"
   },
   {
    "path": "BACKUP_FORMAT.md",
@@ -34,8 +29,8 @@
   },
   {
    "path": "BACKUP_GOOGLE_DRIVE.md",
-   "bytes": 2786,
-   "sha256": "b21869609dad673dd20ce2f558d6311ab9c5da16d5fa32d97e5d5cef1eb18c21"
+   "bytes": 3825,
+   "sha256": "985d927c8cd9a86ec373d8c747f1dce0edc21e8583c9e087704b11caf2b02ad7"
   },
   {
    "path": "CALCS.md",
@@ -44,13 +39,18 @@
   },
   {
    "path": "CHANGELOG.md",
-   "bytes": 10624,
-   "sha256": "1e300707b82dbb2382bfce96ba8b29b3d346c57d7b4c43e3f99871200f9c7d07"
+   "bytes": 11525,
+   "sha256": "08d4ae51d398de332946b35553cfe56f01dfff1895eefbbfecba6cd47bddd0c2"
   },
   {
    "path": "CLAUDE.md",
    "bytes": 4041,
    "sha256": "d708c9cf43e8546f336f913f7bd05772f93a1282190a72fcc96bdee23530cb2d"
+  },
+  {
+   "path": "COMPLETENESS_REVIEW.md",
+   "bytes": 6856,
+   "sha256": "50c215c7ccff4209447b2614f446d215d5a2d408fb2698efc66848cb050ef60a"
   },
   {
    "path": "CORRELATIONS.md",
@@ -60,7 +60,7 @@
   {
    "path": "DATA_MODEL.md",
    "bytes": 46763,
-   "sha256": "5313d25d39606e405812858383f721c91b0ce0b58de3b46733918454c943922b"
+   "sha256": "3674a5eeb6a08da65ce4f5ea740ad77841c7ceeeaff1de4e9d267d3baa9d5c9c"
   },
   {
    "path": "DEMO_DATA.md",
@@ -69,8 +69,8 @@
   },
   {
    "path": "ENVIRONMENT.md",
-   "bytes": 4037,
-   "sha256": "b5bab8c8e41af82b5435fba951fde709e2377066cf5247f5d6e249cbd4212b2f"
+   "bytes": 4592,
+   "sha256": "428e25d3034b6535bc5fa8c8e6e70a97b08d3dd66a5f5c71bcf86c09068f97d5"
   },
   {
    "path": "GLOSSARY.md",
@@ -79,13 +79,13 @@
   },
   {
    "path": "INDEX.md",
-   "bytes": 3661,
-   "sha256": "16cb040fec5d7997c8144e1781bdf49a292a92e6887f4654ddc3c348f3228530"
+   "bytes": 3736,
+   "sha256": "9655c432106c9a0f1433abc992366c00637392cdee2a9268a16e4a59cc2e07eb"
   },
   {
    "path": "INTAKE_GUIDE.md",
-   "bytes": 5606,
-   "sha256": "bca330622298653a714212f94a299c78faedca63f3ddb3542131b24c608c7be6"
+   "bytes": 6188,
+   "sha256": "498fce2b116c248e268cf2eda5ea69538c0b382b1fdcdb64ff4d13a9db1adb6d"
   },
   {
    "path": "LOCALIZATION.md",
@@ -94,13 +94,13 @@
   },
   {
    "path": "OPEN_ITEMS.md",
-   "bytes": 2879,
-   "sha256": "29e05d3fa10a0745dda0356a4eda0b1fbeb6c0876a605fa5073b4871f9532434"
+   "bytes": 3473,
+   "sha256": "b38081b2276ab5847b13ad7d89803878f9351c4a037a6940496f0d4345ef761f"
   },
   {
    "path": "PROMPTS.md",
-   "bytes": 4678,
-   "sha256": "0be14e3d051ea99c58e15a490ccf1fad5da9b0470df32aaa2f22582e518cad2a"
+   "bytes": 9983,
+   "sha256": "9e842e1970d3c2c4a1ddf488fa64083711655297ded442088d02d2b8b7332769"
   },
   {
    "path": "PUBLISH.md",
@@ -114,8 +114,8 @@
   },
   {
    "path": "README.md",
-   "bytes": 5854,
-   "sha256": "878b0f178379054a877a1202082cc7759f91f8615011aeced4e758edcf67dd0d"
+   "bytes": 5891,
+   "sha256": "ecd410d49362d8bf7437e2b6a8a9dd97cfdfff77f51a5c45810c03bb0baa53cc"
   },
   {
    "path": "REPORT.md",
@@ -124,8 +124,8 @@
   },
   {
    "path": "RUNBOOK.md",
-   "bytes": 2779,
-   "sha256": "456e522fe7ad5f3786af0fcba3f00e664319cb13326926a4966c47d8490bc482"
+   "bytes": 3311,
+   "sha256": "ccf83e98d735975bc1547f92f318df578a3e5ec41da94f76acca94d609af6c0c"
   },
   {
    "path": "RUNTIME_CONTRACT.md",
@@ -175,12 +175,12 @@
   {
    "path": "VERSION",
    "bytes": 139,
-   "sha256": "79660082784110205e58dc299dacad5e3e6697b3feb4897de486d97bab80686d"
+   "sha256": "6784840a250ee2bb48beb561179f12db45f868d9389bca0c6703318825dead73"
   },
   {
    "path": "code-base.zip",
-   "bytes": 590619,
-   "sha256": "f54b5e1a882a7dcb0c644a8606e37be6cf73bc23aa01f30f6edca927dadb4a86"
+   "bytes": 598152,
+   "sha256": "fcc9a884e3e863a52b3ba7994fdaa3f1402c57761c6219008dbd80243c74bc00"
   },
   {
    "path": "demo_data/acct_a_holdings.json",

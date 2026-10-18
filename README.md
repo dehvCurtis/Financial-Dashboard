@@ -50,7 +50,7 @@ To see what a filled dashboard looks like before you enter anything, look at dem
 | 8 | PUBLISH.md, RUNBOOK.md, SCHEDULED_TASKS.md | publishing and routine work |
 | 9 | BACKUP_FORMAT.md, BACKUP_GOOGLE_DRIVE.md | backup and restore |
 | 10 | SECURITY.md, SECURITY_AND_PRIVACY.md, SECURITY_REVIEW.md, SOURCES_AND_BENCHMARKS.md, LOCALIZATION.md, GLOSSARY.md | rules, sources, other countries, words |
-| 11 | CHANGELOG.md, OPEN_ITEMS.md, REPORT.md, DEMO_DATA.md | history, what is not done, verification, the invented demo |
+| 11 | CHANGELOG.md, OPEN_ITEMS.md, REPORT.md, COMPLETENESS_REVIEW.md, DEMO_DATA.md | history, what is not done, verification, the reviews, the invented demo |
 | 12 | INDEX.md, MANIFEST.json, CHECKSUMS.sha256, VERSION | the map and integrity |
 
 Other folders: templates/ (one empty starter row per dataset), demo_data/ (the full invented dataset and screenshots), code-base.zip (page, tools, tests with synthetic fixtures).

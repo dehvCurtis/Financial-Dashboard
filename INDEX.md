@@ -35,6 +35,7 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 | DEMO_DATA.md | the invented dataset and screenshots |
 | CHANGELOG.md | feature versions and stage summary |
 | OPEN_ITEMS.md | decisions needed, what is not built, known gaps |
+| COMPLETENESS_REVIEW.md | the new-user walk through, checklist and gaps |
 | REPORT.md | verification: privacy scan, docs against code, file tree, test totals |
 | INDEX.md | this file |
 

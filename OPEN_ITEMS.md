@@ -10,6 +10,9 @@
 | D4 | Whether metric_snapshots is built | yes, after one month of use; CORRELATIONS.md has the schema |
 | D5 | Whether levels may ever be added to Progress | no; only if each is earned from verified facts and never decreases |
 | D6 | Whether net worth sits on Home in a closed fold or on its own page | closed fold on Home |
+| D7 | Contact address for security reports | add it to SECURITY.md before the repository is public |
+| D8 | Git author identity of the first commits | check `git log --format='%an %ae'`; rewrite history before publishing if the identity should not be public |
+| D9 | Net worth rows and copy name a house and a truck (page/js/10_calcs_base.js nw_rows, 40_draw_tabs.js, 80_draw_v3_v4.js) | make the labels generic (Property, Vehicles) from the asset types the user has; change the approved inventories and tests in the same change; until then the labels appear even when the user owns neither |
 
 ## Not built (PLANNED)
 
