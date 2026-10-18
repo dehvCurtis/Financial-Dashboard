@@ -1,6 +1,6 @@
 # COMPLETENESS_REVIEW: walking the repo as a brand new user
 
-Method: a reviewer with only this repo and Claude followed README.md from the top: read the files in order, unzipped code-base.zip on a clean folder, ran `npm install`, built the page, ran the tests and the docs check, and then compared every claim in the documents with the code. Result before the fixes: 5 pass, 4 partial, 11 fail. After the fixes below: 20 of 20 pass, with open decisions for the owner listed under Gaps (the license and D9 first).
+Method: a reviewer with only this repo and Claude followed README.md from the top: read the files in order, unzipped code-base.zip on a clean folder, ran `npm install`, built the page, ran the tests and the docs check, and then compared every claim in the documents with the code. Result before the fixes: 4 pass, 4 partial, 11 fail. After the fixes below: 19 of 19 pass, with open decisions for the owner listed under Gaps (D9 first).
 
 ## Checklist
 
@@ -17,23 +17,21 @@ Method: a reviewer with only this repo and Claude followed README.md from the to
 | 9 | The Google Drive backup procedure is complete (what, when, naming, verify, restore) | Partial | Pass | facts were spread over the file; added one table; Drive stays optional; confirmation before upload |
 | 10 | Tax form intake exists | Fail | Pass | INTAKE_GUIDE.md had a year end mortgage form and refunds only; added a W-2, 1099 and return row |
 | 11 | Versions and prerequisites are stated | Partial | Pass | Node 22 tested (20 or later asked in package.json), npm 10, bash, unzip, Chromium install command, package versions match the lockfile |
-| 12 | License TODO is flagged | Pass | Pass | README.md, OPEN_ITEMS.md D1, package.json `UNLICENSED`. The owner must choose one |
-| 13 | Nothing refers to files, paths, chats or people outside the repo | Fail | Pass | comments named a private tools folder, the live runtime source path and a staged data folder (build.js, tests/inv_run.js, runall.sh); dataset descriptions said "stated by the owner" and "credit union", "Truck", "Ten semimonthly stubs, May to Oct 2026": made generic |
-| 14 | Removed features are not still described | Fail | Pass | ARCHITECTURE.md 5.5, the More sheet row, the Investments tile lists and the Home retirement card still described target mix, picks, rollover, transfers, old plan datasets and tile ids that the page does not render: marked not built or removed, ids corrected against TILES.md |
-| 15 | Counts in the documents match the code | Pass | Pass | 10 pages, 39 datasets, 58 calcs, 27 checks, 28 questions, 64 tiles, 82 cards, 25 charts, 13 tables, 34 invariants, 11 screenshots, 39 templates (all generated or re-counted); VERSION documents 28 became 32 |
-| 16 | Test run time is stated correctly | Fail | Pass | "about seven minutes" became about eight (466 s and 445 s measured) |
-| 17 | Dead code and size pass is part of the documented loop | Fail | Pass | tools/deadsize.js existed but no document or script ran it: CLAUDE.md loop step 5 and PUBLISH.md. Result: nothing to remove |
-| 18 | A first message for a new user exists | Fail | Pass | AGENT_PROMPT.md and README.md "Start here" |
-| 19 | Stray files | Fail | Pass | .gen_ok removed from the root and the manifest |
-| 20 | The suite passes on a clean machine | Fail (flaky) | Pass | two of three full runs failed in docs_check because the tile inventory missed lazily drawn cards (see "Flaky check"); fixed in tools/tiles_inventory.js |
+| 12 | Nothing refers to files, paths, chats or people outside the repo | Fail | Pass | comments named a private tools folder, the live runtime source path and a staged data folder (build.js, tests/inv_run.js, runall.sh); dataset descriptions said "stated by the owner" and "credit union", "Truck", "Ten semimonthly stubs, May to Oct 2026": made generic |
+| 13 | Removed features are not still described | Fail | Pass | ARCHITECTURE.md 5.5, the More sheet row, the Investments tile lists and the Home retirement card still described target mix, picks, rollover, transfers, old plan datasets and tile ids that the page does not render: marked not built or removed, ids corrected against TILES.md |
+| 14 | Counts in the documents match the code | Pass | Pass | 10 pages, 39 datasets, 58 calcs, 27 checks, 28 questions, 64 tiles, 82 cards, 25 charts, 13 tables, 34 invariants, 11 screenshots, 39 templates (all generated or re-counted); VERSION documents 28 became 32 |
+| 15 | Test run time is stated correctly | Fail | Pass | "about seven minutes" became about eight (466 s and 445 s measured) |
+| 16 | Dead code and size pass is part of the documented loop | Fail | Pass | tools/deadsize.js existed but no document or script ran it: CLAUDE.md loop step 5 and PUBLISH.md. Result: nothing to remove |
+| 17 | A first message for a new user exists | Fail | Pass | AGENT_PROMPT.md and README.md "Start here" |
+| 18 | Stray files | Fail | Pass | .gen_ok removed from the root and the manifest |
+| 19 | The suite passes on a clean machine | Fail (flaky) | Pass | two of three full runs failed in docs_check because the tile inventory missed lazily drawn cards (see "Flaky check"); fixed in tools/tiles_inventory.js |
 
 ## Gaps that remain (owner decisions)
 
-1. License (OPEN_ITEMS.md D1). Until chosen no license is granted.
-2. Net worth rows and copy say "House" and "Truck" (D9). The labels come from page code; changing them touches approved inventories and tests, so it was not done in a documentation pass. A user with neither will still see the words.
-3. Contact address in SECURITY.md (D7) and the first commit's author identity (D8).
-4. The page and benchmarks are US style (LOCALIZATION.md). Prompt 15 walks through a change but a country other than the US needs new reference data.
-5. A real phone check of the bottom bar and a re-run of the Stage 0 probe on each account (OPEN_ITEMS.md).
+1. Net worth rows and copy say "House" and "Truck" (D9). The labels come from page code; changing them touches approved inventories and tests, so it was not done in a documentation pass. A user with neither will still see the words.
+2. Contact address in SECURITY.md (D7) and the first commit's author identity (D8).
+3. The page and benchmarks are US style (LOCALIZATION.md). Prompt 15 walks through a change but a country other than the US needs new reference data.
+4. A real phone check of the bottom bar and a re-run of the Stage 0 probe on each account (OPEN_ITEMS.md).
 
 ## Flaky check (fixed)
 

@@ -4,7 +4,6 @@
  "page_stage": "6i",
  "backup_schema": "mo-backup-2",
  "runtime_contract_observed": "0.2.67",
- "license": "TODO (not chosen)",
  "file_count": 126,
  "files": [
   {
@@ -49,8 +48,8 @@
   },
   {
    "path": "COMPLETENESS_REVIEW.md",
-   "bytes": 6856,
-   "sha256": "50c215c7ccff4209447b2614f446d215d5a2d408fb2698efc66848cb050ef60a"
+   "bytes": 6642,
+   "sha256": "881bd19663fb71d930606874020acc20e0914c622a092af1e794f87fda2c63ba"
   },
   {
    "path": "CORRELATIONS.md",
@@ -94,8 +93,8 @@
   },
   {
    "path": "OPEN_ITEMS.md",
-   "bytes": 3473,
-   "sha256": "b38081b2276ab5847b13ad7d89803878f9351c4a037a6940496f0d4345ef761f"
+   "bytes": 3222,
+   "sha256": "d18e66cb8a4d6782d727670f7054719f7b8769afeeb80ad6206d5589f482c122"
   },
   {
    "path": "PROMPTS.md",
@@ -114,8 +113,8 @@
   },
   {
    "path": "README.md",
-   "bytes": 5891,
-   "sha256": "ecd410d49362d8bf7437e2b6a8a9dd97cfdfff77f51a5c45810c03bb0baa53cc"
+   "bytes": 5773,
+   "sha256": "d1901c0ed6439cd5ee98e404604d061bf621a277b4c8046f750dc7eae7e49e7d"
   },
   {
    "path": "REPORT.md",
@@ -174,13 +173,13 @@
   },
   {
    "path": "VERSION",
-   "bytes": 139,
-   "sha256": "6784840a250ee2bb48beb561179f12db45f868d9389bca0c6703318825dead73"
+   "bytes": 112,
+   "sha256": "829fcb8553b99d0c21ca51b9756c1f42ad2e645a710701091069d805384eff6f"
   },
   {
    "path": "code-base.zip",
-   "bytes": 598152,
-   "sha256": "fcc9a884e3e863a52b3ba7994fdaa3f1402c57761c6219008dbd80243c74bc00"
+   "bytes": 608144,
+   "sha256": "bba251b2a59ff5a9d1119aaa49c567497ea6e6c2fb2ebdf90412a59b3df53fa4"
   },
   {
    "path": "demo_data/acct_a_holdings.json",

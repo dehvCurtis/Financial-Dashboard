@@ -4,7 +4,6 @@
 
 | # | Decision | Recommended default |
 |---|---|---|
-| D1 | License for the bundle and the code base | TODO: not chosen. Until chosen, no license is granted. Pick one (for example a permissive license for the code and a document license for the text) and replace the TODO in README.md and package.json |
 | D2 | Where the bundle is hosted and who may receive it | private repository or shared folder |
 | D3 | Whether Save for ships in the next stage or stays PLANNED | build in the order in ARCHITECTURE.md section 17, stage 7 |
 | D4 | Whether metric_snapshots is built | yes, after one month of use; CORRELATIONS.md has the schema |
