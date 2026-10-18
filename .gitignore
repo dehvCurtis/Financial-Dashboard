@@ -1,0 +1,31 @@
+# build and test output
+node_modules/
+work/
+out/
+docs_out/
+tests/logs/
+tests/results/
+*.log
+# real data: never commit
+.env
+.env.*
+*.pem
+*.key
+dashboard-backup-*.json
+dashboard-kit-*.zip
+backup/
+backups/
+Money Ops Backup*/
+statements/
+*.pdf
+*.xlsx
+*.xls
+*.ofx
+*.qfx
+*.csv
+!tests/fixtures/**/*.csv
+# editor and OS
+.DS_Store
+*.swp
+.idea/
+.vscode/

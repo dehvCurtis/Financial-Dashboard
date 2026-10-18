@@ -1,0 +1,18 @@
+[
+ {
+  "date": "2026-09-30",
+  "financial": 50,
+  "risk": 50,
+  "financial_label": "Building",
+  "risk_label": "Moderate",
+  "n_components_financial": 5,
+  "n_components_risk": 5,
+  "coverage_financial": 70,
+  "coverage_risk": 70,
+  "config_version": "1.0.0",
+  "component_points": {
+   "F1": 5
+  },
+  "note": "example"
+ }
+]

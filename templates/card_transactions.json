@@ -1,0 +1,13 @@
+[
+ {
+  "txn_id": null,
+  "date": null,
+  "merchant": null,
+  "amount": null,
+  "category": null,
+  "foreign": null,
+  "card": null,
+  "statement_close": null,
+  "notes": null
+ }
+]

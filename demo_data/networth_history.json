@@ -1,0 +1,18 @@
+[
+ {
+  "date": "2026-10-01",
+  "assets": 472500,
+  "debts": 298350,
+  "retirement": 54000,
+  "net_worth": 174150,
+  "note": "example"
+ },
+ {
+  "date": "2026-10-13",
+  "assets": 479925,
+  "debts": 297000,
+  "retirement": 55350,
+  "net_worth": 182925,
+  "note": "example"
+ }
+]

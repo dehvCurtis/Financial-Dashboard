@@ -1,0 +1,22 @@
+[
+ {
+  "fund": "EXAMPLE TOTAL STOCK FUND",
+  "pct_of_plan": 62.5,
+  "quantity": 135,
+  "cost_basis_per_share": 270,
+  "last_price": 337.5,
+  "value": 33750,
+  "gain_loss": 6750,
+  "asset_class": "US equity"
+ },
+ {
+  "fund": "EXAMPLE TOTAL BOND FUND",
+  "pct_of_plan": 37.5,
+  "quantity": 405,
+  "cost_basis_per_share": 67.5,
+  "last_price": 67.5,
+  "value": 20250,
+  "gain_loss": 0,
+  "asset_class": "Taxable bond"
+ }
+]

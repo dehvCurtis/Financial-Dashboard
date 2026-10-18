@@ -1,0 +1,26 @@
+[
+ {
+  "event_id": "E1",
+  "date": "2026-10-10",
+  "account": "Savings",
+  "kind": "Pay deposit",
+  "amount": 4455,
+  "counts_as_spend": "N",
+  "recurring": "Y",
+  "note": "example",
+  "status": "Confirmed",
+  "in_balances": "Y"
+ },
+ {
+  "event_id": "E2",
+  "date": "2026-10-11",
+  "account": "Savings",
+  "kind": "Mortgage payment",
+  "amount": -3105,
+  "counts_as_spend": "N",
+  "recurring": "Y",
+  "note": "example",
+  "status": "Confirmed",
+  "in_balances": "Y"
+ }
+]

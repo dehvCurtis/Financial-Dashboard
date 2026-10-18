@@ -1,0 +1,16 @@
+[
+ {
+  "goal_id": "G1",
+  "name": "Trip",
+  "target_amount": 4050,
+  "target_date": "2027-06-30",
+  "saved_so_far": 810,
+  "monthly_contribution": 405,
+  "interest_rate_pct": 0,
+  "account": "Savings",
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "status": "Active",
+  "note": "example"
+ }
+]

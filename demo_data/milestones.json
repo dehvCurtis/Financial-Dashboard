@@ -1,0 +1,16 @@
+[
+ {
+  "milestone_id": "debt_L5_25",
+  "family": "debt_pct",
+  "subject": "Example Auto Loan",
+  "step": "25 percent paid",
+  "value_at": 8100,
+  "evidence_dataset": "liabilities",
+  "evidence_id": "L5",
+  "direction": "down",
+  "note": "example",
+  "status": "earned",
+  "earned_on": "2026-10-01",
+  "retracted_on": null
+ }
+]

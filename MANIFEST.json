@@ -1,0 +1,641 @@
+{
+ "bundle": "Money Operations Center starter bundle",
+ "bundle_version": "1.0.0",
+ "page_stage": "6i",
+ "backup_schema": "mo-backup-2",
+ "runtime_contract_observed": "0.2.67",
+ "license": "TODO (not chosen)",
+ "file_count": 126,
+ "files": [
+  {
+   "path": ".gitignore",
+   "bytes": 344,
+   "sha256": "bac80b0dd7ea2c20607e89fd5b1fadd3a6bdfbe5f7fda264ff7a69edb23bc93b"
+  },
+  {
+   "path": "AGENT_PROMPT.md",
+   "bytes": 6590,
+   "sha256": "74461a63609411e94f9a011313c738341c3134b2b9c225ff6b49401806a5c8f2"
+  },
+  {
+   "path": "ARCHITECTURE.md",
+   "bytes": 160689,
+   "sha256": "408b6b5188228388a0f65bb12656aa80e71a076d919ba777f218a3a7a4666d3f"
+  },
+  {
+   "path": "BACKUP_FORMAT.md",
+   "bytes": 29784,
+   "sha256": "fec63fec5ecef2061613caa393b1ef347446f25e2b0eb32560669535eb355d81"
+  },
+  {
+   "path": "BACKUP_GOOGLE_DRIVE.md",
+   "bytes": 3825,
+   "sha256": "985d927c8cd9a86ec373d8c747f1dce0edc21e8583c9e087704b11caf2b02ad7"
+  },
+  {
+   "path": "CALCS.md",
+   "bytes": 42072,
+   "sha256": "233b4442f36bcb400fcaa839f07f00d5fdd3aa94c2da7e07999e513425692b1c"
+  },
+  {
+   "path": "CHANGELOG.md",
+   "bytes": 11525,
+   "sha256": "08d4ae51d398de332946b35553cfe56f01dfff1895eefbbfecba6cd47bddd0c2"
+  },
+  {
+   "path": "CLAUDE.md",
+   "bytes": 4041,
+   "sha256": "d708c9cf43e8546f336f913f7bd05772f93a1282190a72fcc96bdee23530cb2d"
+  },
+  {
+   "path": "COMPLETENESS_REVIEW.md",
+   "bytes": 6856,
+   "sha256": "50c215c7ccff4209447b2614f446d215d5a2d408fb2698efc66848cb050ef60a"
+  },
+  {
+   "path": "CORRELATIONS.md",
+   "bytes": 5741,
+   "sha256": "003c8788874b099f824f39064d809db44e33e9c78ef6ed50e98475aaf7137414"
+  },
+  {
+   "path": "DATA_MODEL.md",
+   "bytes": 46763,
+   "sha256": "3674a5eeb6a08da65ce4f5ea740ad77841c7ceeeaff1de4e9d267d3baa9d5c9c"
+  },
+  {
+   "path": "DEMO_DATA.md",
+   "bytes": 3185,
+   "sha256": "41a04ed06a1703bde7b5381da3f23ef5e978c43bc95ffc31690c03d8cc06e940"
+  },
+  {
+   "path": "ENVIRONMENT.md",
+   "bytes": 4592,
+   "sha256": "428e25d3034b6535bc5fa8c8e6e70a97b08d3dd66a5f5c71bcf86c09068f97d5"
+  },
+  {
+   "path": "GLOSSARY.md",
+   "bytes": 2950,
+   "sha256": "b06717418f24eb10a59b7905f9162e7b8c09f6ce3db760eb71e8aae79afb314a"
+  },
+  {
+   "path": "INDEX.md",
+   "bytes": 3736,
+   "sha256": "9655c432106c9a0f1433abc992366c00637392cdee2a9268a16e4a59cc2e07eb"
+  },
+  {
+   "path": "INTAKE_GUIDE.md",
+   "bytes": 6188,
+   "sha256": "498fce2b116c248e268cf2eda5ea69538c0b382b1fdcdb64ff4d13a9db1adb6d"
+  },
+  {
+   "path": "LOCALIZATION.md",
+   "bytes": 3001,
+   "sha256": "2a1454971a7e117226df72a3845d25c7e756efccd36366618ab0507d603e0eaa"
+  },
+  {
+   "path": "OPEN_ITEMS.md",
+   "bytes": 3473,
+   "sha256": "b38081b2276ab5847b13ad7d89803878f9351c4a037a6940496f0d4345ef761f"
+  },
+  {
+   "path": "PROMPTS.md",
+   "bytes": 9983,
+   "sha256": "9e842e1970d3c2c4a1ddf488fa64083711655297ded442088d02d2b8b7332769"
+  },
+  {
+   "path": "PUBLISH.md",
+   "bytes": 3899,
+   "sha256": "b4baf41cba646222375933c9ccaeb5b52688392379ec5b6a589def390ecebc8e"
+  },
+  {
+   "path": "QUESTIONS.md",
+   "bytes": 10649,
+   "sha256": "3f4bba24a0ab50a603c115fc7fedaa8fc2161ab85ffae8cb0592cefaafc25070"
+  },
+  {
+   "path": "README.md",
+   "bytes": 5891,
+   "sha256": "ecd410d49362d8bf7437e2b6a8a9dd97cfdfff77f51a5c45810c03bb0baa53cc"
+  },
+  {
+   "path": "REPORT.md",
+   "bytes": 3213,
+   "sha256": "c7cd9665f89a6869531337bdcaae4b9e21e8543990d8bbce2138f41e5589cb3f"
+  },
+  {
+   "path": "RUNBOOK.md",
+   "bytes": 3311,
+   "sha256": "ccf83e98d735975bc1547f92f318df578a3e5ec41da94f76acca94d609af6c0c"
+  },
+  {
+   "path": "RUNTIME_CONTRACT.md",
+   "bytes": 4726,
+   "sha256": "286316cdfbd8d362e28e813e7624e834c29de79d8eeda86210c8e17444b9de9d"
+  },
+  {
+   "path": "SCHEDULED_TASKS.md",
+   "bytes": 2626,
+   "sha256": "51c4306db654d7eca8a69bfb731507a555896354f36a8086cbca66e73519e5a6"
+  },
+  {
+   "path": "SCORING.md",
+   "bytes": 4718,
+   "sha256": "0160fdd3a383b23abf93c16d3b93b0741be8ba5f54e61de628c5593f56c03702"
+  },
+  {
+   "path": "SECURITY.md",
+   "bytes": 3796,
+   "sha256": "fa51ca9b311b3c930deb01ad955b6f10ec2a39b62f2ea0c1baeeb31fd5640101"
+  },
+  {
+   "path": "SECURITY_AND_PRIVACY.md",
+   "bytes": 4759,
+   "sha256": "e4a24ac48dac76aabe6a21c8e7b0052aa9da8c2cdeb1d835f0860c7000107a15"
+  },
+  {
+   "path": "SECURITY_REVIEW.md",
+   "bytes": 9682,
+   "sha256": "c267b7f800a13db6b1adff9a7063bbde992905444bd8dd628d7c4673e1e6459d"
+  },
+  {
+   "path": "SOURCES_AND_BENCHMARKS.md",
+   "bytes": 3405,
+   "sha256": "5aeb493afcc81b70641482220f05180b357fad94a5a65017816dad7ee9f74ec4"
+  },
+  {
+   "path": "STYLE-GUIDE.md",
+   "bytes": 35558,
+   "sha256": "748a52c2bc5f39c1adf3fd713ba33c6fa504a84654e53eaa360671262d5d2b3a"
+  },
+  {
+   "path": "TILES.md",
+   "bytes": 68866,
+   "sha256": "32dc40eed923d9d7e0819aaed18354347c8ab8d434974189e7310c1e28a1d14d"
+  },
+  {
+   "path": "VERSION",
+   "bytes": 139,
+   "sha256": "6784840a250ee2bb48beb561179f12db45f868d9389bca0c6703318825dead73"
+  },
+  {
+   "path": "code-base.zip",
+   "bytes": 598152,
+   "sha256": "fcc9a884e3e863a52b3ba7994fdaa3f1402c57761c6219008dbd80243c74bc00"
+  },
+  {
+   "path": "demo_data/acct_a_holdings.json",
+   "bytes": 420,
+   "sha256": "34a81e7fa12c6d0aad21e1a0a40256e4319b9042f9a08db3e05f9311c6bdb843"
+  },
+  {
+   "path": "demo_data/acct_a_sources.json",
+   "bytes": 229,
+   "sha256": "2fdb18237a91b00f865d27129baba00b8787c1096a19257ccc682b4b8b4cd95f"
+  },
+  {
+   "path": "demo_data/acct_b_holdings.json",
+   "bytes": 330,
+   "sha256": "7575af0aaf560cfc23f33542b9548eea635246e91d5d2d110a6a78da7131fe04"
+  },
+  {
+   "path": "demo_data/age_benchmarks.json",
+   "bytes": 139891,
+   "sha256": "334bca54f408f0567240a297aa5d859c2db22cbf8fe113769398901284e355e3"
+  },
+  {
+   "path": "demo_data/age_metrics_config.json",
+   "bytes": 22093,
+   "sha256": "115e1e5cafb86991fe423026eda66c4ec64b02e76e9c6d18326b8acda225de5f"
+  },
+  {
+   "path": "demo_data/assets_other.json",
+   "bytes": 1627,
+   "sha256": "e20a7ffdf6b24fb528ed317b3dad3230697a26e397e5be1712ec1ddd779f73f7"
+  },
+  {
+   "path": "demo_data/assumptions.json",
+   "bytes": 461,
+   "sha256": "e0398317eb093779badb84ca00e1c73419c44a9cdf881791048b7c5db9c4f7df"
+  },
+  {
+   "path": "demo_data/balance_log.json",
+   "bytes": 869,
+   "sha256": "2c836eae63ef440cd31a7fa99dde6042e3fc8b3a0be70969cd9151b6a538f410"
+  },
+  {
+   "path": "demo_data/bank_flows.json",
+   "bytes": 673,
+   "sha256": "ee96b9c98206a46d3d33ad9c380eb90ccff1e46ad8dc2ac1e5e8906616f425e5"
+  },
+  {
+   "path": "demo_data/bank_statements.json",
+   "bytes": 1752,
+   "sha256": "5e7dad47efbad4fe8f8061ba2a9f65eaf26bf72eb4088516db1d06ca180c0bc0"
+  },
+  {
+   "path": "demo_data/bill_statements.json",
+   "bytes": 740,
+   "sha256": "1dcd16173e8ccc3c2e59b297ceab8fab1d1c44452d1fc93554b6e675f409a443"
+  },
+  {
+   "path": "demo_data/bills.json",
+   "bytes": 942,
+   "sha256": "939435cd797018402b82acd9dc71e9c0f3858b9fdd87e84a7f4f6268fb8b85af"
+  },
+  {
+   "path": "demo_data/card_statements.json",
+   "bytes": 431,
+   "sha256": "93350adc6983524bea17151f436c9ea58d3c70428fe6b5001ed1a238b7c690c8"
+  },
+  {
+   "path": "demo_data/card_transactions.json",
+   "bytes": 446,
+   "sha256": "ec996bbc59113db13cea1d4338498b3c00c7abedd14a438cbadc74287c56a089"
+  },
+  {
+   "path": "demo_data/cash_events.json",
+   "bytes": 471,
+   "sha256": "4edcc0fff844a9c61621d42b456ce5cd619e915c4dd982484900de88c12a7671"
+  },
+  {
+   "path": "demo_data/contribution_limits.json",
+   "bytes": 392,
+   "sha256": "b1df1cc989ad33c8be5f093e140b652f3332bc72cba5732ebecefee8b54aa0b1"
+  },
+  {
+   "path": "demo_data/contribution_plan.json",
+   "bytes": 385,
+   "sha256": "3964d45b8a5c25c276723ffc27af27a4ddf1d0c504555b37c4e4861432864029"
+  },
+  {
+   "path": "demo_data/contributions.json",
+   "bytes": 686,
+   "sha256": "d28ad14545e3a7f9eb2e07adf09293ff055fbd591953ed10d3279f0c16444368"
+  },
+  {
+   "path": "demo_data/data_queue.json",
+   "bytes": 596,
+   "sha256": "1448d39aa7f9d31ba42a57887cb04616c7495dcc41c058403eaf6993495fc7d0"
+  },
+  {
+   "path": "demo_data/drift_history.json",
+   "bytes": 323,
+   "sha256": "e6e4724d0cd8649aa275890e3e4ef5d5b09c5c37a6bcf422d9783004e1299909"
+  },
+  {
+   "path": "demo_data/dti_benchmarks.json",
+   "bytes": 787,
+   "sha256": "f91b78e3ca7d7afc30a88d685ede17e522860263d376f345b28e6b5c1d9541d5"
+  },
+  {
+   "path": "demo_data/holding_snapshots.json",
+   "bytes": 933,
+   "sha256": "41543a982b2a1a4d16ede0e667ea391cca499fcdbdcb7fc81d2f6718e1e8dd8d"
+  },
+  {
+   "path": "demo_data/income_pay.json",
+   "bytes": 535,
+   "sha256": "96465a85dead77a0218a549c551b9248f64851162790fcb75dddcb1565e33d79"
+  },
+  {
+   "path": "demo_data/liabilities.json",
+   "bytes": 4189,
+   "sha256": "3d14bca348a856b12759cf68580b72e46e5dea3b934725f033573bce1fdbc9ca"
+  },
+  {
+   "path": "demo_data/ltv_benchmarks.json",
+   "bytes": 1491,
+   "sha256": "decac0ca4f2a52a5a43243d097aeb3b98de909289bca94b8dce982c799a0ce67"
+  },
+  {
+   "path": "demo_data/milestones.json",
+   "bytes": 327,
+   "sha256": "cd0f56b8ef4acdb0f891b2d4254e7f11dc17078efb76b83b3643da0ce48ea83e"
+  },
+  {
+   "path": "demo_data/mortgage_statements.json",
+   "bytes": 695,
+   "sha256": "05292d7e8285a90bf9591dfcde73b5dd0d273ba7cafc23f3da35135bee93a15f"
+  },
+  {
+   "path": "demo_data/networth_history.json",
+   "bytes": 275,
+   "sha256": "1e9854f217cd086428b9815aad5840cd01a5797fe7b2f9177229beb05ed1fca6"
+  },
+  {
+   "path": "demo_data/payoff_settings.json",
+   "bytes": 163,
+   "sha256": "9af991056048810296041596ddc1e7c1bce90ece2d4af289afa01a69ccc6773b"
+  },
+  {
+   "path": "demo_data/paystubs.json",
+   "bytes": 2681,
+   "sha256": "66527529976f3aa42b2518ced862ad5acd25a8fa98cf5dc1b380eacc9f7bc1aa"
+  },
+  {
+   "path": "demo_data/plan_stats.json",
+   "bytes": 224,
+   "sha256": "98395ef921470a2fb20bddba4a3a26de3fbf6ec3b1d8b3b33ae795e0ccd18549"
+  },
+  {
+   "path": "demo_data/plan_summary.json",
+   "bytes": 112,
+   "sha256": "8ed999fdc9f319de77a4cc19021eb379fcbc1a1941b54390f8cc851fc4bf32fa"
+  },
+  {
+   "path": "demo_data/price_history.json",
+   "bytes": 161,
+   "sha256": "0596ec15b4263d2bd9902fe6cc401b552977df4c05074fd77ab1bb05b54711ea"
+  },
+  {
+   "path": "demo_data/profile_answers.json",
+   "bytes": 4984,
+   "sha256": "d4dd6171c6b5d864fbfcf02e369595f5308c23f8cbe21cd41cbb5e699d4ce395"
+  },
+  {
+   "path": "demo_data/retirement_plan.json",
+   "bytes": 573,
+   "sha256": "bdc10b5f82ca6c5694452c9119c2e028111cc697649b158bf99766a0b1100495"
+  },
+  {
+   "path": "demo_data/savings_goals.json",
+   "bytes": 302,
+   "sha256": "6a1b7b64687a13f602f55819d76b56170597f3cc274cf7702465f06f5fcb0d54"
+  },
+  {
+   "path": "demo_data/scores_config.json",
+   "bytes": 12210,
+   "sha256": "d9ff50be50dc428270c7ca7f8f6f6141b9b38af0d15ad6cc0bbee2bbe28c235e"
+  },
+  {
+   "path": "demo_data/scores_history.json",
+   "bytes": 325,
+   "sha256": "0dd6b05ab7e8d6a879a138507fee1038d617e0ea7e2bd9491de17a86058c8313"
+  },
+  {
+   "path": "demo_data/shots/bills.png",
+   "bytes": 180717,
+   "sha256": "19b7e1492f537e634a7abaaf1ad9d844e39c198376aba0ff16e5c68df00da071"
+  },
+  {
+   "path": "demo_data/shots/cash.png",
+   "bytes": 359182,
+   "sha256": "4828ae375fa8f706718fd1c74c843fa89a744a50b686d16ebde7dbff03ad1637"
+  },
+  {
+   "path": "demo_data/shots/dark_home.png",
+   "bytes": 460589,
+   "sha256": "fc67369f38939615a126e54ed80a09a355188393a51a8f53969c930d47aebec6"
+  },
+  {
+   "path": "demo_data/shots/data.png",
+   "bytes": 145115,
+   "sha256": "f85c4000385fa008dff057577b14dc5a1e5c3e8d3895bbfa3e1594ee38a57a6c"
+  },
+  {
+   "path": "demo_data/shots/debt.png",
+   "bytes": 348415,
+   "sha256": "dc60515f762dbdf7c16eae06b24b6b0bf7d656e3c3dc8ed34ea9f0720b25748a"
+  },
+  {
+   "path": "demo_data/shots/home.png",
+   "bytes": 453229,
+   "sha256": "0f32bd157555cea24c36733a64821ee07279db6c3ab6846ecb39d46390c32d80"
+  },
+  {
+   "path": "demo_data/shots/investments.png",
+   "bytes": 255262,
+   "sha256": "793492784cb362e8fc48fdd3c1f2d0e01d8d9e324ccb4d5a89346106fefdaa11"
+  },
+  {
+   "path": "demo_data/shots/pay.png",
+   "bytes": 170259,
+   "sha256": "8383330fff15567724f0d9116d511e4c0ff000a100f6dcba2cd69e842488ef96"
+  },
+  {
+   "path": "demo_data/shots/progress.png",
+   "bytes": 527630,
+   "sha256": "83fe8c41576424f39f29a0dc4c29f50a407c28d924a6c8612ad8c9b65e8ac2b1"
+  },
+  {
+   "path": "demo_data/shots/retirement.png",
+   "bytes": 412187,
+   "sha256": "7eeebeb95c7eec5730292ee375d7f713528119c68d35560fc3b939c55ebbdc7c"
+  },
+  {
+   "path": "demo_data/shots/tasks.png",
+   "bytes": 86814,
+   "sha256": "687c70a019d8dabae9c49d6cc8c0b83041e5a5a048991f028fc19938918dee88"
+  },
+  {
+   "path": "demo_data/tasks.json",
+   "bytes": 1500,
+   "sha256": "851b413dedce5ebe91d4fbcf4b7e656baf13c0bf9b654152631fdd572ad28929"
+  },
+  {
+   "path": "templates/README.md",
+   "bytes": 3520,
+   "sha256": "48d83f976337e416b6e507890ff2972c57db2599cdf23e90180c084b776d71b7"
+  },
+  {
+   "path": "templates/acct_a_holdings.json",
+   "bytes": 183,
+   "sha256": "d1ac53ebaa0ee0697ef92f57a62777ea3d64f6f3427d18f42522fbcb6b8cb158"
+  },
+  {
+   "path": "templates/acct_a_sources.json",
+   "bytes": 85,
+   "sha256": "0a45622dff2e7d2749ec0130a2ecb433b9c27d0431e6f32d3f484a345ca883e7"
+  },
+  {
+   "path": "templates/acct_b_holdings.json",
+   "bytes": 119,
+   "sha256": "9850006194b792dd0a79ebf909fe95a7787b867729a2047e6a46dcd0bdcc98d2"
+  },
+  {
+   "path": "templates/age_benchmarks.json",
+   "bytes": 139891,
+   "sha256": "334bca54f408f0567240a297aa5d859c2db22cbf8fe113769398901284e355e3"
+  },
+  {
+   "path": "templates/age_metrics_config.json",
+   "bytes": 22094,
+   "sha256": "8abfd31f7017a358d06dbfa608c4797bf5c597bad17de03e95aef80653af59ba"
+  },
+  {
+   "path": "templates/assets_other.json",
+   "bytes": 244,
+   "sha256": "618c1b95b56f1d2d5565e5c914d7e3280343b9f7c9608cb7270e4809805d8e01"
+  },
+  {
+   "path": "templates/assumptions.json",
+   "bytes": 461,
+   "sha256": "e0398317eb093779badb84ca00e1c73419c44a9cdf881791048b7c5db9c4f7df"
+  },
+  {
+   "path": "templates/balance_log.json",
+   "bytes": 124,
+   "sha256": "488622e446fc43162c6ad476a31530972af8ec66cd99d732b003c2c07f5bc584"
+  },
+  {
+   "path": "templates/bank_flows.json",
+   "bytes": 278,
+   "sha256": "82fab1a74b3aa9af69e9ebff2418c8a6430b9102b5a7d4c777531676a2256105"
+  },
+  {
+   "path": "templates/bank_statements.json",
+   "bytes": 842,
+   "sha256": "f9093ff1f6323a8a05f4ca4d2bd989b7c77a60ca0f79660e978ef4e7c1ce6549"
+  },
+  {
+   "path": "templates/bill_statements.json",
+   "bytes": 123,
+   "sha256": "eef675e0ea909430169e1d669b2270f00eb3d7de23605012be9e335b48a4178e"
+  },
+  {
+   "path": "templates/bills.json",
+   "bytes": 168,
+   "sha256": "d4f9eb1faeaf4d501396d4958afff5fff6b521d378e60cfe71478fe665cc55c1"
+  },
+  {
+   "path": "templates/card_statements.json",
+   "bytes": 410,
+   "sha256": "b5f89b1a9a7e903ef3140e9f1657300e3ba9832d0aa2cd668d5453002b7252d4"
+  },
+  {
+   "path": "templates/card_transactions.json",
+   "bytes": 180,
+   "sha256": "0f6231be3f22858b00efe0e5f45d4b6dd478065d35f12eb8c5e49863721fc0cc"
+  },
+  {
+   "path": "templates/cash_events.json",
+   "bytes": 203,
+   "sha256": "796761f93c28229f9299486669add25c6c6a381f911836f2d4df5cb8890adf10"
+  },
+  {
+   "path": "templates/contribution_limits.json",
+   "bytes": 392,
+   "sha256": "b1df1cc989ad33c8be5f093e140b652f3332bc72cba5732ebecefee8b54aa0b1"
+  },
+  {
+   "path": "templates/contribution_plan.json",
+   "bytes": 170,
+   "sha256": "e570870b657ed6036b05b7fc5de4c25e4f98a8cce94d3be7ccc6e04c961b2fec"
+  },
+  {
+   "path": "templates/contributions.json",
+   "bytes": 213,
+   "sha256": "2ac96d409c4fd3184c9921813f476d9bc4268845f7bfe48b069f690b3492a0c6"
+  },
+  {
+   "path": "templates/data_queue.json",
+   "bytes": 156,
+   "sha256": "8c14aa78ad90355f0304a889afdb710b6abe10c4d1a36d203aad9f66560fceb3"
+  },
+  {
+   "path": "templates/drift_history.json",
+   "bytes": 287,
+   "sha256": "ec11bfebd63d48f86f390d78307195fee7cb2147cec8d29fb1346bab08330016"
+  },
+  {
+   "path": "templates/dti_benchmarks.json",
+   "bytes": 787,
+   "sha256": "f91b78e3ca7d7afc30a88d685ede17e522860263d376f345b28e6b5c1d9541d5"
+  },
+  {
+   "path": "templates/holding_snapshots.json",
+   "bytes": 194,
+   "sha256": "42bad6f14b342241f0b9302ca2e77513971cc757c92763bacb17a3b875251cd8"
+  },
+  {
+   "path": "templates/income_pay.json",
+   "bytes": 239,
+   "sha256": "9080df8201688094b4c71325bc3ac714dad5032f1da4e7159d2e8af6798c2c82"
+  },
+  {
+   "path": "templates/liabilities.json",
+   "bytes": 540,
+   "sha256": "285b4274be7cfa2c36b97794e40447bc6501561541146507433be079a408cc14"
+  },
+  {
+   "path": "templates/ltv_benchmarks.json",
+   "bytes": 1491,
+   "sha256": "decac0ca4f2a52a5a43243d097aeb3b98de909289bca94b8dce982c799a0ce67"
+  },
+  {
+   "path": "templates/milestones.json",
+   "bytes": 257,
+   "sha256": "68e91127ded31ecdf09248b25bad10c071877189788ee2518acb680c8bfd14a6"
+  },
+  {
+   "path": "templates/mortgage_statements.json",
+   "bytes": 500,
+   "sha256": "27721ef4d215a236343f0f34db471ae14d4ed93ab956e0ba333bcbedf349c591"
+  },
+  {
+   "path": "templates/networth_history.json",
+   "bytes": 119,
+   "sha256": "cd548eb57e7071b21cd7fe73e0f08fc38cc1be7948f405be8ebe9a7008b28b24"
+  },
+  {
+   "path": "templates/payoff_settings.json",
+   "bytes": 142,
+   "sha256": "e77cd799327aa8dc1b8feb6f2eb53b92228a9e398f2e0eaad04769e356c94b56"
+  },
+  {
+   "path": "templates/paystubs.json",
+   "bytes": 665,
+   "sha256": "435ad2140a483e6734ab704ae7ad1de821a3ace95391a3281451940c84803f06"
+  },
+  {
+   "path": "templates/plan_stats.json",
+   "bytes": 212,
+   "sha256": "4faabef6b47f124990bb3564fed06a5e5ab903d50d60f95648656c8b7ff0a7dd"
+  },
+  {
+   "path": "templates/plan_summary.json",
+   "bytes": 43,
+   "sha256": "d035e0d5945f896e73d4baf04a71127cb54a5e1581bcd5cba88fc0847cb66f3d"
+  },
+  {
+   "path": "templates/planned/metric_snapshots.json",
+   "bytes": 308,
+   "sha256": "02123abcbff95aeb68f01a1a541302ca2ed7a5f03a0589691e13811f097d9da4"
+  },
+  {
+   "path": "templates/price_history.json",
+   "bytes": 127,
+   "sha256": "eb2685138d559c05fd2e94305f448cf8a8dbdf83b0d51c488c54877030cc5a66"
+  },
+  {
+   "path": "templates/profile_answers.json",
+   "bytes": 123,
+   "sha256": "4927255e2916c5c1527b3467a0b2cd17d9a1f9de40caff28bfa60d2b7b522e8c"
+  },
+  {
+   "path": "templates/retirement_plan.json",
+   "bytes": 58,
+   "sha256": "edbd0f292164bb08013a2321f123d286cb82d5e610a1620dc2fef9dde5775112"
+  },
+  {
+   "path": "templates/savings_goals.json",
+   "bytes": 270,
+   "sha256": "9009a4179c1ae66a877cf26cab046d9c61302a31942ea15c0aab0e2d158e46fa"
+  },
+  {
+   "path": "templates/scores_config.json",
+   "bytes": 12210,
+   "sha256": "d9ff50be50dc428270c7ca7f8f6f6141b9b38af0d15ad6cc0bbee2bbe28c235e"
+  },
+  {
+   "path": "templates/scores_history.json",
+   "bytes": 299,
+   "sha256": "640e935ef74c94f4b892fcdaa0c46c8529fcd5dce6bf85d6ba654162e8e6796b"
+  },
+  {
+   "path": "templates/tasks.json",
+   "bytes": 319,
+   "sha256": "69d9ea40a3f68a9ac4be260e9375fc9f97290e2e3c20081218675cebcc2311ce"
+  }
+ ]
+}

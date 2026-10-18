@@ -1,0 +1,33 @@
+[
+ {
+  "pay_date": null,
+  "period_start": null,
+  "period_end": null,
+  "gross": null,
+  "federal_tax": null,
+  "state_tax": null,
+  "fica": null,
+  "taxes": null,
+  "k401_you": null,
+  "hsa_you": null,
+  "hsa_employer": null,
+  "benefits": null,
+  "garnishment": null,
+  "take_home_core": null,
+  "net_pay": null,
+  "other_additions": null,
+  "ytd_gross": null,
+  "ytd_net": null,
+  "ytd_taxes": null,
+  "ytd_federal": null,
+  "ytd_state": null,
+  "ytd_social_security": null,
+  "ytd_medicare": null,
+  "ytd_deductions": null,
+  "ytd_garnishments": null,
+  "ytd_reimbursement": null,
+  "ytd_401k_you": null,
+  "ytd_hsa_you": null,
+  "ytd_hsa_employer": null
+ }
+]

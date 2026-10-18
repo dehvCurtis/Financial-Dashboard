@@ -1,0 +1,26 @@
+[
+ {
+  "income_id": "I1",
+  "source": "Base salary",
+  "kind": "Base",
+  "annual_gross": 162000,
+  "per_paycheck": 6750,
+  "paychecks_per_year": 24,
+  "status": "example",
+  "first_pay_date": "2026-01-15",
+  "pay_schedule": "semi-monthly",
+  "pay_schedule_note": "15th and last day"
+ },
+ {
+  "income_id": "I2",
+  "source": "Bonus",
+  "kind": "Variable",
+  "annual_gross": 0,
+  "per_paycheck": null,
+  "paychecks_per_year": null,
+  "status": "example",
+  "first_pay_date": null,
+  "pay_schedule": null,
+  "pay_schedule_note": null
+ }
+]

@@ -1,0 +1,42 @@
+[
+ {
+  "bill": "Electric",
+  "statement_date": "2026-08-05",
+  "amount": 189,
+  "source": "example",
+  "note": "example",
+  "due_date": null
+ },
+ {
+  "bill": "Electric",
+  "statement_date": "2026-09-05",
+  "amount": 216,
+  "source": "example",
+  "note": "example",
+  "due_date": null
+ },
+ {
+  "bill": "Electric",
+  "statement_date": "2026-10-05",
+  "amount": 202.5,
+  "source": "example",
+  "note": "example",
+  "due_date": null
+ },
+ {
+  "bill": "Example Phone Plan",
+  "statement_date": "2026-09-20",
+  "amount": 135,
+  "source": "example",
+  "note": "example",
+  "due_date": null
+ },
+ {
+  "bill": "Example Phone Plan",
+  "statement_date": "2026-10-20",
+  "amount": 135,
+  "source": "example",
+  "note": "example",
+  "due_date": null
+ }
+]

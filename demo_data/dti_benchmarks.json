@@ -1,0 +1,32 @@
+[
+ {
+  "standard": "Classic guideline",
+  "front_end_pct": 28,
+  "back_end_pct": 36,
+  "note": "Widely quoted 28/36 guideline; a rule of thumb, not a lender rule."
+ },
+ {
+  "standard": "Conventional",
+  "front_end_pct": null,
+  "back_end_pct": 45,
+  "note": "Typical upper back-end ratio for conventional mortgage underwriting; lenders vary."
+ },
+ {
+  "standard": "FHA",
+  "front_end_pct": null,
+  "back_end_pct": 43,
+  "note": "Typical back-end limit for FHA-insured loans; exceptions exist."
+ },
+ {
+  "standard": "VA",
+  "front_end_pct": null,
+  "back_end_pct": 41,
+  "note": "VA guideline back-end ratio; residual income also matters."
+ },
+ {
+  "standard": "Jumbo",
+  "front_end_pct": null,
+  "back_end_pct": 43,
+  "note": "Typical back-end limit for jumbo loans; lenders vary."
+ }
+]

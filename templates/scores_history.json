@@ -1,0 +1,16 @@
+[
+ {
+  "date": null,
+  "financial": null,
+  "risk": null,
+  "financial_label": null,
+  "risk_label": null,
+  "n_components_financial": null,
+  "n_components_risk": null,
+  "coverage_financial": null,
+  "coverage_risk": null,
+  "config_version": null,
+  "component_points": null,
+  "note": null
+ }
+]

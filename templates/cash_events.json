@@ -1,0 +1,14 @@
+[
+ {
+  "event_id": null,
+  "date": null,
+  "account": null,
+  "kind": null,
+  "amount": null,
+  "counts_as_spend": null,
+  "recurring": null,
+  "note": null,
+  "status": null,
+  "in_balances": null
+ }
+]

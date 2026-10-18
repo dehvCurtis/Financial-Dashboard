@@ -1,0 +1,20 @@
+[
+ {
+  "plan_year": 2026,
+  "chosen_401k_pct": 5,
+  "chosen_hsa_per_paycheck": 135,
+  "plan_year_start": "2026-01-01",
+  "as_of": "2026-10-15",
+  "source": "example",
+  "note": "example"
+ },
+ {
+  "plan_year": 2027,
+  "chosen_401k_pct": null,
+  "chosen_hsa_per_paycheck": null,
+  "plan_year_start": "2027-01-01",
+  "as_of": "2026-10-15",
+  "source": "example",
+  "note": "example"
+ }
+]

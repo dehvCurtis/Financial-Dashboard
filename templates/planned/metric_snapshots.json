@@ -1,0 +1,17 @@
+[
+ {
+  "snapshot_id": null,
+  "as_of_date": null,
+  "net_worth": null,
+  "total_assets": null,
+  "total_debt": null,
+  "dti_pct": null,
+  "monthly_obligations": null,
+  "cash_runway_months": null,
+  "financial_score": null,
+  "risk_score": null,
+  "coverage_pct": null,
+  "source": null,
+  "note": null
+ }
+]

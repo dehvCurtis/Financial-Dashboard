@@ -1,0 +1,12 @@
+[
+ {
+  "bill_id": null,
+  "name": null,
+  "category": null,
+  "monthly_amount": null,
+  "essential": null,
+  "notes": null,
+  "due_day": null,
+  "last_paid": null
+ }
+]

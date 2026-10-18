@@ -1,0 +1,12 @@
+[
+ {
+  "period_start": "2020-01-01",
+  "period_end": "2026-01-01",
+  "beginning_balance": 0,
+  "ending_balance": 54000,
+  "personal_return_pct": 50,
+  "dividends_interest": 1350,
+  "stock_pct": 62.5,
+  "bond_pct": 37.5
+ }
+]

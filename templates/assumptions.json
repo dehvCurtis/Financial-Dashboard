@@ -1,0 +1,32 @@
+[
+ {
+  "item": "return_cautious_real_pct",
+  "value": 2,
+  "note": "example"
+ },
+ {
+  "item": "return_base_real_pct",
+  "value": 4,
+  "note": "example"
+ },
+ {
+  "item": "return_optimistic_real_pct",
+  "value": 6,
+  "note": "example"
+ },
+ {
+  "item": "inflation_pct",
+  "value": 2,
+  "note": "example"
+ },
+ {
+  "item": "employer_401k_match_pct",
+  "value": 0,
+  "note": "example"
+ },
+ {
+  "item": "tax_saving_pretax_pct",
+  "value": 25,
+  "note": "example"
+ }
+]

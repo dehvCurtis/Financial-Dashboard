@@ -1,0 +1,50 @@
+[
+ {
+  "log_id": "S1",
+  "date": "2026-10-06",
+  "account": "Savings",
+  "kind": "Cash",
+  "reported_balance": 5400,
+  "source": "example"
+ },
+ {
+  "log_id": "S2",
+  "date": "2026-10-06",
+  "account": "Checking",
+  "kind": "Cash",
+  "reported_balance": 1350,
+  "source": "example"
+ },
+ {
+  "log_id": "S3",
+  "date": "2026-10-06",
+  "account": "Example Card Beta",
+  "kind": "Card",
+  "reported_balance": 405,
+  "source": "example"
+ },
+ {
+  "log_id": "S4",
+  "date": "2026-10-13",
+  "account": "Savings",
+  "kind": "Cash",
+  "reported_balance": 6750,
+  "source": "example"
+ },
+ {
+  "log_id": "S5",
+  "date": "2026-10-13",
+  "account": "Checking",
+  "kind": "Cash",
+  "reported_balance": 1350,
+  "source": "example"
+ },
+ {
+  "log_id": "S6",
+  "date": "2026-10-13",
+  "account": "Example Card Beta",
+  "kind": "Card",
+  "reported_balance": 675,
+  "source": "example"
+ }
+]

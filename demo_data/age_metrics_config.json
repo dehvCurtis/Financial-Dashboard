@@ -1,0 +1,527 @@
+{
+ "rows": [
+  {
+   "version": "1.0",
+   "as_of": "2026-10-16",
+   "benchmarks_file": "age_benchmarks.json",
+   "disclaimer": "A planning and motivation tool built from published statistics. Not financial, tax or legal advice.",
+   "age_lookup": {
+    "age_source": "retirement_plan item current_age",
+    "scf_bracket_rule": "under 35 if age<35; 35-44; 45-54; 55-64; 65-74; 75+ (SCF uses age of the reference person).",
+    "five_year_band_rule": "Use 5-year Boldin rows (e.g. 40-44) only as a cross-check for net worth, never as the headline.",
+    "row_id_pattern": "Replace {b} with under_35, 35_44, 45_54, 55_64, 65_74, 75plus (e.g. nw_median_35_44).",
+    "guideline_interpolation": "Fidelity publishes 30:1x, 40:3x, 50:6x, 60:8x, 67:10x. For age a between two anchors a0<a<a1: multiple = m0 + (a-a0)/(a1-a0)*(m1-m0). Below 30 scale linearly from 0 at age 25 (Fidelity starts saving at 25) to 1x at 30; flag as derived.",
+    "inverse_interpolation": "Given an actual multiple m, find the age a at which the Fidelity curve equals m by inverting the same piecewise-linear curve; cap at 67 (10x) and report 'beyond guideline' above 10x."
+   },
+   "label_vocabulary": {
+    "ahead": "Better than the benchmark by the margin set for the metric. Motivation, not a finish line.",
+    "on_track": "Within the margin of the benchmark. Keep current pace.",
+    "behind": "Worse than the benchmark by more than the margin. Pick one lever to improve.",
+    "needs_data": "An input is missing or a benchmark row is null. Show the missing dataset field, never a guess."
+   },
+   "peer_group_notes": [
+    "Median is the typical family, mean is dragged up by the wealthy. Lead with median and percentile, show mean only as context.",
+    "SCF units are families, Census SIPP units are households. Do not compare a family figure to a household figure without saying so.",
+    "A married couple with one earner should also be compared to the Census married-couple row (nw_median_married_35_54_sipp) and to income-adjusted ratios.",
+    "SCF 2025 values are in 2025 dollars. Do not mix with 2022 rows (2022 dollars)."
+   ],
+   "metrics": [
+    {
+     "id": "nw_vs_median_age",
+     "title": "Net worth vs typical family your age",
+     "formula": "ratio = net_worth / benchmark_median ; percentile_band from interpolating net_worth against the p25, p50, p75, p90, p95 rows",
+     "inputs": [
+      {
+       "name": "net_worth",
+       "from": "networth_history",
+       "field": "net_worth",
+       "pick": "latest by date"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      }
+     ],
+     "benchmark_rows": {
+      "median": "nw_median_{b}",
+      "mean": "nw_mean_{b}",
+      "p25": "nw_p25_{b}",
+      "p50": "nw_p50_{b}",
+      "p75": "nw_p75_{b}",
+      "p90": "nw_p90_{b}",
+      "p95": "nw_p95_{b}",
+      "couples_cross_check": "nw_median_married_35_54_sipp",
+      "five_year_cross_check": "nw_median_40_44_b5"
+     },
+     "label_thresholds": {
+      "ahead": "ratio >= 1.25",
+      "on_track": "0.75 <= ratio < 1.25",
+      "behind": "ratio < 0.75"
+     },
+     "meaning": {
+      "ahead": "Net worth is at least 25 percent above the typical family in your age bracket.",
+      "on_track": "Within 25 percent of the typical family.",
+      "behind": "More than 25 percent below the typical family."
+     },
+     "display": "Show ratio to median, the percentile band (for example 'between 75th and 90th'), and the mean as context. Thresholds are a design choice, not sourced.",
+     "caveats": [
+      "Net worth here follows the dataset definition. SCF net worth includes home equity, vehicles, business equity and retirement accounts, so check the dataset counts the same things.",
+      "Percentile rows come from a third party calculation (Boldin) and are medium confidence."
+     ]
+    },
+    {
+     "id": "nw_multiple_of_income",
+     "title": "Net worth as a multiple of income vs peers",
+     "formula": "multiple = net_worth / household_gross_income ; peer_multiple = median net worth / median family income (nwx_median_{b}) ; strong_multiple = nw_p75_{b} / inc_median_{b}",
+     "inputs": [
+      {
+       "name": "net_worth",
+       "from": "networth_history",
+       "field": "net_worth",
+       "pick": "latest by date"
+      },
+      {
+       "name": "household_gross_income",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "sum of active rows plus spouse income when entered; scores_config.inputs.facts.household_earners tells how many earners are counted"
+      }
+     ],
+     "benchmark_rows": {
+      "peer_median_multiple": "nwx_median_{b}",
+      "peer_mean_multiple": "nwx_mean_{b}",
+      "income_median": "inc_median_{b}",
+      "nw_p75": "nw_p75_{b}"
+     },
+     "label_thresholds": {
+      "ahead": "multiple >= strong_multiple",
+      "on_track": "0.75 * peer_multiple <= multiple < strong_multiple",
+      "behind": "multiple < 0.75 * peer_multiple"
+     },
+     "meaning": {
+      "ahead": "Wealth relative to income is in the top quarter of the age group's typical wealth-to-income relationship.",
+      "on_track": "Near the typical wealth-to-income relationship.",
+      "behind": "Wealth is low for the income earned: income is strong but has not yet been converted into assets."
+     },
+     "display": "Best fairness view for a high earner: the dollar comparison flatters or punishes by income, the multiple does not. Always show which income was used.",
+     "caveats": [
+      "Ratio of medians, not median of ratios, so it is approximate.",
+      "If only one spouse's income is in income_pay, say 'one earner' and consider the couples cross check."
+     ]
+    },
+    {
+     "id": "ret_multiple_vs_fidelity",
+     "title": "Retirement balance as a multiple of salary vs Fidelity guideline",
+     "formula": "multiple = retirement_balance / annual_salary ; guideline = fidelity_interpolated(age) ; pace = multiple / guideline",
+     "inputs": [
+      {
+       "name": "retirement_balance",
+       "from": "networth_history",
+       "field": "retirement",
+       "pick": "latest by date"
+      },
+      {
+       "name": "annual_salary",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "primary salary row only (kind = salary)"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      }
+     ],
+     "benchmark_rows": {
+      "guideline_anchors": [
+       "g_fidelity_30",
+       "g_fidelity_40",
+       "g_fidelity_50",
+       "g_fidelity_60",
+       "g_fidelity_67"
+      ],
+      "derived_at_41": "g_fidelity_41",
+      "range_low": "g_trowe_{age}_low (nearest 5 year row, interpolate)",
+      "range_high": "g_trowe_{age}_high",
+      "peer_median_holders": "ret_median_{b}",
+      "peer_mean_holders": "ret_mean_{b}",
+      "peer_multiple_of_income": "retx_median_35_44"
+     },
+     "label_thresholds": {
+      "ahead": "pace >= 1.10",
+      "on_track": "0.90 <= pace < 1.10",
+      "behind": "pace < 0.90"
+     },
+     "meaning": {
+      "ahead": "At least 10 percent more saved than the Fidelity curve for your age.",
+      "on_track": "Within 10 percent of the Fidelity curve.",
+      "behind": "More than 10 percent under the curve."
+     },
+     "display": "Show the Fidelity point, the T. Rowe Price range as a band (Fidelity assumes retire at 67, T. Rowe at 65 with other assumptions), and where the peer median holder sits.",
+     "caveats": [
+      "Fidelity calls the multiples aspirational and assumes 15 percent saved from age 25 and retirement at 67.",
+      "Use retirement accounts only, not home equity or cash.",
+      "The T. Rowe range is more forgiving than Fidelity; if you are between them, say so instead of 'behind'."
+     ]
+    },
+    {
+     "id": "years_to_guideline_pace",
+     "title": "Years ahead or behind the guideline curve",
+     "formula": "age_at_multiple = inverse_fidelity(multiple) ; years_ahead = age_at_multiple - current_age (positive means you have what Fidelity expects at an older age). If behind, years_to_catch_up = first age a >= current_age where projected_multiple(a) >= fidelity_interpolated(a), else 'not on current plan'.",
+     "inputs": [
+      {
+       "name": "multiple",
+       "from": "metric",
+       "field": "ret_multiple_vs_fidelity.multiple"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      },
+      {
+       "name": "annual_contribution",
+       "from": "contributions",
+       "field": "employee_annual + employer_annual",
+       "pick": "sum over retirement accounts"
+      },
+      {
+       "name": "extra_contribution",
+       "from": "retirement_plan",
+       "field": "backdoor_roth_annual + hsa_annual",
+       "pick": "include only if the user wants non-401k saving counted"
+      },
+      {
+       "name": "real_return",
+       "from": "assumptions",
+       "field": "return_base_real_pct",
+       "pick": "value; also run return_cautious_real_pct and return_optimistic_real_pct"
+      }
+     ],
+     "benchmark_rows": {
+      "guideline_anchors": [
+       "g_fidelity_30",
+       "g_fidelity_40",
+       "g_fidelity_50",
+       "g_fidelity_60",
+       "g_fidelity_67"
+      ]
+     },
+     "label_thresholds": {
+      "ahead": "years_ahead >= 2",
+      "on_track": "-2 < years_ahead < 2",
+      "behind": "years_ahead <= -2"
+     },
+     "meaning": {
+      "ahead": "You hold what the guideline expects about two or more years from now.",
+      "on_track": "Within two years of the curve either way.",
+      "behind": "Two or more years behind the curve."
+     },
+     "display": "Present as a sentence: 'You are at the Fidelity level for age X (Y years ahead/behind)'.",
+     "caveats": [
+      "Projection is in real (after inflation) dollars with salary held flat in real terms, matching the guideline's 1.5 percent real wage growth only roughly; say so on screen."
+     ]
+    },
+    {
+     "id": "projected_multiple_at_60",
+     "title": "Projected retirement multiple at 60 vs 8x",
+     "formula": "n = 60 - current_age ; projected_balance = balance*(1+r)^n + annual_contribution*(((1+r)^n - 1)/r) ; projected_multiple = projected_balance / annual_salary (real dollars, r = real return) ; gap = projected_multiple / 8",
+     "inputs": [
+      {
+       "name": "balance",
+       "from": "networth_history",
+       "field": "retirement",
+       "pick": "latest by date"
+      },
+      {
+       "name": "annual_contribution",
+       "from": "contributions",
+       "field": "employee_annual + employer_annual",
+       "pick": "sum over retirement accounts"
+      },
+      {
+       "name": "annual_salary",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "primary salary row"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      },
+      {
+       "name": "real_return",
+       "from": "assumptions",
+       "field": "return_base_real_pct",
+       "pick": "also show cautious and optimistic cases"
+      }
+     ],
+     "benchmark_rows": {
+      "target": "g_fidelity_60",
+      "trowe_range": [
+       "g_trowe_60_low",
+       "g_trowe_60_high"
+      ],
+      "retire_at_65": "g_fidelity_ret65"
+     },
+     "label_thresholds": {
+      "ahead": "gap >= 1.10 in the cautious case",
+      "on_track": "gap >= 0.90 in the base case",
+      "behind": "gap < 0.90 in the base case"
+     },
+     "meaning": {
+      "ahead": "Even the cautious return case reaches 8x by 60.",
+      "on_track": "The base case reaches at least 90 percent of 8x by 60.",
+      "behind": "The base case falls more than 10 percent short of 8x by 60."
+     },
+     "display": "Show all three return cases as a range, not a single number.",
+     "caveats": [
+      "Real-dollar projection; a salary that grows faster than inflation lowers the multiple, a pay cut raises it.",
+      "A projection, not a prediction."
+     ]
+    },
+    {
+     "id": "savings_rate_vs_guideline",
+     "title": "Savings rate vs 15 percent guideline",
+     "formula": "retirement_rate = (employee_annual + employer_annual) / annual_gross ; total_rate = (employee_annual + employer_annual + backdoor_roth_annual + hsa_annual + other_saving_annual) / annual_gross",
+     "inputs": [
+      {
+       "name": "employee_annual",
+       "from": "contributions",
+       "field": "employee_annual",
+       "pick": "sum"
+      },
+      {
+       "name": "employer_annual",
+       "from": "contributions",
+       "field": "employer_annual",
+       "pick": "sum"
+      },
+      {
+       "name": "backdoor_roth_annual",
+       "from": "retirement_plan",
+       "field": "backdoor_roth_annual"
+      },
+      {
+       "name": "hsa_annual",
+       "from": "retirement_plan",
+       "field": "hsa_annual"
+      },
+      {
+       "name": "annual_gross",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "household gross used for the plan"
+      }
+     ],
+     "benchmark_rows": {
+      "fidelity": "g_savings_fidelity_15",
+      "vanguard_low": "g_savings_vanguard_12_15",
+      "vanguard_high": "g_savings_vanguard_15",
+      "peer_age_bracket": "sav_vanguard_total_{b}",
+      "fidelity_peer": "sav_fidelity_total_401k",
+      "economy_wide": "sav_bea_aug2026"
+     },
+     "label_thresholds": {
+      "ahead": "rate >= 15",
+      "on_track": "12 <= rate < 15",
+      "behind": "rate < 12"
+     },
+     "meaning": {
+      "ahead": "Meets or beats the Fidelity 15 percent including match.",
+      "on_track": "Inside the published 12 to 15 percent range.",
+      "behind": "Under the published low end of 12 percent."
+     },
+     "display": "Show the retirement_rate against the published age peer (35-44 average 11.8 percent) and the total_rate against 15 percent. Never compare the BEA 4.1 percent economy wide rate with a retirement contribution rate without the note.",
+     "caveats": [
+      "The 15 percent assumes a salary-based plan from age 25; a late start needs more.",
+      "Benchmarks for peers who contribute through a plan exclude non-savers."
+     ]
+    },
+    {
+     "id": "emergency_fund_months",
+     "title": "Emergency fund months vs guideline",
+     "formula": "months = liquid_cash / monthly_essential_outflow ; monthly_essential_outflow = sum(bills.monthly_amount where essential) + sum(liabilities.monthly_payment not already in bills)",
+     "inputs": [
+      {
+       "name": "liquid_cash",
+       "from": "assets_other",
+       "field": "value_point",
+       "pick": "asset ids listed in scores_config.inputs.liquid_asset_ids (excludes HSA cash, refunds not yet received, retirement, house, vehicles)"
+      },
+      {
+       "name": "monthly_essential_outflow",
+       "from": "bills + liabilities",
+       "field": "monthly_amount, monthly_payment",
+       "pick": "essential bills plus required debt payments; avoid double counting"
+      },
+      {
+       "name": "household_earners",
+       "from": "scores_config",
+       "field": "inputs.facts.household_earners"
+      }
+     ],
+     "benchmark_rows": {
+      "low": "g_ef_low",
+      "high": "g_ef_high",
+      "adults_3_months": "g_ef_bankrate_3mo_all",
+      "peer_liquid_median": "liquid_txn_median_{b}"
+     },
+     "label_thresholds": {
+      "ahead": "months >= 6",
+      "on_track": "3 <= months < 6",
+      "behind": "months < 3"
+     },
+     "meaning": {
+      "ahead": "At or above 6 months, Fidelity's level for households with a spouse, a mortgage or income risk.",
+      "on_track": "3 to 6 months, the general guideline.",
+      "behind": "Under 3 months of essential expenses."
+     },
+     "display": "If household_earners = 1 or the household has a mortgage, treat 6 months as the target and say 3 to 6 is 'building'. Show peer median transaction account balance as context only (it is a balance, not months).",
+     "caveats": [
+      "Fidelity says to start with $1,000, then 3 to 6 months of ESSENTIAL expenses.",
+      "Months depends on which accounts count as liquid; state the list on screen."
+     ]
+    },
+    {
+     "id": "credit_card_debt_vs_age",
+     "title": "Credit card debt vs people your age",
+     "formula": "balance = sum(liabilities.balance where type = 'Credit card') ; ratio_to_holder_median = balance / cc_median_{b} ; ratio_to_avg = balance / cc_experian_avg_millennials_29_44 (use Gen X row if age >= 45)",
+     "inputs": [
+      {
+       "name": "balance",
+       "from": "liabilities",
+       "field": "balance",
+       "pick": "sum where type is Credit card"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      }
+     ],
+     "benchmark_rows": {
+      "holder_median": "cc_median_{b}",
+      "share_with_balance": "cc_share_{b}",
+      "bureau_avg_primary": "cc_experian_avg_millennials_29_44",
+      "bureau_avg_alt_young": "cc_capone_avg_millennials_26_41",
+      "bureau_avg_alt_old": "cc_capone_avg_gen_x_42_57",
+      "all_ages_holder_median": "cc_median_all_holders"
+     },
+     "label_thresholds": {
+      "ahead": "balance = 0 or balance <= holder median",
+      "on_track": "holder median < balance <= bureau average",
+      "behind": "balance > bureau average"
+     },
+     "meaning": {
+      "ahead": "No revolving balance, or no more than the typical balance among people who carry one.",
+      "on_track": "Above the typical carried balance but not above the credit-bureau average.",
+      "behind": "Above the average cardholder your age."
+     },
+     "display": "Remind that about half of families carry a balance (cc_share). Age 41 straddles two source bands, so show both the Millennial and Gen X averages as a range. Also show utilization against the 30 percent line when limits are entered.",
+     "caveats": [
+      "Median among holders (SCF) and the average per consumer (bureaus) measure different things; both are shown on purpose.",
+      "Statement balance paid in full each month is not debt; if the card is paid in full monthly, set revolving balance to 0."
+     ]
+    },
+    {
+     "id": "dti_vs_benchmark",
+     "title": "Debt to income vs lender benchmarks",
+     "formula": "back_end = sum(liabilities.monthly_payment where counts_in_dti) / (annual_gross / 12) ; front_end = housing_payment (principal, interest, taxes, insurance) / (annual_gross / 12)",
+     "inputs": [
+      {
+       "name": "monthly_debt_payments",
+       "from": "liabilities",
+       "field": "monthly_payment",
+       "pick": "sum where counts_in_dti is true"
+      },
+      {
+       "name": "housing_payment",
+       "from": "liabilities",
+       "field": "monthly_payment",
+       "pick": "mortgage or rent-equivalent row; include taxes and insurance if entered in bills"
+      },
+      {
+       "name": "annual_gross",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "gross income lenders would count (household)"
+      }
+     ],
+     "benchmark_rows": {
+      "front": "g_dti_front",
+      "back": "g_dti_back",
+      "fha_style": "g_dti_43",
+      "conventional_ceiling": "g_dti_conv_45_50",
+      "share_over_40_pct": "debt_payment_over40_all",
+      "dataset_reference": "dti_benchmarks"
+     },
+     "label_thresholds": {
+      "ahead": "back_end <= 28",
+      "on_track": "28 < back_end <= 36",
+      "behind": "back_end > 36 (and 'stretched' above 43)"
+     },
+     "meaning": {
+      "ahead": "Debt payments are no more than 28 percent of gross income, lots of room.",
+      "on_track": "Inside the 36 percent back-end guideline.",
+      "behind": "Over 36 percent; over 43 is where most lender guidelines stop being comfortable."
+     },
+     "display": "Show front end against 28 and back end against 36, 43 and the conventional 45 ceiling. Mention 8.6 percent of families are above 40 percent (SCF 2025).",
+     "caveats": [
+      "The 28 and the 'ahead' cutoff are design choices anchored on the 28/36 rule, not a lender standard.",
+      "The 43 figure is an old Qualified Mortgage reference; current lenders use automated underwriting up to about 45 to 50."
+     ]
+    },
+    {
+     "id": "income_vs_age_peers",
+     "title": "Income vs households your age",
+     "formula": "percentile_band from interpolating household_gross_income against inc_p25, inc_median, inc_p75, inc_p90 (Census households) ; ratio_to_family_median = household_gross_income / inc_median_{b} (SCF families)",
+     "inputs": [
+      {
+       "name": "household_gross_income",
+       "from": "income_pay",
+       "field": "annual_gross",
+       "pick": "household total"
+      },
+      {
+       "name": "age",
+       "from": "retirement_plan",
+       "field": "current_age"
+      }
+     ],
+     "benchmark_rows": {
+      "census_median": "inc_median_35_44_census",
+      "census_p25": "inc_p25_35_44_census",
+      "census_p75": "inc_p75_35_44_census",
+      "census_p90": "inc_p90_35_44_census",
+      "scf_family_median": "inc_median_{b}",
+      "scf_family_mean": "inc_mean_{b}"
+     },
+     "label_thresholds": {
+      "ahead": "income >= census p75",
+      "on_track": "census median <= income < p75",
+      "behind": "income < census median"
+     },
+     "meaning": {
+      "ahead": "Top quarter of households your age by income.",
+      "on_track": "Above the median household but below the top quarter.",
+      "behind": "Below the median household your age."
+     },
+     "display": "Used to explain why dollar comparisons need the income-adjusted views above. Information only: do not use as a pass/fail score.",
+     "caveats": [
+      "Census rows include one-person households; compare to the SCF family row for a couple."
+     ]
+    }
+   ],
+   "data_needs_to_check": [
+    "SCF 2025 home equity by age (mean and median) and debt by age from the Fed tables: Needs data (federalreserve.gov files not reachable in the research run).",
+    "BLS Consumer Expenditure 2024 age table (xlsx): Needs data (2022 table used, flagged stale).",
+    "NY Fed Q2 2026 balances by age: Needs data as text (charts only).",
+    "Average credit utilization by age: Needs data.",
+    "Savings rate by age for all households: Needs data (only plan-based and economy-wide rates found)."
+   ]
+  }
+ ]
+}

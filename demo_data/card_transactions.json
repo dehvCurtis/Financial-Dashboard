@@ -1,0 +1,24 @@
+[
+ {
+  "txn_id": "T1",
+  "date": "2026-10-08",
+  "merchant": "Example Market",
+  "amount": 202.5,
+  "category": "Shopping",
+  "foreign": "N",
+  "card": "Example Card Beta",
+  "statement_close": "2026-11-08",
+  "notes": ""
+ },
+ {
+  "txn_id": "T2",
+  "date": "2026-10-09",
+  "merchant": "Example Outlet",
+  "amount": 67.5,
+  "category": "Food",
+  "foreign": "N",
+  "card": "Example Card Beta",
+  "statement_close": "2026-11-08",
+  "notes": ""
+ }
+]
