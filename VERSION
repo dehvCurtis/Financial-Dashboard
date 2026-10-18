@@ -3,4 +3,3 @@ page_stage: 6i
 backup_schema: mo-backup-2
 runtime_contract_observed: 0.2.67
 documents: 32
-license: TODO (not chosen)

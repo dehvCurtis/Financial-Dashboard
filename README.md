@@ -77,7 +77,3 @@ Your figures are stored in the Artifact dataset store of your own account and in
 - It does not store account numbers, SSNs, routing numbers, loan ids or street addresses (SECURITY_AND_PRIVACY.md).
 - It does not publish or share anything without you asking (PUBLISH.md).
 - It is built for US style finance (401(k), HSA, IRS limits, US benchmarks). LOCALIZATION.md says what to change elsewhere.
-
-## License
-
-TODO: the owner of this bundle has not chosen a license. Until one is added here, no license is granted.
