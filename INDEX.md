@@ -27,7 +27,9 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 | SCHEDULED_TASKS.md | reminders and routines |
 | BACKUP_FORMAT.md | schema mo-backup-2, kit, manifest, verify, restore |
 | BACKUP_GOOGLE_DRIVE.md | the Google Drive backup procedure |
+| SECURITY.md | how to report a problem, scope, the threat model |
 | SECURITY_AND_PRIVACY.md | what is never stored, sharing rules, the privacy scan |
+| SECURITY_REVIEW.md | the independent security review: findings, fixes, what could not be checked |
 | LOCALIZATION.md | using it outside the United States |
 | GLOSSARY.md | terms |
 | DEMO_DATA.md | the invented dataset and screenshots |
@@ -46,11 +48,13 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 | MANIFEST.json | file list with sizes and sha256, bundle metadata |
 | CHECKSUMS.sha256 | the same hashes for `sha256sum -c` |
 | VERSION | bundle, schema, stage and contract versions |
+| .gitignore | keeps backups, statements, secrets, node_modules and build output out of version control |
 
 ## Which document answers which question
 
 | Question | Document |
 |---|---|
+| Is it safe, and how do I report a problem? | SECURITY.md, SECURITY_REVIEW.md |
 | How do I start? | README.md (Start here), AGENT_PROMPT.md, PROMPTS.md |
 | What does this tile mean? | TILES.md |
 | What does this dataset hold? | DATA_MODEL.md, templates/ |

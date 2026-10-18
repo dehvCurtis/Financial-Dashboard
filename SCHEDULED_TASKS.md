@@ -13,7 +13,7 @@ Use Claude scheduled tasks when the account has them; otherwise use data_queue i
 
 ## Creating a scheduled task (what to say to the user)
 
-Plain: "I can set a monthly reminder on the 1st at <time>. Each time it fires, a fresh session starts that knows only the message text, so the text has to stand alone. Do you want it?" Only create it after a yes. When confirming, say which approval setting the task got; if it will stop and ask, tell the user they can switch it to automatic approval in the task settings if their organization allows it.
+Plain: "I can set a monthly reminder on the 1st at <time>. Each time it fires, a fresh session starts that knows only the message text, so the text has to stand alone. Do you want it?" Only create it after a yes. When confirming, say which approval setting the task got. If it will stop and ask, leave it that way: do not suggest automatic approval for a task that could upload, send or delete. If the user asks about automatic approval, explain the trade-off and let them decide in the task settings.
 
 ## Writing the message text for a fresh session
 
@@ -22,6 +22,10 @@ A scheduled run has no memory of this chat. The text must say: what the dashboar
 ## Time of day
 
 Ask the user. Default: evening. Time zone: the user's own; write it explicitly.
+
+## What a scheduled run may do
+
+A scheduled run has no user in the chat. It may remind, prepare and ask. It must not publish, share, upload to Drive, send email, delete, or change data on its own; those need the user's yes in a live turn. Mail and Drive connectors are optional and are used only for what the user asked for when creating the task.
 
 ## Stopping
 

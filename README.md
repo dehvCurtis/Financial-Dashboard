@@ -49,7 +49,7 @@ To see what a filled dashboard looks like before you enter anything, look at dem
 | 7 | QUESTIONS.md, INTAKE_GUIDE.md, PROMPTS.md | asking and intake |
 | 8 | PUBLISH.md, RUNBOOK.md, SCHEDULED_TASKS.md | publishing and routine work |
 | 9 | BACKUP_FORMAT.md, BACKUP_GOOGLE_DRIVE.md | backup and restore |
-| 10 | SECURITY_AND_PRIVACY.md, SOURCES_AND_BENCHMARKS.md, LOCALIZATION.md, GLOSSARY.md | rules, sources, other countries, words |
+| 10 | SECURITY.md, SECURITY_AND_PRIVACY.md, SECURITY_REVIEW.md, SOURCES_AND_BENCHMARKS.md, LOCALIZATION.md, GLOSSARY.md | rules, sources, other countries, words |
 | 11 | CHANGELOG.md, OPEN_ITEMS.md, REPORT.md, DEMO_DATA.md | history, what is not done, verification, the invented demo |
 | 12 | INDEX.md, MANIFEST.json, CHECKSUMS.sha256, VERSION | the map and integrity |
 
@@ -66,6 +66,10 @@ export PLAYWRIGHT_BROWSERS_PATH=/path/to/browsers   # or CHROMIUM_PATH=/path/to/
 node tools/build_page.js && node tools/build_split.js
 bash runall.sh --full        # about 8 minutes; everything except the browser suites takes under a minute
 ```
+
+## Your data stays yours
+
+Your figures are stored in the Artifact dataset store of your own account and in the backup files you download. A backup holds your real numbers: keep it in a private folder, never commit it to this repo or any repo (.gitignore blocks the usual names), and never share a dashboard link or a backup unless you mean to (SECURITY.md, SECURITY_AND_PRIVACY.md).
 
 ## What it does not do
 

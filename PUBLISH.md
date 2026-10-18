@@ -13,7 +13,7 @@ Nothing is published unless the user asks in that turn. A first publish is priva
 ## Before any publish
 
 1. `bash runall.sh --full` is green. `tools/publish.js` refuses to run unless the record of the last full run matches the files as they are now.
-2. `node tools/check_docs.js` is green when tiles or datasets changed.
+2. `node tools/deadsize.js` found nothing to remove and no file over its size limit, and `node tools/check_docs.js` is green when tiles or datasets changed.
 3. The user has seen a plain summary of what will change and has said go.
 4. The privacy scan of the files to publish is clean: no dashes, no account numbers, no emails, no digit runs of 8 or more outside ISO dates.
 
@@ -30,6 +30,8 @@ Nothing is published unless the user asks in that turn. A first publish is priva
 9. Keep PUBLISH_LIST.md with the release: file, bytes, sha256, pin, new description.
 
 ## First build on a new account
+
+Each step that creates something in the user's account (the artifact in step 2, the probe page in step 3, the uploads in step 4) needs the user's yes first. All of them are private.
 
 1. Call the Artifact tool's quickstart with intent "other" and read the Dashboard type's instructions.
 2. Create the artifact from the type with a title and no files.

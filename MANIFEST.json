@@ -5,12 +5,17 @@
  "backup_schema": "mo-backup-2",
  "runtime_contract_observed": "0.2.67",
  "license": "TODO (not chosen)",
- "file_count": 123,
+ "file_count": 126,
  "files": [
   {
    "path": ".gen_ok",
    "bytes": 24,
    "sha256": "4442246a8518020358cd55b2f9955bc4f56e86547ad7eb864471e23e46d8b8f4"
+  },
+  {
+   "path": ".gitignore",
+   "bytes": 344,
+   "sha256": "bac80b0dd7ea2c20607e89fd5b1fadd3a6bdfbe5f7fda264ff7a69edb23bc93b"
   },
   {
    "path": "AGENT_PROMPT.md",
@@ -19,13 +24,13 @@
   },
   {
    "path": "ARCHITECTURE.md",
-   "bytes": 160144,
-   "sha256": "d1ae7fdf90d94804f217903406d0e01184b847f057f3814071923bc649968881"
+   "bytes": 160253,
+   "sha256": "16027e7ccee333c66b621027e931bfdafc52c569a0a25625bb49f7baab37ee06"
   },
   {
    "path": "BACKUP_FORMAT.md",
-   "bytes": 29375,
-   "sha256": "63387067184d34180aa01dfeb31557907dff48dcd5c08bd291e762e493d05aa1"
+   "bytes": 29784,
+   "sha256": "fec63fec5ecef2061613caa393b1ef347446f25e2b0eb32560669535eb355d81"
   },
   {
    "path": "BACKUP_GOOGLE_DRIVE.md",
@@ -74,8 +79,8 @@
   },
   {
    "path": "INDEX.md",
-   "bytes": 3306,
-   "sha256": "ed3e9799ec1998c8abe431299219cd39492294ceb9f0b0e6a871fc80ded76e27"
+   "bytes": 3661,
+   "sha256": "16cb040fec5d7997c8144e1781bdf49a292a92e6887f4654ddc3c348f3228530"
   },
   {
    "path": "INTAKE_GUIDE.md",
@@ -99,8 +104,8 @@
   },
   {
    "path": "PUBLISH.md",
-   "bytes": 3630,
-   "sha256": "e08c0ff7148af6b99bac8fa6ae9577c80a96cb4cb05a02e3bae6844b99298d67"
+   "bytes": 3899,
+   "sha256": "b4baf41cba646222375933c9ccaeb5b52688392379ec5b6a589def390ecebc8e"
   },
   {
    "path": "QUESTIONS.md",
@@ -109,8 +114,8 @@
   },
   {
    "path": "README.md",
-   "bytes": 5437,
-   "sha256": "6cccbb9e0605e0631ba801d05e7e6921573ecebeebc50b4e932b458172cbef54"
+   "bytes": 5854,
+   "sha256": "878b0f178379054a877a1202082cc7759f91f8615011aeced4e758edcf67dd0d"
   },
   {
    "path": "REPORT.md",
@@ -129,8 +134,8 @@
   },
   {
    "path": "SCHEDULED_TASKS.md",
-   "bytes": 2180,
-   "sha256": "4bad8deecee395754a85da5f8418e10e066e97ec658e87d73808c51179820048"
+   "bytes": 2626,
+   "sha256": "51c4306db654d7eca8a69bfb731507a555896354f36a8086cbca66e73519e5a6"
   },
   {
    "path": "SCORING.md",
@@ -138,9 +143,19 @@
    "sha256": "0160fdd3a383b23abf93c16d3b93b0741be8ba5f54e61de628c5593f56c03702"
   },
   {
+   "path": "SECURITY.md",
+   "bytes": 3796,
+   "sha256": "fa51ca9b311b3c930deb01ad955b6f10ec2a39b62f2ea0c1baeeb31fd5640101"
+  },
+  {
    "path": "SECURITY_AND_PRIVACY.md",
-   "bytes": 3342,
-   "sha256": "7b59a1d250f1148520e70fdb4d70ec328af0823280f993b68e9089932887281a"
+   "bytes": 4759,
+   "sha256": "e4a24ac48dac76aabe6a21c8e7b0052aa9da8c2cdeb1d835f0860c7000107a15"
+  },
+  {
+   "path": "SECURITY_REVIEW.md",
+   "bytes": 9682,
+   "sha256": "c267b7f800a13db6b1adff9a7063bbde992905444bd8dd628d7c4673e1e6459d"
   },
   {
    "path": "SOURCES_AND_BENCHMARKS.md",
@@ -160,12 +175,12 @@
   {
    "path": "VERSION",
    "bytes": 139,
-   "sha256": "64c96d9ce809623eefa3b4afc0ba1e3a504df478137bbf1a568a207c2d13f49d"
+   "sha256": "79660082784110205e58dc299dacad5e3e6697b3feb4897de486d97bab80686d"
   },
   {
    "path": "code-base.zip",
-   "bytes": 577738,
-   "sha256": "8b4f201af19a72fa33134da1cb39db030e080c017b614f43bb93aaacb4603b50"
+   "bytes": 590619,
+   "sha256": "f54b5e1a882a7dcb0c644a8606e37be6cf73bc23aa01f30f6edca927dadb4a86"
   },
   {
    "path": "demo_data/acct_a_holdings.json",

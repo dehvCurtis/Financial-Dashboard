@@ -1245,11 +1245,11 @@ The last confirmed date is kept in `data/users/<id>/backup`, with localStorage o
 1. Unzip the kit into a new folder.
 2. Open `manifest.json`; check the dataset count equals the datasets ok. If one is missing, use the previous month's kit for that file.
 3. Check hashes (`shasum -a 256 datasets/*.json`) against the manifest. A mismatch means the file changed: do not use it.
-4. Start a new chat with Claude and attach the kit with: "Rebuild my Money Operations Center from this backup kit. Follow RESTORE.md."
+4. Start a new chat with Claude and attach the kit with: "Rebuild my Money Operations Center from this backup kit. Follow BACKUP_FORMAT.md section 8."
 5. Claude creates a new dashboard from the Dashboard type and writes `dash/meta` with the saved title.
 6. For each `datasets/<id>.json`: upload as an asset (one per publish call), then write the `datasets/<id>` doc with the saved title and description, `source: {kind: "file", url: <new url>, name: "<id>.json", format: "json"}` and `updated`. Write all docs in one batch.
 7. If `overlay/task_edits.json` exists, apply it to tasks first, then upload tasks.
-8. Write the page parts from `page/`; if missing, rebuild from this architecture and the style guide (stages 1 to 10).
+8. Build the page from the repo's code base (or, without it, from this architecture and the style guide, stages 1 to 10). The `page/` files in the kit are for comparison only and are never published as they are.
 9. Open the dashboard. Data and backup must say all datasets loaded. Compare net worth, total debts, DTI and the two scores with `check_values`; they must match to the cent.
 10. Save a new backup from the restored page.
 
