@@ -1,0 +1,41 @@
+[
+ {
+  "id": "pmi_request_80",
+  "measure": "Mortgage only (first lien)",
+  "pct": 80,
+  "label": "PMI: ask to cancel at 80 percent of the original value",
+  "basis": "original home value",
+  "source": "Consumer Financial Protection Bureau",
+  "url": "https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/",
+  "data_year": 2026,
+  "as_of_checked": "2026-10-16",
+  "confidence": "high",
+  "note": "Published guideline; confirm with your servicer."
+ },
+ {
+  "id": "pmi_auto_78",
+  "measure": "Mortgage only (first lien)",
+  "pct": 78,
+  "label": "PMI ends automatically at 78 percent of the original value",
+  "basis": "original home value",
+  "source": "Consumer Financial Protection Bureau",
+  "url": "https://www.consumerfinance.gov/ask-cfpb/when-can-i-remove-private-mortgage-insurance-pmi-from-my-loan-en-202/",
+  "data_year": 2026,
+  "as_of_checked": "2026-10-16",
+  "confidence": "high",
+  "note": "Published guideline; confirm with your servicer."
+ },
+ {
+  "id": "heloc_cltv_85",
+  "measure": "Mortgage plus HELOC (combined)",
+  "pct": 85,
+  "label": "Many HELOC lenders cap the combined loan to value at 85 percent",
+  "basis": "current home value",
+  "source": "Published source (see url)",
+  "url": "https://themortgagereports.com/95014/home-equity-line-of-credit-requirements",
+  "data_year": 2026,
+  "as_of_checked": "2026-10-16",
+  "confidence": "medium",
+  "note": "Published guideline; confirm with your servicer."
+ }
+]

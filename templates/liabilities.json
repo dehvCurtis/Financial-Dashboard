@@ -1,0 +1,27 @@
+[
+ {
+  "rate_pct": null,
+  "monthly_payment": null,
+  "counts_in_dti": null,
+  "as_of_date": null,
+  "notes": null,
+  "principal_interest": null,
+  "next_due_date": null,
+  "days_past_due": null,
+  "secured": null,
+  "credit_limit": null,
+  "original_balance": null,
+  "rate_type": null,
+  "prepayment_penalty": null,
+  "pays_in_full": null,
+  "statement_balance": null,
+  "statement_date": null,
+  "liability_id": null,
+  "name": null,
+  "type": null,
+  "balance": null,
+  "next_due": null,
+  "amount_due": null,
+  "secured_by": null
+ }
+]

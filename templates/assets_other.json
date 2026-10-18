@@ -1,0 +1,15 @@
+[
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": null,
+  "source": null,
+  "notes": null,
+  "status": null,
+  "asset_id": null,
+  "name": null,
+  "type": null,
+  "value_point": null
+ }
+]

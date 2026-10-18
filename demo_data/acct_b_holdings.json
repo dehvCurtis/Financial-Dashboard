@@ -1,0 +1,18 @@
+[
+ {
+  "fund": "Example Growth Fund",
+  "short": "Ex Growth",
+  "ticker": "IDX1",
+  "asset_class": "US equity",
+  "value": 810,
+  "account": "Example Plan Two"
+ },
+ {
+  "fund": "Example Income Fund",
+  "short": "Ex Income",
+  "ticker": "IDX2",
+  "asset_class": "Taxable bond",
+  "value": 540,
+  "account": "Example Plan Two"
+ }
+]

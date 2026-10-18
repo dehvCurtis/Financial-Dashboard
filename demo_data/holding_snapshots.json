@@ -1,0 +1,46 @@
+[
+ {
+  "snapshot_date": "2026-09-01",
+  "account": "Example Old Plan",
+  "fund": "EXAMPLE TOTAL STOCK FUND",
+  "ticker": null,
+  "quantity": 135,
+  "price": 297,
+  "cost_basis_per_share": 270,
+  "value": 29700,
+  "gain_loss": 2700
+ },
+ {
+  "snapshot_date": "2026-09-01",
+  "account": "Example Old Plan",
+  "fund": "EXAMPLE TOTAL BOND FUND",
+  "ticker": null,
+  "quantity": 405,
+  "price": 67.5,
+  "cost_basis_per_share": 67.5,
+  "value": 20250,
+  "gain_loss": 0
+ },
+ {
+  "snapshot_date": "2026-10-01",
+  "account": "Example Old Plan",
+  "fund": "EXAMPLE TOTAL STOCK FUND",
+  "ticker": null,
+  "quantity": 135,
+  "price": 337.5,
+  "cost_basis_per_share": 270,
+  "value": 33750,
+  "gain_loss": 6750
+ },
+ {
+  "snapshot_date": "2026-10-01",
+  "account": "Example Old Plan",
+  "fund": "EXAMPLE TOTAL BOND FUND",
+  "ticker": null,
+  "quantity": 405,
+  "price": 67.5,
+  "cost_basis_per_share": 67.5,
+  "value": 20250,
+  "gain_loss": 0
+ }
+]

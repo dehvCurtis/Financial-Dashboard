@@ -1,0 +1,53 @@
+[
+ {
+  "bill_id": "B1",
+  "name": "Example Phone Plan",
+  "category": "Phone",
+  "monthly_amount": 135,
+  "essential": "Yes",
+  "notes": "example",
+  "due_day": 31
+ },
+ {
+  "bill_id": "B2",
+  "name": "Electric",
+  "category": "Utilities",
+  "monthly_amount": 202.5,
+  "essential": "Yes",
+  "notes": "example"
+ },
+ {
+  "bill_id": "B3",
+  "name": "Gas",
+  "category": "Utilities",
+  "monthly_amount": 67.5,
+  "essential": "Yes",
+  "notes": "example"
+ },
+ {
+  "bill_id": "B4",
+  "name": "Example Landlord LLC",
+  "category": "Housing",
+  "monthly_amount": 1350,
+  "essential": "Yes",
+  "notes": "example",
+  "due_day": 1,
+  "last_paid": "2026-10"
+ },
+ {
+  "bill_id": "B5",
+  "name": "Example Streaming",
+  "category": "Entertainment",
+  "monthly_amount": 27,
+  "essential": "No",
+  "notes": "example"
+ },
+ {
+  "bill_id": "B6",
+  "name": "Groceries",
+  "category": "Food",
+  "monthly_amount": 540,
+  "essential": "Yes",
+  "notes": "example"
+ }
+]

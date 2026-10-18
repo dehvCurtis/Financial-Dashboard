@@ -1,0 +1,36 @@
+[
+ {
+  "statement_date": "2026-10-01",
+  "principal_balance": 270000,
+  "rate": 6,
+  "next_due": "2026-11-01",
+  "amount_due": 2025,
+  "principal_due": 270,
+  "interest_due": 1350,
+  "escrow_due": 405,
+  "late_fee": 67.5,
+  "late_after": "2026-11-16",
+  "escrow_balance": 1215,
+  "prepay_penalty": "None",
+  "maturity": "2050-01-01",
+  "last_month_paid": {
+   "principal": 268.65,
+   "interest": 1351.35,
+   "escrow": 405
+  },
+  "ytd_principal": 2430,
+  "ytd_interest": 12150,
+  "ytd_escrow": 3645,
+  "ytd_fees": 0,
+  "ytd_total": 18225,
+  "activity": [
+   {
+    "date": "2026-09-30",
+    "type": "Regular payment",
+    "amount": 2025
+   }
+  ],
+  "source": "example",
+  "kind": "statement"
+ }
+]

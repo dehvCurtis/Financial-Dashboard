@@ -1,0 +1,42 @@
+[
+ {
+  "item": "goal_low",
+  "value": 1350000,
+  "note": "example"
+ },
+ {
+  "item": "goal_high",
+  "value": 2700000,
+  "note": "example"
+ },
+ {
+  "item": "current_age",
+  "value": 40,
+  "note": "example"
+ },
+ {
+  "item": "target_age",
+  "value": 60,
+  "note": "example"
+ },
+ {
+  "item": "payroll_401k_annual",
+  "value": 27000,
+  "note": "example"
+ },
+ {
+  "item": "backdoor_roth_annual",
+  "value": 9450,
+  "note": "example"
+ },
+ {
+  "item": "hsa_annual",
+  "value": 10800,
+  "note": "example"
+ },
+ {
+  "item": "chosen_401k_pct",
+  "value": null,
+  "note": "example"
+ }
+]

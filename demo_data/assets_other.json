@@ -1,0 +1,80 @@
+[
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A1",
+  "name": "Car",
+  "type": "Vehicle",
+  "value_point": 10800
+ },
+ {
+  "purchase_price": 337500,
+  "sell_cost_low_pct": 6,
+  "sell_cost_high_pct": 8,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A2",
+  "name": "House",
+  "type": "Real estate",
+  "value_point": 405000
+ },
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A3",
+  "name": "Tax refund",
+  "type": "Receivable",
+  "value_point": 1350
+ },
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A4",
+  "name": "Savings account",
+  "type": "Cash",
+  "value_point": 6750
+ },
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A5",
+  "name": "HSA cash",
+  "type": "HSA",
+  "value_point": 675
+ },
+ {
+  "purchase_price": null,
+  "sell_cost_low_pct": null,
+  "sell_cost_high_pct": null,
+  "as_of_date": "2026-10-13",
+  "source": "example",
+  "notes": "example",
+  "status": null,
+  "asset_id": "A6",
+  "name": "Checking account",
+  "type": "Cash",
+  "value_point": 1350
+ }
+]

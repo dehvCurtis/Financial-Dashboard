@@ -1,0 +1,234 @@
+[
+ {
+  "question_id": "none",
+  "category": null,
+  "answer": "unknown",
+  "count": null,
+  "asked_at": null,
+  "note": "Placeholder row so the store can load the file; every reader skips it"
+ },
+ {
+  "question_id": "debt_mortgage",
+  "category": "Mortgage",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_heloc",
+  "category": "Home equity line",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_card",
+  "category": "Credit card",
+  "answer": "yes",
+  "count": 2,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_auto",
+  "category": "Auto loan",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_student",
+  "category": "Student loan",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "debt_personal",
+  "category": "Personal loan",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "debt_medical",
+  "category": "Medical bill",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_tax",
+  "category": "Tax owed",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_support",
+  "category": "Support order",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "bill_housing",
+  "category": "Rent or housing bill",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "bill_utilities",
+  "category": "Utilities",
+  "answer": "yes",
+  "count": 2,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "bill_phone",
+  "category": "Phone",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "bill_insurance",
+  "category": "Insurance",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "bill_transport",
+  "category": "Transportation",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "bill_food",
+  "category": "Food",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "bill_pets",
+  "category": "Pets",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "bill_childcare",
+  "category": "Childcare",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "bill_subscriptions",
+  "category": "Subscriptions",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "acct_checking",
+  "category": "Checking account",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "acct_savings",
+  "category": "Savings account",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "acct_hsa",
+  "category": "HSA",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "acct_brokerage",
+  "category": "Brokerage account",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "acct_home",
+  "category": "Home you own",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "acct_vehicle",
+  "category": "Vehicle you own",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "debt_other",
+  "category": "Other debt",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "bill_other",
+  "category": "Other monthly bill",
+  "answer": "unknown",
+  "count": 0,
+  "asked_at": null,
+  "note": "Not asked yet"
+ },
+ {
+  "question_id": "ret_workplace",
+  "category": "Workplace retirement plan",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ },
+ {
+  "question_id": "ret_ira",
+  "category": "IRA",
+  "answer": "yes",
+  "count": 1,
+  "asked_at": null,
+  "note": "Yes because rows of this category are on file"
+ }
+]

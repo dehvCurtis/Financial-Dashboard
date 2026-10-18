@@ -1,0 +1,13 @@
+[
+ {
+  "snapshot_date": null,
+  "account": null,
+  "fund": null,
+  "ticker": null,
+  "quantity": null,
+  "price": null,
+  "cost_basis_per_share": null,
+  "value": null,
+  "gain_loss": null
+ }
+]

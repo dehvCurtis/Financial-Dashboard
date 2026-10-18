@@ -1,0 +1,20 @@
+[
+ {
+  "statement_id": "CS1",
+  "liability_id": "L7",
+  "period_start": "2026-09-09",
+  "closing_date": "2026-10-08",
+  "payment_due_date": "2026-11-05",
+  "previous_balance": 405,
+  "payments_total": 135,
+  "purchases": 270,
+  "fees_charged": 0,
+  "interest_charged": 0,
+  "new_balance": 540,
+  "minimum_payment_due": 33.75,
+  "credit_limit": 6750,
+  "apr_purchase_pct": 20,
+  "source": "example",
+  "account_status": "Open"
+ }
+]

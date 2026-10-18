@@ -1,0 +1,34 @@
+[
+ {
+  "flow_id": "F1",
+  "date": "2026-09-05",
+  "month": "2026-09",
+  "side": "share",
+  "account": "Example Checking Alpha",
+  "direction": "in",
+  "amount": 675,
+  "category": "Pay deposit",
+  "payee_type": "Employer",
+  "payee_name": null,
+  "linked_id": null,
+  "counterparty": null,
+  "note": "example",
+  "source": "example"
+ },
+ {
+  "flow_id": "F2",
+  "date": "2026-09-10",
+  "month": "2026-09",
+  "side": "share",
+  "account": "Example Checking Alpha",
+  "direction": "out",
+  "amount": 540,
+  "category": "Loan payment",
+  "payee_type": "Lender",
+  "payee_name": null,
+  "linked_id": "L1",
+  "counterparty": null,
+  "note": "example",
+  "source": "example"
+ }
+]

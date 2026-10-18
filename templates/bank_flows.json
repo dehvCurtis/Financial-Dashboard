@@ -1,0 +1,18 @@
+[
+ {
+  "flow_id": null,
+  "date": null,
+  "month": null,
+  "side": null,
+  "account": null,
+  "direction": null,
+  "amount": null,
+  "category": null,
+  "payee_type": null,
+  "payee_name": null,
+  "linked_id": null,
+  "counterparty": null,
+  "note": null,
+  "source": null
+ }
+]

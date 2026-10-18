@@ -1,0 +1,10 @@
+[
+ {
+  "fund": "EXAMPLE TOTAL STOCK FUND",
+  "start_date": "2020-01-01",
+  "start_price": 135,
+  "end_date": "2026-01-01",
+  "end_price": 270,
+  "note": ""
+ }
+]

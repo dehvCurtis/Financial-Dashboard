@@ -1,0 +1,14 @@
+[
+ {
+  "income_id": null,
+  "source": null,
+  "kind": null,
+  "annual_gross": null,
+  "per_paycheck": null,
+  "paychecks_per_year": null,
+  "status": null,
+  "first_pay_date": null,
+  "pay_schedule": null,
+  "pay_schedule_note": null
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "priority": 1,
+  "item": "Pay stubs",
+  "why": "example",
+  "area": "Income",
+  "status": "Provided",
+  "queue_id": "Q1",
+  "task_id": null,
+  "source_kind": null
+ },
+ {
+  "priority": 2,
+  "item": "Example Card Alpha minimum payment",
+  "why": "example",
+  "area": "Debt",
+  "status": "Needed",
+  "queue_id": "Q2",
+  "task_id": "K2",
+  "source_kind": null
+ },
+ {
+  "priority": 3,
+  "item": "Example Card Beta statement",
+  "why": "example",
+  "area": "Debt",
+  "status": "Statement requested",
+  "queue_id": "Q3",
+  "task_id": "K3",
+  "source_kind": "screenshot, statement requested"
+ }
+]

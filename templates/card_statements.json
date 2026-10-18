@@ -1,0 +1,20 @@
+[
+ {
+  "statement_id": null,
+  "liability_id": null,
+  "period_start": null,
+  "closing_date": null,
+  "payment_due_date": null,
+  "previous_balance": null,
+  "payments_total": null,
+  "purchases": null,
+  "fees_charged": null,
+  "interest_charged": null,
+  "new_balance": null,
+  "minimum_payment_due": null,
+  "credit_limit": null,
+  "apr_purchase_pct": null,
+  "source": null,
+  "account_status": null
+ }
+]

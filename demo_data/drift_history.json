@@ -1,0 +1,18 @@
+[
+ {
+  "check_id": "D1",
+  "account": "Savings",
+  "date": "2026-10-13",
+  "from": "2026-10-06",
+  "opening": 5400,
+  "inflows": 4455,
+  "outflows": 3105,
+  "expected": 6750,
+  "reported": 6750,
+  "drift": 0,
+  "first_drift": 0,
+  "first_computed_on": "2026-10-13",
+  "computed_on": "2026-10-13",
+  "basis": "example"
+ }
+]

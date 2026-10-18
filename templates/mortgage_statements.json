@@ -1,0 +1,26 @@
+[
+ {
+  "statement_date": null,
+  "principal_balance": null,
+  "rate": null,
+  "next_due": null,
+  "amount_due": null,
+  "principal_due": null,
+  "interest_due": null,
+  "escrow_due": null,
+  "late_fee": null,
+  "late_after": null,
+  "escrow_balance": null,
+  "prepay_penalty": null,
+  "maturity": null,
+  "last_month_paid": null,
+  "ytd_principal": null,
+  "ytd_interest": null,
+  "ytd_escrow": null,
+  "ytd_fees": null,
+  "ytd_total": null,
+  "activity": null,
+  "source": null,
+  "kind": null
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "source": "Pre-tax deferral",
+  "tax_type": "Pre-tax",
+  "balance": 40500,
+  "account": "Example Plan One"
+ },
+ {
+  "source": "Roth deferral",
+  "tax_type": "Roth",
+  "balance": 13500,
+  "account": "Example Plan One"
+ }
+]

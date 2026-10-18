@@ -1,0 +1,18 @@
+[
+ {
+  "year": 2026,
+  "k401_deferral": 23000,
+  "k401_catchup": 5000,
+  "k401_catchup_60_63": 8000,
+  "k401_total_additions": 69000,
+  "hsa_self": 4300,
+  "hsa_family": 8550,
+  "hsa_catchup": 1000,
+  "ira": 7500,
+  "ira_catchup": 1000,
+  "status": "published",
+  "source": "Published annual limits (confirm on the IRS website each year)",
+  "url": null,
+  "as_of_checked": "2026-10-01"
+ }
+]

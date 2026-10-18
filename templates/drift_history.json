@@ -1,0 +1,18 @@
+[
+ {
+  "check_id": null,
+  "account": null,
+  "date": null,
+  "from": null,
+  "opening": null,
+  "inflows": null,
+  "outflows": null,
+  "expected": null,
+  "reported": null,
+  "drift": null,
+  "first_drift": null,
+  "first_computed_on": null,
+  "computed_on": null,
+  "basis": null
+ }
+]

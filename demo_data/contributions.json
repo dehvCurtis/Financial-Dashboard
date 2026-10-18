@@ -1,0 +1,35 @@
+[
+ {
+  "account_id": "C1",
+  "account": "401(k) pre-tax",
+  "tax_type": "Pre-tax",
+  "employee_annual": 8100,
+  "employer_annual": 0,
+  "limit_annual": 23000,
+  "paychecks_per_year": 24,
+  "source": "example",
+  "notes": "example"
+ },
+ {
+  "account_id": "C2",
+  "account": "HSA",
+  "tax_type": "Pre-tax",
+  "employee_annual": 3240,
+  "employer_annual": 1620,
+  "limit_annual": 10800,
+  "paychecks_per_year": 24,
+  "source": "example",
+  "notes": "example"
+ },
+ {
+  "account_id": "C3",
+  "account": "Roth IRA",
+  "tax_type": "After-tax",
+  "employee_annual": 0,
+  "employer_annual": 0,
+  "limit_annual": 9450,
+  "paychecks_per_year": 24,
+  "source": "example",
+  "notes": "example"
+ }
+]

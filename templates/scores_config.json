@@ -1,0 +1,382 @@
+{
+ "rows": [
+  {
+   "version": "1.0.0",
+   "as_of": "2026-10-16",
+   "disclaimer": "A planning tool built from numbers you entered. Not financial, tax or legal advice.",
+   "how_it_works": "Each component has one measured value, a best level and a worst level. The fraction is clamped between 0 and 1. Financial points = fraction x weight; risk points = (1 - fraction) x weight. A score is points divided by the weight of components that have data, times 100. A component without data is a Needs and is left out. Under the minimum weight coverage no number is shown.",
+   "reweight": {
+    "method": "points_available / weight_available x 100",
+    "show_range": true,
+    "range_low": "every Needs component scores the worst case",
+    "range_high": "every Needs component scores full marks",
+    "min_weight_coverage_pct": 60,
+    "below_min": "Show 'Not enough data' instead of a number"
+   },
+   "trend": {
+    "min_snapshots": 6,
+    "min_days_span": 60,
+    "note": "No trend arrow until enough monthly snapshots exist."
+   },
+   "inputs": {
+    "liquid_asset_ids": [
+     "A4",
+     "A6"
+    ],
+    "liquid_excludes": "Set liquid_asset_ids to the cash accounts you can spend. Leave out retirement, HSA, tax refunds not yet received, home and vehicle.",
+    "foreign_bill_ids": [],
+    "support_liability_ids": [
+     "L3"
+    ],
+    "card_min_estimate_pct_of_balance": 4,
+    "card_liability_type": "Credit card",
+    "high_apr_threshold_pct": 10,
+    "retirement_total_source": "networth_history latest .retirement",
+    "retirement_return_case": "return_base_real_pct",
+    "facts": {
+     "household_earners": 1,
+     "earners_source": "Asked in the first-run interview",
+     "goal_low_ref": "retirement_plan.goal_low"
+    },
+    "runway_excluded_bill_ids": [],
+    "runway_excluded_note": "Bills listed in runway_excluded_bill_ids are left out of the runway only; they stay in every other total.",
+    "secondary_without_foreign": "Secondary labeled figure only: surplus and runway without the bills in foreign_bill_ids"
+   },
+   "financial": {
+    "title": "Financial Score",
+    "scale": "0 to 100, higher is healthier",
+    "labels": [
+     {
+      "min": 80,
+      "label": "Strong"
+     },
+     {
+      "min": 60,
+      "label": "Solid"
+     },
+     {
+      "min": 40,
+      "label": "Building"
+     },
+     {
+      "min": 0,
+      "label": "Needs attention"
+     }
+    ],
+    "components": [
+     {
+      "id": "F1",
+      "name": "Debt to income",
+      "weight": 12,
+      "metric": "dti_back_end_est_pct",
+      "unit": "%",
+      "best": 20,
+      "worst": 50,
+      "formula": "(payments of every debt in the ratio, with cards that have no minimum counted at 4% of balance) / base gross monthly pay x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities.monthly_payment",
+       "income_pay.annual_gross"
+      ],
+      "needs": null
+     },
+     {
+      "id": "F2",
+      "name": "High interest debt burden",
+      "weight": 14,
+      "metric": "high_apr_balance_pct_of_gross",
+      "unit": "% of annual gross",
+      "best": 0,
+      "worst": 20,
+      "formula": "sum of balances with APR above 10% / annual gross pay x 100. Shown beside it: the same balance divided by liquid cash.",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities.rate_pct",
+       "liabilities.balance",
+       "income_pay.annual_gross"
+      ],
+      "needs": null
+     },
+     {
+      "id": "F3",
+      "name": "Emergency fund (cash runway, must-pay)",
+      "weight": 14,
+      "metric": "emergency_months",
+      "unit": "months",
+      "best": 6,
+      "worst": 0,
+      "formula": "liquid cash / monthly must-pay outflow. Must-pay = essential bills + every debt payment + amounts withheld from pay.",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "assets_other.value_point",
+       "bills.monthly_amount",
+       "liabilities.monthly_payment"
+      ],
+      "needs": null
+     },
+     {
+      "id": "F4",
+      "name": "Savings rate from payroll",
+      "weight": 10,
+      "metric": "payroll_savings_rate_pct",
+      "unit": "% of gross",
+      "best": 15,
+      "worst": 0,
+      "formula": "(401(k) you + HSA you + HSA employer + 401(k) employer, per year) / annual gross x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "contributions",
+       "income_pay.annual_gross"
+      ],
+      "needs": null,
+      "optional_needs": [
+       "Saving outside payroll, if any"
+      ]
+     },
+     {
+      "id": "F5",
+      "name": "Retirement pace vs goal (401(k) saving only)",
+      "weight": 18,
+      "metric": "retire_pace_pct",
+      "unit": "% of low goal",
+      "best": 100,
+      "worst": 0,
+      "formula": "balance at retirement age = B x (1+r)^n + C x ((1+r)^n - 1)/r, with B = retirement balance, C = yearly 401(k) saving now, r = base real return, n = target age - current age; divided by goal_low x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "networth_history.retirement",
+       "contributions",
+       "retirement_plan",
+       "assumptions"
+      ],
+      "needs": null
+     },
+     {
+      "id": "F6",
+      "name": "Monthly cash flow surplus",
+      "weight": 10,
+      "metric": "surplus_pct_of_net",
+      "unit": "% of take-home",
+      "best": 20,
+      "worst": 0,
+      "formula": "(take-home - bills - debt payments not already withheld) / take-home x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "bank and card statements covering at least 60 days"
+      ],
+      "needs": "Bank and card statements (about 2 months) so spending is measured, not estimated",
+      "gated": true
+     },
+     {
+      "id": "F7",
+      "name": "Net worth vs age benchmark",
+      "weight": 8,
+      "metric": "nw_vs_benchmark",
+      "unit": "percent of typical",
+      "best": null,
+      "worst": null,
+      "formula": "retirement balance / salary compared with an age benchmark table",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "age_benchmarks dataset"
+      ],
+      "needs": "A sourced age benchmark row for your age",
+      "gated": true
+     },
+     {
+      "id": "F8",
+      "name": "Credit utilization",
+      "weight": 6,
+      "metric": "utilization_pct",
+      "unit": "%",
+      "best": 10,
+      "worst": 60,
+      "formula": "sum of open card balances / sum of open card limits x 100 (a closed account has type Closed credit card and is skipped)",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities.credit_limit for every open card (closed accounts excluded)"
+      ],
+      "needs": "Credit limit for every open card",
+      "gated": true
+     },
+     {
+      "id": "F9",
+      "name": "Insurance and protection",
+      "weight": 8,
+      "metric": "protection_checklist_pct",
+      "unit": "% covered",
+      "best": 100,
+      "worst": 0,
+      "formula": "items confirmed in place / items in checklist (health, auto, home, term life, disability, umbrella)",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "insurance dataset"
+      ],
+      "needs": "Which of life, disability, umbrella, home and health coverage you have, with amounts",
+      "gated": true
+     }
+    ]
+   },
+   "risk": {
+    "title": "Risk Score",
+    "scale": "0 to 100, higher is riskier",
+    "labels": [
+     {
+      "min": 75,
+      "label": "High"
+     },
+     {
+      "min": 50,
+      "label": "Elevated"
+     },
+     {
+      "min": 25,
+      "label": "Moderate"
+     },
+     {
+      "min": 0,
+      "label": "Low"
+     }
+    ],
+    "components": [
+     {
+      "id": "R2",
+      "name": "Single income earner",
+      "weight": 16,
+      "metric": "top_earner_share_pct",
+      "unit": "% of household gross",
+      "best": 50,
+      "worst": 100,
+      "formula": "largest earner's gross / household gross x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "income_pay",
+       "inputs.facts.household_earners"
+      ],
+      "needs": null,
+      "optional_needs": [
+       "Second household income, if any"
+      ]
+     },
+     {
+      "id": "R3",
+      "name": "Liquidity runway (all fixed costs)",
+      "weight": 16,
+      "metric": "runway_months_all_fixed",
+      "unit": "months",
+      "best": 6,
+      "worst": 0.5,
+      "formula": "liquid cash / (all bills + all debt payments + amounts withheld from pay)",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "assets_other",
+       "bills",
+       "liabilities"
+      ],
+      "needs": null
+     },
+     {
+      "id": "R4",
+      "name": "Debt rate sensitivity",
+      "weight": 10,
+      "metric": "rate_shock_cost_pct_of_net",
+      "unit": "% of take-home",
+      "best": 0,
+      "worst": 3,
+      "formula": "(variable rate balances x 2 percentage points) / annual take-home x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities.rate_type"
+      ],
+      "needs": "Whether each variable-looking loan has a fixed or variable rate",
+      "gated": true
+     },
+     {
+      "id": "R5",
+      "name": "Combined loan to value",
+      "weight": 10,
+      "metric": "cltv_pct",
+      "unit": "%",
+      "best": 50,
+      "worst": 90,
+      "formula": "(mortgage + HELOC) / house value x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities (mortgage and home equity line)",
+       "assets_other (home value)"
+      ],
+      "needs": null
+     },
+     {
+      "id": "R6",
+      "name": "Total debt to total assets",
+      "weight": 6,
+      "metric": "debt_to_assets_pct",
+      "unit": "%",
+      "best": 30,
+      "worst": 80,
+      "formula": "all debt balances / all assets in net worth x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "networth_history"
+      ],
+      "needs": null
+     },
+     {
+      "id": "R7",
+      "name": "Tax exposure",
+      "weight": 8,
+      "metric": "irs_balance_pct_of_liquid",
+      "unit": "% of liquid cash",
+      "best": 0,
+      "worst": 100,
+      "formula": "open tax balances / liquid cash x 100. Interest and penalties are not in the balance, so this understates.",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "liabilities (type Tax)",
+       "assets_other"
+      ],
+      "needs": null,
+      "optional_needs": [
+       "Any notice or payment plan letter"
+      ]
+     },
+     {
+      "id": "R8",
+      "name": "One-time planned cost",
+      "weight": 10,
+      "metric": "planned_cost_pct_of_net",
+      "unit": "% of take-home",
+      "best": 0,
+      "worst": 30,
+      "formula": "monthly amount of the bills listed in foreign_bill_ids (a planned or unusual cost you name) / monthly take-home x 100.",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "bills",
+       "paystubs"
+      ],
+      "needs": null,
+      "optional_needs": [
+       "Which bills are the planned cost"
+      ]
+     },
+     {
+      "id": "R9",
+      "name": "Data completeness",
+      "weight": 10,
+      "metric": "queue_needed_pct",
+      "unit": "% of queue still needed",
+      "best": 0,
+      "worst": 100,
+      "formula": "data_queue items still needed (status Needed or Statement requested) / (still needed + Provided) x 100",
+      "source": "Design choice. The best and worst levels can be changed in this file.",
+      "requires": [
+       "data_queue"
+      ],
+      "needs": null
+     }
+    ]
+   }
+  }
+ ]
+}
