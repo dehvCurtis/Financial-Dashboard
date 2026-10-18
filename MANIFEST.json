@@ -5,12 +5,17 @@
  "backup_schema": "mo-backup-2",
  "runtime_contract_observed": "0.2.67",
  "license": "TODO (not chosen)",
- "file_count": 121,
+ "file_count": 123,
  "files": [
   {
    "path": ".gen_ok",
    "bytes": 24,
    "sha256": "4442246a8518020358cd55b2f9955bc4f56e86547ad7eb864471e23e46d8b8f4"
+  },
+  {
+   "path": "AGENT_PROMPT.md",
+   "bytes": 6590,
+   "sha256": "74461a63609411e94f9a011313c738341c3134b2b9c225ff6b49401806a5c8f2"
   },
   {
    "path": "ARCHITECTURE.md",
@@ -39,8 +44,8 @@
   },
   {
    "path": "CLAUDE.md",
-   "bytes": 3334,
-   "sha256": "72bd7f0917b221699dcefe1ae37e24a5b62ce9e609b9c48c29e36c5f7170a2f2"
+   "bytes": 4041,
+   "sha256": "d708c9cf43e8546f336f913f7bd05772f93a1282190a72fcc96bdee23530cb2d"
   },
   {
    "path": "CORRELATIONS.md",
@@ -69,8 +74,8 @@
   },
   {
    "path": "INDEX.md",
-   "bytes": 3169,
-   "sha256": "674d1ee18dfb52295a4cd42d7d9df75c277d675028b5f5e156c2de0106160186"
+   "bytes": 3306,
+   "sha256": "ed3e9799ec1998c8abe431299219cd39492294ceb9f0b0e6a871fc80ded76e27"
   },
   {
    "path": "INTAKE_GUIDE.md",
@@ -104,8 +109,13 @@
   },
   {
    "path": "README.md",
-   "bytes": 3718,
-   "sha256": "c7af2889a2ab04476373d682bccef7679a83655bde5468941e45aaa9cae5e7fb"
+   "bytes": 5437,
+   "sha256": "6cccbb9e0605e0631ba801d05e7e6921573ecebeebc50b4e932b458172cbef54"
+  },
+  {
+   "path": "REPORT.md",
+   "bytes": 3213,
+   "sha256": "c7cd9665f89a6869531337bdcaae4b9e21e8543990d8bbce2138f41e5589cb3f"
   },
   {
    "path": "RUNBOOK.md",
@@ -150,12 +160,12 @@
   {
    "path": "VERSION",
    "bytes": 139,
-   "sha256": "d3adaf697ce422754e449da05b606f3b311dc93d3d917afade7078b0c9dc68a9"
+   "sha256": "64c96d9ce809623eefa3b4afc0ba1e3a504df478137bbf1a568a207c2d13f49d"
   },
   {
    "path": "code-base.zip",
-   "bytes": 581922,
-   "sha256": "f65249a4550cc9f406228838cf50fafc6cdd879a9cb7faa348b9c87d6c348a13"
+   "bytes": 577738,
+   "sha256": "8b4f201af19a72fa33134da1cb39db030e080c017b614f43bb93aaacb4603b50"
   },
   {
    "path": "demo_data/acct_a_holdings.json",

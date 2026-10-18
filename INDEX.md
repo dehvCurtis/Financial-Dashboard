@@ -7,8 +7,9 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 | File | Purpose |
 |---|---|
 | README.md | what the bundle is and how to start |
+| AGENT_PROMPT.md | the short context prompt every Claude reads first, with the first message for a new user |
 | CLAUDE.md | the working rules for the agent |
-| ARCHITECTURE.md | full build guide, 20 numbered sections, refreshed to page stage 6i |
+| ARCHITECTURE.md | full build guide, sections 0 to 20, refreshed to page stage 6i |
 | STYLE-GUIDE.md | tokens, layout, the measured bottom bar shell, accessibility |
 | ENVIRONMENT.md | machine, packages, browser, test suites, variables |
 | RUNTIME_CONTRACT.md | the Artifact runtime facts that broke builds |
@@ -50,7 +51,7 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 
 | Question | Document |
 |---|---|
-| How do I start? | README.md, PROMPTS.md |
+| How do I start? | README.md (Start here), AGENT_PROMPT.md, PROMPTS.md |
 | What does this tile mean? | TILES.md |
 | What does this dataset hold? | DATA_MODEL.md, templates/ |
 | Why does a card say Needs? | ARCHITECTURE.md section 3, QUESTIONS.md |
