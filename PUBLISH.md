@@ -13,13 +13,15 @@ Nothing is published unless the user asks in that turn. A first publish is priva
 ## Before any publish
 
 1. `bash runall.sh --full` is green. `tools/publish.js` refuses to run unless the record of the last full run matches the files as they are now.
-2. `node tools/deadsize.js` found nothing to remove and no file over its size limit, and `node tools/check_docs.js` is green when tiles or datasets changed.
+2. `node tools/deadsize.js` found nothing to remove (unused functions, constants, calcs and CSS rules all exit 1) and no file over its size limit, and `node tools/check_docs.js` is green when tiles or datasets changed.
 3. The user has seen a plain summary of what will change and has said go.
 4. The privacy scan of the files to publish is clean: no dashes, no account numbers, no emails, no digit runs of 8 or more outside ISO dates.
 
+Datasets in data_offpage/ (notes_log, bank_flows, bank_statements) are never published as page datasets: the page does not load them. Keep them in the database and the file backup. The answers index (out/answers/answers.json) is a local cache and is not published.
+
 ## Steps
 
-1. `node tools/publish.js --stage <n> [--pins pins.json]` builds the files, checks sizes (page parts under 200 KB, documents under 256 KB, titles under 31 characters), loads every dataset through the runtime parser, runs every calc, checks for dashes, and writes `out/stage_<n>/PUBLISH_LIST.md` plus one payload per file. It never writes to the store.
+1. `node tools/publish.js --stage <n> [--pins pins.json]` (one publish script) builds the files, records a hash of each, checks sizes (page parts under 200 KB, documents under 256 KB, titles under 31 characters), loads every dataset through the runtime parser, runs every calc, checks for dashes, and writes `out/stage_<n>/PUBLISH_LIST.md` plus one payload per file. It never writes to the store.
 2. Read the live version of each document you are about to change (the pin). A file with no pin is a create.
 3. Upload changed datasets as assets, one per publish call, using the exact url each result returns.
 4. Write the changed dataset documents in one batch pinned to the versions read: title (30 characters at most), description, `source: {kind: "file", url, name: "<id>.json", format: "json"}`, `updated`.

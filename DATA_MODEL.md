@@ -1,6 +1,6 @@
 # DATA_MODEL: every dataset
 
-39 datasets. Each is one JSON file: a non-empty array of flat row objects (or `{ "rows": [...] }`). A key missing from a row arrives as null on the page. Nested cells are limited to an allow-list (config datasets); everywhere else rows are flat scalars. Rules and the reasoning are in ARCHITECTURE.md sections 3 to 6.
+37 datasets. Each is one JSON file: a non-empty array of flat row objects (or `{ "rows": [...] }`). A key missing from a row arrives as null on the page. Nested cells are limited to an allow-list (config datasets); everywhere else rows are flat scalars. Rules and the reasoning are in ARCHITECTURE.md sections 3 to 6.
 
 ## Classes
 
@@ -15,13 +15,150 @@
 ## Common rules
 
 - Money is a number in dollars; percent is a number like 4.5 (not 0.045); dates are YYYY-MM-DD; months YYYY-MM.
-- Money rows carry `source` and `as_of_date` where the dataset has those fields.
+- Money rows carry `source` and `as_of_date` where the dataset has those fields. Money rows of assets_other, liabilities, bills, cash_events and balance_log also carry `value_basis` and `source_kind` (Value basis below).
 - A correction replaces the old value in place (history datasets keep dated rows).
 - Ids are stable and never reused (L1, B3, T7 ...).
 - No account numbers, loan ids, SSNs, tax ids or addresses. Use the user's own labels.
 - A dataset with nothing real yet ships one starter row with every value null (templates/). Calcs strip it (`realRows`).
 - Dataset document title: 30 characters at most. Each document at most 256 KB.
 - The Unit column below is a heuristic from the field name; the calc text and DATA_MODEL notes are the truth when they differ.
+
+## Value basis
+
+Every money row (assets_other, liabilities, bills, cash_events, balance_log) carries `value_basis`, `source_kind`, `source` and `as_of_date`; liabilities also carry `payment_basis` for the monthly payment. tests/data_rules.js checks that each is present and from the fixed lists.
+
+| value_basis | Meaning |
+|---|---|
+| reported | a number read from a statement or an app screen |
+| stated | the user's own figure, used until a statement proves otherwise |
+| derived | arithmetic on stored rows |
+| expected | a balance the stored rows predict but no one has read |
+| estimated | a guess or a budget figure; a row with no real source is estimated and has a Needs item |
+
+| source_kind | Meaning |
+|---|---|
+| statement | a downloaded statement (PDF or CSV) |
+| app_screen | a bank or servicer app screen or a screenshot |
+| document | another document, such as a tax form or a pay stub |
+| owner_stated | the user said it in chat |
+| calculation | worked out from other rows |
+| assumption | a setting or estimate with no document behind it |
+
+Calc outputs that sum or combine rows report the weakest value_basis and the oldest as_of of the rows they used (fields basis and oldest_as_of), and the answers index repeats them with every number. The free text note that older bundles kept in assets_other.value_basis is now `value_basis_note`; liabilities.balance_basis stays free text. The `expected_is_reported` flag is gone: a row whose value is a prediction has `value_basis` expected.
+
+## Account flow: a pass-through checking account (standing workflow)
+
+The workflow rule (standing, generic): every paycheck lands in Savings, and money moves from Savings to Checking before each payment. The user pays with the debit card tied to Checking. Checking is a pass-through account: it is exactly 0 once everything clears. Record each payment as a transfer plus a Checking spend; never record the funding account as the payer.
+
+Each payment is two facts in `cash_events`:
+
+1. A transfer between the user's own accounts, stored as two rows: the sending account negative and the receiving account positive, same date, each naming the other in `transfer_pair`, with `from_account` and `to_account`. A transfer changes the expected balance of both accounts and is never a known outflow. `in_balances` is Y once a balance reading that already includes it exists.
+2. A payment on Checking (`kind` payment). `clearing` is waiting until the payment posts, then cleared. A waiting payment counts as a known outflow once confirmed. `funding_source` names the account that funded a pass-through payment.
+
+`kind` is a fixed list: pay_deposit, transfer, payment, purchase, hold, cash (checked by tests/data_rules.js and invariant I37). The words shown on the page live in `kind_label`.
+
+Rules:
+
+- Until a payment clears its money is in transit and still inside the posted Checking balance. The posted balance is stored as `value_point` (net worth counts it as an asset).
+- `spendable_value` (optional, assets_other, cash rows): what can be spent now. A pass-through Checking row sets it to 0. The runway and the payoff plan cushion read `spendable_value` when it is set and `value_point` otherwise, so in-transit money is never counted as spendable. Net worth always reads `value_point`. Spendable cash is never above the posted value (invariant I35), and moving money between the user's own accounts leaves net worth unchanged (unit test). The Cash card shows spendable cash as its one key number with a chip for the amount in transit.
+- A debt keeps its last reported balance until the payment posts (the balance the schedule gives after the payment is kept in `expected_balance` and, for a mortgage, in `expected_after_next_payment`). When the payment posts, the debt falls by its principal part and the posted Checking falls by the whole payment; net worth changes only by the part that is not principal (interest, fees, escrow), which is a real cost.
+- Pending holds are inside the posted balance. Posted minus pending holds is a candidate available balance; the app's available balance replaces it.
+- Check C30 (Checking left over) is the latest posted reading less the payments still waiting. It should be 0; when it is not, the gap is shown and never hidden.
+- Do not force a stated transfer total to equal the sum of the payments. Keep it as an unreconciled note with its date and ask for the statements.
+
+## Datasets kept off the page (data_offpage)
+
+The folder `data_offpage/` holds datasets that stay in the database and in every file backup but are NOT loaded by the page, because no calc or card reads them: `notes_log`, `bank_flows` and `bank_statements`. Keeping them off the page cuts the data the page loads at every open. Starter files are in templates/offpage/. They follow the same rules as the loaded datasets (flat rows, no identifiers, no dashes; tests/data_rules.js scans them).
+
+`notes_log` holds long free text notes moved whole out of the loaded datasets, and merged request or task rows. A loaded row keeps its latest short note and ends with "(earlier notes: notes_log <row id>)". When repeated requests are merged, the survivor keeps the clearest wording and the union of `needs_key`; the removed row is kept whole in notes_log with an alias row (old id to survivor). Nothing is deleted and every original text can be found. Because the page does not load these files, the in-page backup kit lists only the loaded datasets: copy data_offpage with the rest of the database (BACKUP_FORMAT.md).
+
+#### bank_flows
+
+Individual bank transactions grouped by direction, category and payee type, used to measure everyday spending and to explain drift.
+
+- Class: user. Key field: flow_id. Not loaded by the page. Starter template: templates/offpage/bank_flows.json
+- Intake: bank statement CSV. CSV view: bank_flows.csv
+
+| Field | Value types seen | Unit (heuristic) |
+|---|---|---|
+| flow_id | string | id |
+| date | string | date YYYY-MM-DD |
+| month | string | month YYYY-MM |
+| side | string | text |
+| account | string | text |
+| direction | string | text |
+| amount | number | USD |
+| category | string | text |
+| payee_type | string | text |
+| payee_name | null |  |
+| linked_id | null or string | id |
+| counterparty | null |  |
+| note | string | text |
+| source | string | text |
+
+#### bank_statements
+
+One row per bank statement period: opening and closing balance, credits, debits, interest and the figures printed on the statement.
+
+- Class: user. Key field: statement_id. Not loaded by the page. Starter template: templates/offpage/bank_statements.json
+- Intake: bank statement (PDF or CSV). CSV view: bank_statements.csv
+
+| Field | Value types seen | Unit (heuristic) |
+|---|---|---|
+| statement_id | string | id |
+| period_start | string | date YYYY-MM-DD |
+| period_end | string | date YYYY-MM-DD |
+| month | string | month YYYY-MM |
+| account | string | text |
+| account_kind | string | text |
+| linked_id | string | id |
+| opening_balance | number | USD |
+| closing_balance | number | USD |
+| credits_total | number | USD |
+| credit_count | number | count or year |
+| debits_total | number | USD |
+| debit_count | number | count or year |
+| dividends | number or null | USD |
+| apy_pct | number or null | percent |
+| ytd_dividends | number or null | USD |
+| rate_pct | null or number | percent |
+| min_payment_printed | null or number | USD |
+| next_due_printed | null |  |
+| credit_limit | null |  |
+| available_credit | null |  |
+| payments_total | null or number | USD |
+| principal_paid | null or number | USD |
+| interest_paid | null or number | USD |
+| draws_purchases | null |  |
+| draws_cash | null |  |
+| fees_charged | null |  |
+| credits_returned | null |  |
+| interest_posted_other | null |  |
+| new_loan_amount | null |  |
+| purchases_outside_us | null |  |
+| ytd_finance_charges | null |  |
+| notes | string | text |
+| source | string | text |
+
+#### notes_log
+
+Long free text notes moved whole out of the loaded datasets, and merged request or task rows with an alias row (old id to survivor). Nothing is deleted: every original text is here. Not loaded by the page; kept in the database and in the file backup.
+
+- Class: history. Key field: log_id. Not loaded by the page. Starter template: templates/offpage/notes_log.json
+- Intake: moved by Claude when a long note or a repeated request is merged. CSV view: notes_log.csv
+
+| Field | Value types seen | Unit (heuristic) |
+|---|---|---|
+| log_id | string | id |
+| kind | string | text |
+| dataset | string | text |
+| row_id | string | id |
+| field | string or null | text |
+| text | string | text |
+| merged_into | null or string | text |
+| moved_on | string | date YYYY-MM-DD |
+| stage | string | text |
+
 
 ## Index
 
@@ -35,13 +172,11 @@
 | assets_other | user | asset_id | yes | 6 | Other assets | nw_rows, nw_steps, home_calc, house_split, pending_calc, goals_calc, scores_calc, payoff_engine, coverage_calc, checks_calc, profile_calc |
 | assumptions | config | item | yes | 6 | Return assumptions | contrib_calc, retire_model, pct_calc, scores_calc, coverage_calc |
 | balance_log | history | log_id | yes | 6 | Balance log | drift_calc, drift_all, coverage_calc, checks_calc, checkins_calc, recap_calc, quests_calc, seasons_calc |
-| bank_flows | user | flow_id | optional | 2 | Bank flows | (drawn directly) |
-| bank_statements | user | statement_id | optional | 2 | Bank statements | (drawn directly) |
 | bill_statements | user | bill_id + statement_date | optional | 5 | Bill statements | checks_more_calc |
 | bills | user | bill_id | yes | 6 | Monthly bills | bills_calc, bills_takehome, bills_cat, dti_calc, pay_flow, scores_calc, payoff_engine, coverage_calc, checks_calc, runway_calc, profile_calc, checks_more_calc, paycheck_plan |
 | card_statements | user | statement_id | optional | 1 | Card statements | checks_more_calc |
 | card_transactions | user | txn_id | optional | 2 | Card transactions | drift_all, badges_calc |
-| cash_events | user | event_id | optional | 2 | Cash events | drift_calc, drift_all, coverage_calc, checks_calc, quests_calc, stubcheck_calc |
+| cash_events | user | event_id | optional | 4 | Cash events | drift_calc, drift_all, coverage_calc, checks_calc, quests_calc, stubcheck_calc |
 | contribution_limits | reference | year | yes | 1 | Contribution limits | plan_year_calc |
 | contribution_plan | user | plan_year | optional | 2 | Contribution plan | plan_year_calc |
 | contributions | user | account_id | yes | 3 | Retirement contributions | contrib_calc, retire_model, pay_flow, scores_calc, age_calc, coverage_calc, checks_calc, profile_calc |
@@ -175,7 +310,7 @@ Settings for the age statistics: which benchmark rows each metric reads, the lab
 
 ### assets_other
 
-Everything you own that is not a retirement or investment holding: cash accounts, HSA cash, home, vehicles, receivables such as a pending tax refund.
+Everything you own that is not a retirement or investment holding: cash accounts, HSA cash, home, vehicles, receivables such as a pending tax refund. Optional spendable_value on a cash row is what the runway and the payoff cushion count (a pass-through Checking counts 0 of its posted value while payments are in transit); net worth counts value_point. Every row carries value_basis and source_kind.
 
 - Class: user. Key field: asset_id. File shape: array. Needed for a first build.
 - Doc title: "Other assets" (12 characters). Description: Other assets the user has named, such as vehicles, property, cash accounts, HSA cash and refunds, as given or estimated.
@@ -196,6 +331,10 @@ Everything you own that is not a retirement or investment holding: cash accounts
 | name | string | text |
 | type | string | text |
 | value_point | number | USD |
+| value_basis | string | enum: reported, stated, derived, expected, estimated |
+| source_kind | string | enum: statement, app_screen, document, owner_stated, calculation, assumption |
+| value_basis_note | null | text (a note about how the value arrived) |
+| spendable_value | null or number | USD (optional, cash rows: what can be spent now; empty means value_point) |
 
 ### assumptions
 
@@ -215,7 +354,7 @@ Return paths (cautious, base, optimistic, real), inflation, employer match, and 
 
 ### balance_log
 
-Dated reported balances per account. The basis of the cash chart, the weekly check-in and the dollar drift check.
+Dated reported balances per account. The basis of the cash chart, the weekly check-in and the dollar drift check. Every row carries value_basis and source_kind (reported, stated, derived, expected or estimated, and where it came from).
 
 - Class: history. Key field: log_id. File shape: array. Needed for a first build.
 - Doc title: "Balance log" (11 characters). Description: Account balances you report, by date, for the dollar drift check.
@@ -231,80 +370,8 @@ Dated reported balances per account. The basis of the cash chart, the weekly che
 | kind | string | text |
 | reported_balance | number | USD |
 | source | string | text |
-
-### bank_flows
-
-Individual bank transactions grouped by direction, category and payee type, used to measure everyday spending and to explain drift.
-
-- Class: user. Key field: flow_id. File shape: array. Optional: add it when the situation applies.
-- Doc title: "Bank flows" (10 characters). Description: Every credit and debit from the bank statements, one row per movement, with category and linked debt or account. Extracted values only.
-- Intake: bank statement CSV. CSV view: bank_flows.csv. Starter template: templates/bank_flows.json
-- Read by calcs: none (drawn directly by the page)
-- Shown on pages: (not drawn directly; read by other calcs)
-
-| Field | Value types seen | Unit (heuristic) |
-|---|---|---|
-| flow_id | string | id |
-| date | string | date YYYY-MM-DD |
-| month | string | month YYYY-MM |
-| side | string | text |
-| account | string | text |
-| direction | string | text |
-| amount | number | USD |
-| category | string | text |
-| payee_type | string | text |
-| payee_name | null |  |
-| linked_id | null or string | id |
-| counterparty | null |  |
-| note | string | text |
-| source | string | text |
-
-### bank_statements
-
-One row per bank statement period: opening and closing balance, credits, debits, interest and the figures printed on the statement.
-
-- Class: user. Key field: statement_id. File shape: array. Optional: add it when the situation applies.
-- Doc title: "Bank statements" (15 characters). Description: One row per bank account statement: balances, totals, interest, rates and any loan or card fields. Extracted values only.
-- Intake: bank statement (PDF or CSV). CSV view: bank_statements.csv. Starter template: templates/bank_statements.json
-- Read by calcs: none (drawn directly by the page)
-- Shown on pages: (not drawn directly; read by other calcs)
-
-| Field | Value types seen | Unit (heuristic) |
-|---|---|---|
-| statement_id | string | id |
-| period_start | string | date YYYY-MM-DD |
-| period_end | string | date YYYY-MM-DD |
-| month | string | month YYYY-MM |
-| account | string | text |
-| account_kind | string | text |
-| linked_id | string | id |
-| opening_balance | number | USD |
-| closing_balance | number | USD |
-| credits_total | number | USD |
-| credit_count | number | count or year |
-| debits_total | number | USD |
-| debit_count | number | count or year |
-| dividends | null or number | USD |
-| apy_pct | null or number | percent |
-| ytd_dividends | null or number | USD |
-| rate_pct | null or number | percent |
-| min_payment_printed | null or number | USD |
-| next_due_printed | null |  |
-| credit_limit | null |  |
-| available_credit | null |  |
-| payments_total | null or number | USD |
-| principal_paid | null or number | USD |
-| interest_paid | null or number | USD |
-| draws_purchases | null |  |
-| draws_cash | null |  |
-| fees_charged | null |  |
-| credits_returned | null |  |
-| interest_posted_other | null |  |
-| new_loan_amount | null |  |
-| purchases_outside_us | null |  |
-| ytd_finance_charges | null |  |
-| notes | string | text |
-| source | string | text |
+| value_basis | string | enum: reported, stated, derived, expected, estimated |
+| source_kind | string | enum: statement, app_screen, document, owner_stated, calculation, assumption |
 
 ### bill_statements
 
@@ -327,7 +394,7 @@ Amounts of individual bills over time, linked to a bill row.
 
 ### bills
 
-Monthly bills with a user-entered name, category, monthly equivalent amount, essential flag, due day and how sure the amount is.
+Monthly bills with a user-entered name, category, monthly equivalent amount, essential flag, due day and how sure the amount is. Every row carries value_basis and source_kind (reported, stated, derived, expected or estimated, and where it came from).
 
 - Class: user. Key field: bill_id. File shape: array. Needed for a first build.
 - Doc title: "Monthly bills" (13 characters). Description: Monthly bills the user has named so far.
@@ -344,6 +411,10 @@ Monthly bills with a user-entered name, category, monthly equivalent amount, ess
 | essential | string | text |
 | notes | string | text |
 | due_day | number | USD |
+| value_basis | string | enum: reported, stated, derived, expected, estimated |
+| source_kind | string | enum: statement, app_screen, document, owner_stated, calculation, assumption |
+| as_of_date | string | date YYYY-MM-DD (when the amount was last confirmed) |
+| source | string | text |
 | last_paid | string | text |
 
 ### card_statements
@@ -399,7 +470,7 @@ Individual card transactions, kept so charges can be reviewed and drift on cards
 
 ### cash_events
 
-Known money movements between dated balance readings: pay deposits, transfers, bill and card payments. They explain the change between two reported balances.
+Known money movements between dated balance readings: pay deposits, transfers, bill and card payments. They explain the change between two reported balances. kind is a fixed list; a transfer between your own accounts is two rows, one negative on the sending account and one positive on the receiving account, same date, linked by transfer_pair.
 
 - Class: user. Key field: event_id. File shape: array. Optional: add it when the situation applies.
 - Doc title: "Cash events" (11 characters). Description: Known money movements between balance reports, used for dollar drift.
@@ -412,13 +483,22 @@ Known money movements between dated balance readings: pay deposits, transfers, b
 | event_id | string | id |
 | date | string | date YYYY-MM-DD |
 | account | string | text |
-| kind | string | text |
+| kind | string | enum: pay_deposit, transfer, payment, purchase, hold, cash |
 | amount | number | USD |
 | counts_as_spend | string | text |
 | recurring | string | text |
 | note | string | text |
 | status | string | text |
 | in_balances | string | text |
+| kind_label | string | text (the words shown on the page) |
+| value_basis | string | enum: reported, stated, derived, expected, estimated |
+| source_kind | string | enum: statement, app_screen, document, owner_stated, calculation, assumption |
+| source | string | text |
+| to_account | null or string | text (transfers: the account that receives) |
+| from_account | null or string | text (transfers: the account that sends) |
+| transfer_pair | null or string | id (the event_id of the other side of a transfer) |
+| clearing | null or string | enum: waiting, cleared (a payment taken from Checking) |
+| funding_source | null | text (the account that funded a pass-through payment) |
 
 ### contribution_limits
 
@@ -509,6 +589,8 @@ The list of data requests: what is needed, why, which area, status (Needed, Stat
 | queue_id | string | id |
 | task_id | null or string | id |
 | source_kind | null or string | text |
+| merged_from | null | text (ids of repeated requests merged into this one, kept whole in notes_log) |
+| waits_for | null | id (a request whose answer this one waits for) |
 
 ### drift_history
 
@@ -601,7 +683,7 @@ Income sources: kind, annual gross, per paycheck amount, paychecks a year, first
 
 ### liabilities
 
-Every debt: a user-entered name, type, balance, rate, minimum payment, due date and the fields that drive ranking and notes.
+Every debt: a user-entered name, type, balance, rate, minimum payment, due date and the fields that drive ranking and notes. Every row carries value_basis and source_kind (reported, stated, derived, expected or estimated, and where it came from).
 
 - Class: user. Key field: liability_id. File shape: array. Needed for a first build.
 - Doc title: "Debts" (5 characters). Description: Every debt by category with a user-entered name: balance, rate and payment.
@@ -634,6 +716,10 @@ Every debt: a user-entered name, type, balance, rate, minimum payment, due date 
 | next_due | string | date YYYY-MM-DD |
 | amount_due | number | USD |
 | secured_by | string | text |
+| value_basis | string | enum: reported, stated, derived, expected, estimated |
+| source_kind | string | enum: statement, app_screen, document, owner_stated, calculation, assumption |
+| payment_basis | null or string | enum: reported, stated, derived, expected, estimated (for monthly_payment) |
+| source | string | text |
 
 ### ltv_benchmarks
 
@@ -718,6 +804,7 @@ Mortgage statement figures: principal balance, rate, payment parts, escrow, late
 | activity | array | JSON text (nested) |
 | source | string | text |
 | kind | string | text |
+| expected_after_next_payment | null | JSON text (nested: the balance the schedule gives once the next payment posts) |
 
 ### networth_history
 
@@ -989,4 +1076,5 @@ The task list: area, status, due date, priority, effort, verification fields.
 | queue_id | null or string | id |
 | id | string | id |
 | task | string | text |
+| merged_from | null | text (ids of repeated tasks merged into this one, kept whole in notes_log) |
 

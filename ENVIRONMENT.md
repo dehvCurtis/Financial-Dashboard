@@ -40,7 +40,7 @@ bash runall.sh --full
 | Suite | File | What it covers | Needs a browser |
 |---|---|---|---|
 | unit | tests/unit.js | one or more fixture tests per calc, hand worked values | no |
-| inv_run | tests/inv_run.js | 34 page invariants on the data, the fixture and every dataset emptied one at a time | no |
+| inv_run | tests/inv_run.js | 37 page invariants on the data, the fixture and every dataset emptied one at a time | no |
 | data_rules | tests/data_rules.js | store shape: loads under the runtime parser, sizes, titles, catalogue | no |
 | static_scan | tests/static_scan.js | no dashes, no personal terms, no innerHTML, eval or inline handlers | no |
 | backup_verify | tests/backup_verify.js | tools/verify_backup.js against good and broken backups | no |
@@ -59,7 +59,8 @@ The data folder `data_all/` holds the invented example dataset (also in demo_dat
 |---|---|
 | CHROMIUM_PATH | path to the Chromium binary |
 | PLAYWRIGHT_BROWSERS_PATH | folder holding a Playwright browser |
-| DATA_EXTRA | colon separated extra data folders for the data independent suites |
+| DATA_EXTRA | colon separated extra data folders for the data independent suites (nothing else is scanned by default) |
+| today | `--today YYYY-MM-DD` on tools/engine.js users (numbers.js, calcdiff.js, answers.js); the default is the real date (tools/today.js). The tests pass a fixed date so fixtures never depend on the clock |
 | APPROVE_MARKS=1 | regenerate the approved element inventories in tests/lib after an intended change (review the diff) |
 | ONLY=calc,... | run a subset of unit tests |
 | STRICT=1 | makes build.js emulate the live store strictly (set by the test library for browser pages) |
@@ -70,4 +71,4 @@ Needs an account that offers the Dashboard Artifact type, with the capabilities 
 
 ## Time
 
-A full run takes about eight minutes on a small machine (466 seconds measured on a clean unzip: 471 checks across 7 suites at version 1.0.0, plus the injection suite). Everything except the browser suites takes under one minute. `npm install` takes seconds and needs the network once; after that no network is needed.
+A full run takes about four minutes on a small machine (223 seconds measured at version 1.1.0: 508 checks across 8 suites, the browser suite in four parallel processes). Everything except the browser suites takes under one minute. `npm install` takes seconds and needs the network once; after that no network is needed.

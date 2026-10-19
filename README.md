@@ -22,7 +22,7 @@ AGENT_PROMPT.md is the short context file every Claude reads first.
 
 ## What you get
 
-- A dashboard with 10 pages: Home, Debt, Bills, Cash, Investments, Retirement, Progress, Tasks, Pay, Data and backup. Counts at this version: 39 datasets, 58 calcs, 27 correlation checks, 28 profile questions.
+- A dashboard with 10 pages: Home, Debt, Bills, Cash, Investments, Retirement, Progress, Tasks, Pay, Data and backup. Counts at this version: 37 datasets, 58 calcs, 28 correlation checks, 28 profile questions.
 - A missing-data protocol: nothing is guessed. A card without its inputs shows "Needs: X", the agent makes a task, and asks you in plain words.
 - Statement intake: upload a PDF or CSV statement (pay stub, card, bank, mortgage, 401(k)), Claude reads it, saves every figure with its source and date, and the dashboard updates.
 - A monthly backup (JSON plus a rebuild kit) with a verify tool, and a procedure to keep copies in Google Drive.

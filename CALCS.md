@@ -4,7 +4,7 @@
 
 Design and rules in full: ARCHITECTURE.md sections 7 and 8 (net worth, housing and DTI, loan to value, payoff engine, bills, runway, pay, drift, holdings, retirement, scores, age statistics, progress, tasks, checks). Scores: SCORING.md. Checks: CORRELATIONS.md.
 
-How tests cover calcs: tests/unit.js has one or more fixture tests per calc with hand worked expected values; tests/inv_run.js runs the 34 page invariants on the current data, on the fixture, on the fixture with every dataset reduced to its starter row, and on each single dataset reduced to its starter row (no calc may throw for a missing category); tools/engine.js runs the calcs through the runtime's own parser and calc engine without a browser.
+How tests cover calcs: tests/unit.js has one or more fixture tests per calc with hand worked expected values; tests/inv_run.js runs the 37 page invariants on the current data, on the fixture, on the fixture with every dataset reduced to its starter row, and on each single dataset reduced to its starter row (no calc may throw for a missing category); tools/engine.js runs the calcs through the runtime's own parser and calc engine without a browser.
 
 ## Index
 
@@ -66,7 +66,7 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 | statement_sync_calc | Statement requests in sync | data_queue, tasks | home, progress, tasks |
 | profile_calc | What you have | profile_answers, liabilities, bills, assets_other, contributions | tasks |
 | needs_calc | What the cards are waiting for | profile_calc, payoff_engine, dti_calc, goals_calc, drift_calc, plan_year_calc, runway_calc, paycheck_plan, data_queue, tasks | tasks |
-| checks_more_calc | More correlation checks | bills, liabilities, bill_statements, dti_calc, payoff_engine, profile_calc, needs_calc, card_statements | (not drawn directly; read by other calcs) |
+| checks_more_calc | More correlation checks | bills, liabilities, bill_statements, dti_calc, payoff_engine, profile_calc, needs_calc, card_statements, drift_all | (not drawn directly; read by other calcs) |
 | paycheck_plan | Paycheck plan | payoff_engine, liabilities, bills, income_pay, paystubs | debt, tasks |
 
 ## Calcs in detail
@@ -196,7 +196,7 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 - Rule: Sum of monthly bills, the yearly equivalent, and the share of gross monthly pay.
 - Inputs: bills, income_pay
 - Feeds: pay_split
-- Output: array of row objects (total_monthly, total_annual, pct_of_gross, essential_monthly, optional_monthly)
+- Output: array of row objects (total_monthly, total_annual, pct_of_gross, essential_monthly, optional_monthly, basis, oldest_as_of)
 - Shown on: (not drawn directly; read by other calcs)
 
 ### bills_takehome
@@ -258,9 +258,10 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 ### dti_calc
 - Title: Debt to income
 - Rule: Housing and total debt payments over gross monthly income, using the payments entered so far. The missing count shows debts still without a payment. The estimate fields add 4 percent of the balance of credit cards with no payment entered. Rent (Housing bills) joins the standard ratio only when no mortgage is on file; otherwise it is a second ratio. Total monthly obligations (one definition for the whole page) = every monthly bill (rent included, once) plus every debt payment entered; a debt still missing its payment is named, never guessed.
+- Notes: Output fields basis_balances and basis_payments each report the weakest value_basis and the oldest as_of date of the rows used (stage 6o). Rent joins the headline ratio only when no mortgage is on file; otherwise a second labeled ratio includes it.
 - Inputs: income_pay, liabilities, bills
 - Feeds: pay_split, age_calc, needs_calc, checks_more_calc
-- Output: array of row objects (rent_monthly, rent_names, rent_in_standard, back_end_with_rent_pct, obligations_monthly, obligations_annual, obligations_bills, obligations_debts, missing_names, est_card_balance, est_card_payment, debt_payments_est, back_end_est_pct, base_monthly, total_monthly, debt_payments, housing_payments, missing_payments, front_end_pct, back_end_pct, back_end_with_variable_pct, total_balance)
+- Output: array of row objects (rent_monthly, rent_names, rent_in_standard, back_end_with_rent_pct, obligations_monthly, obligations_annual, obligations_bills, obligations_debts, missing_names, est_card_balance, est_card_payment, debt_payments_est, back_end_est_pct, base_monthly, total_monthly, debt_payments, housing_payments, missing_payments, front_end_pct, back_end_pct, back_end_with_variable_pct, total_balance, basis_balances, basis_payments)
 - Shown on: debt, home, progress, tasks
 
 ### payoff_calc
@@ -330,17 +331,19 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 ### payoff_engine
 - Title: Debt payoff plan
 - Rule: Every non-mortgage debt with a balance. Surplus = monthly take-home (latest stub x paychecks per year / 12) minus every bill minus every debt payment you make (support withheld from pay is left out). Monthly compounding, minimums first, then the extra plus freed minimums in the chosen order. Smart order: past due first, then a late payment in the last 90 days, then the highest effective rate (a card paid in full each month costs no interest; a promo is ranked by the rate after it), ties by smaller balance. Missing rates, minimums or dates are listed as Needs. A saved strategy and extra amount (payoff_settings) are used when set; otherwise smart order and the cushion-safe extra.
+- Notes: Cushion (stage 6o, ARCHITECTURE.md 7.6 and 8.3): the one-time cash shortfall (cushion_hold) is held out of the extra only until it is covered, in month 1 (it carries into month 2 only when it is larger than the extra). The extra in every later month is the full steady extra (the saved amount, or the whole surplus when none is saved). extra_first is the extra of month 1 after the hold. The plan no longer pays the shortfall out of every month, which moves the debt free month earlier than a plan that cuts every month. The debt free date depends on the surplus input, a budget figure: if the surplus is not real cash left each month the date is later, so save the extra you really expect to pay. basis reports the weakest value_basis and the oldest as_of of cash, debts, payments and bills. Cash is the spendable value of the Cash assets (spendable_value when set, else value_point).
 - Inputs: liabilities, bills, paystubs, income_pay, assets_other, payoff_settings
 - Feeds: checks_calc, next_move, runway_calc, seasons_calc, moves_calc, needs_calc, checks_more_calc, paycheck_plan
-- Output: array of row objects (cash, mustpay, cash_months, cushion_shortfall, safe_extra, start, today, take_home, bills, mins, mins_rows, withheld, surplus, extra, extra_source, strategy, debts, plans, c17, needs, settings)
+- Output: array of row objects (cash, mustpay, cash_months, basis, cushion_shortfall, cushion_hold, safe_extra, extra_first, start, today, take_home, bills, mins, mins_rows, withheld, surplus, extra, extra_source, strategy, debts, plans, c17, needs, settings)
 - Shown on: bills, cash, debt, home, progress, tasks
 
 ### drift_all
 - Title: Dollar drift, every account
 - Rule: Every account with two or more reported balances: bank accounts use expected = opening + known inflows - known outflows; cards use expected = opening + loaded charges - known payments, so a card balance above expected is unexplained spending. Weekly check points line up all accounts on the same date. ATM withdrawals count as a known outflow and are listed as cash spending not tracked. A trend shows only with 3 or more check points.
+- Notes: Two sided transfers (stage 6o): a transfer is two cash_events rows, one on each account with opposite amounts on the same date, linked by transfer_pair. It changes the expected balance of both accounts (transfers_in, transfers_out) and is never a known outflow. A payment on Checking that is still waiting (clearing waiting) is listed in waiting_out and counts as a known outflow once confirmed. left_over is the latest posted reading less the waiting payments per bank account; a pass-through Checking should end at 0 once everything clears (check C30).
 - Inputs: balance_log, cash_events, card_transactions
-- Feeds: coverage_calc, checks_calc, checkins_calc, recap_calc, quests_calc
-- Output: array of row objects (expected_events, expected_now, open_items, pending, accounts, grid, next_check, atm, unexplained_total, known_outflow, check_points, explained_pct)
+- Feeds: coverage_calc, checks_calc, checkins_calc, recap_calc, quests_calc, checks_more_calc
+- Output: array of row objects (expected_events, expected_now, open_items, pending, accounts, left_over, grid, next_check, atm, unexplained_total, known_outflow, check_points, explained_pct)
 - Shown on: cash, home, progress, tasks
 
 ### plan_year_calc
@@ -386,6 +389,7 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 ### runway_calc
 - Title: Cash runway
 - Rule: Months = liquid cash / essentials a month (essential bills plus every debt payment, the same figures as the score). Steps at 0.5, 1, 2, 3 and 6 months; the gap to a step is step x essentials minus cash. This month comes from the payoff plan (take-home, bills, debt payments, left over). Coming up lists debt due dates in the next 45 days from the liabilities; a debt with no due date is listed as Needs.
+- Notes: Cash is spendable cash: for each Cash asset, spendable_value when it is set and value_point otherwise. A pass-through Checking with payments in transit has spendable_value 0, so in-transit money is never counted twice (invariant I35). Net worth keeps the posted value.
 - Inputs: scores_calc, payoff_engine, liabilities, age_benchmarks, bills
 - Feeds: seasons_calc, needs_calc
 - Output: array of row objects (months, liquid, mustpay, ess_bills, debt_payments, guideline, steps, next, plan_keep, plan_extra, this_month, coming, coming_needs, window_end, as_of)
@@ -521,8 +525,8 @@ How tests cover calcs: tests/unit.js has one or more fixture tests per calc with
 
 ### checks_more_calc
 - Title: More correlation checks
-- Rule: C25 bills and debts not double counted (no counted bill shares a name with a debt or is paid through one); C26 totals identity (total monthly obligations = every bill + every debt payment entered; payoff surplus = take-home - bills - minimums); C27 every bill statement belongs to a bill (bill_id, else the same name); C28 existence rule (no category answered no has rows; every category answered yes without rows has a data request); C29 every card statement belongs to a card on file and its latest minimum matches the minimum entered. Kept apart from the core checks so a new dataset that has not loaded cannot stop them.
-- Inputs: bills, liabilities, bill_statements, dti_calc, payoff_engine, profile_calc, needs_calc, card_statements
+- Rule: C25 bills and debts not double counted (no counted bill shares a name with a debt or is paid through one); C26 totals identity (total monthly obligations = every bill + every debt payment entered; payoff surplus = take-home - bills - minimums); C27 every bill statement belongs to a bill (bill_id, else the same name); C28 existence rule (no category answered no has rows; every category answered yes without rows has a data request); C29 every card statement belongs to a card on file and its latest minimum matches the minimum entered; C30 cash left over after payments clear (the latest posted balance of an account plus its payments waiting to clear, should be 0 within 25 dollars). Kept apart from the core checks so a new dataset that has not loaded cannot stop them.
+- Inputs: bills, liabilities, bill_statements, dti_calc, payoff_engine, profile_calc, needs_calc, card_statements, drift_all
 - Feeds: drawn by the page only
 - Output: array of row objects (id, name, status, detail, blocks)
 - Shown on: (not drawn directly; read by other calcs)

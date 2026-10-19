@@ -2,6 +2,8 @@
 
 ## Every pay day
 
+The standing workflow: every paycheck lands in Savings, and money moves from Savings to Checking before each payment (DATA_MODEL.md, Account flow). Record each move as a transfer pair and each payment as a payment row on Checking; Checking ends at 0 once everything clears (check C30).
+
 Ask for the pay stub. Add a row to paystubs (all lines, including year to date), check C4 (arithmetic), C7 (deposit matches), update income_pay and contributions if the percent changed. If the stub shows a new year to date, the plan year tile moves.
 
 ## Every week (optional but it sharpens drift)
@@ -15,7 +17,7 @@ Ask for the balance of every account on the same day, plus card balances. Add ro
 3. Run the correlation checks (CORRELATIONS.md). Each failure becomes a task.
 4. Tasks: close the ones whose data arrived (Done only after the checks pass), snooze or re-date the rest.
 5. History: add a scores_history row, a networth_history row, and a metric_snapshots row once that dataset exists.
-6. Backup: save the JSON and the kit on Data and backup, verify, copy to Google Drive (BACKUP_GOOGLE_DRIVE.md). The page says "Saved" with the date.
+6. Backup: save the JSON and the kit on Data and backup, verify, copy to Google Drive (BACKUP_GOOGLE_DRIVE.md), together with the folder data_offpage/ (notes_log and the other datasets the page does not load). The page says "Saved" with the date.
 7. Tell the user the next three moves.
 
 ## Every October or November
@@ -25,6 +27,14 @@ Contribution limits for the next year are announced. Add the row to contribution
 ## Every year
 
 Review assumptions (growth rates, inflation, high rate cutoff), the profile answers, insurance, the milestones.
+
+## After a data update
+
+Run `node tools/calcdiff.js` (every calc output that changed, before and after) and `node tools/numbers.js` (the headline numbers read by the real calc engine), tell the user which numbers moved and why, then run `node tools/answers.js` so the answers index matches the data. `node tools/answers.js --check` prints STALE when the data changed after the index was written. Both tools take `--today YYYY-MM-DD`; by default they use the real date.
+
+## Answering a question about a number
+
+Run `node tools/answers.js --check`. Only when it prints FRESH, read the number from out/answers/answers.json and say its basis (reported, stated, derived, expected or estimated) and its as_of date with it. If it prints STALE, run `node tools/answers.js` first. The index is a cache: a correction goes to the stored row, never to the index.
 
 ## Fix a wrong number
 
@@ -43,4 +53,4 @@ Do not edit blindly. Find the tile in TILES.md, read its source and as-of date, 
 
 ## Before each code change
 
-Work on a branch or a copy of src/ before large edits (the repo is under version control, but never commit a backup or a statement); run `node tools/depmap.js` to see which tests a change affects; keep the approved inventories (tests/lib/*_approved.json) in step with intended changes.
+Run `node tools/depmap.js` and `node tools/affected.js` to see which tests a change affects; a full run (`bash runall.sh --full`) is mandatory before any publish. Work on a branch or a copy of src/ before large edits (the repo is under version control, but never commit a backup or a statement); run `node tools/depmap.js` to see which tests a change affects; keep the approved inventories (tests/lib/*_approved.json) in step with intended changes.

@@ -6,7 +6,7 @@ The page can only download a file; it cannot send one to a cloud drive. Claude, 
 
 | Item | Rule |
 |---|---|
-| What | the Backup JSON and the Rebuild kit zip from Data and backup, plus a text copy of the manifest hashes |
+| What | the Backup JSON and the Rebuild kit zip from Data and backup, the folder data_offpage/ (datasets the page does not load, BACKUP_FORMAT.md section 8a), plus a text copy of the manifest hashes |
 | When | on the 1st of each month (a reminder; SCHEDULED_TASKS.md), and before any upgrade or restore test |
 | Names | `dashboard-backup-YYYY-MM-DD.json`, `dashboard-kit-YYYY-MM-DD.zip` (written by the page), `CHECKSUMS.sha256` (made by Claude), inside the folder `Money Ops Backup YYYY-MM-DD` |
 | Where | `Money Ops Backups` in the user's own Drive, private, never shared by link |
@@ -19,7 +19,7 @@ The page can only download a file; it cannot send one to a cloud drive. Claude, 
 A Google Drive backup is done when all of these are true:
 
 1. A new folder named `Money Ops Backup YYYY-MM-DD` exists inside the user's backup folder (`Money Ops Backups`), created for this backup.
-2. It contains the backup JSON and the rebuild kit zip of that day, and a copy of the checksums (the manifest's sha256 lines in a text file `CHECKSUMS.sha256`).
+2. It contains the backup JSON and the rebuild kit zip of that day, a copy of the data_offpage files, and a copy of the checksums (the manifest's sha256 lines in a text file `CHECKSUMS.sha256`).
 3. `node tools/verify_backup.js` passed on both files before upload.
 4. After upload, the file names and sizes in the folder match the local files.
 5. The page's "last saved" date was confirmed by the user clicking Save backup on the page (the page cannot know about Drive), or the user told Claude to record it.

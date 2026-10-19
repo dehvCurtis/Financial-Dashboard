@@ -2,9 +2,42 @@
 
 Structure only: datasets, fields, screens, calculations, rules and routines. No entry carries anyone's balances, rates, names or figures. Examples use placeholders.
 
-Two version series: feature versions (v1.1 and up) and page stages (stage numbers up to 6i) describe the dashboard; the bundle version (VERSION) numbers this package. A feature version never means a document version.
+Two version series: feature versions (v1.1 and up) and page stages (stage numbers up to 6o) describe the dashboard; the bundle version (VERSION) numbers this package. A feature version never means a document version.
 
 How to use this file: a fresh chat reads the entries after the version its dashboard already has and builds them in order (PROMPTS.md, prompt 16).
+
+## Bundle 1.1.0 (page stage 6o)
+
+Brings the starter up to page stages 6j to 6o. Structure only; the examples are invented. The bundle version is 1.1.0 (VERSION).
+
+### Stage 6j and 6k: data-only stages
+
+No calc changed. The keyboard link check in the browser suite waits for focus instead of a fixed pause. Intake rules were settled for small purchases read from a bank screen (use the screen at once, ask for the downloaded statement) and for the money flow below.
+
+### Stage 6l: spendable cash and the pass-through account
+
+- New optional column `assets_other.spendable_value` on Cash rows. The runway (scores_calc, runway_calc) and the payoff plan cushion read the spendable value when it is set and the posted `value_point` otherwise; net worth and the balance cards keep the posted value. The what-ifs that edit cash keep both in step.
+- Invariant I35: spendable cash is counted once and never exceeds the posted cash. Three unit tests, one of them that moving money between the user's own accounts leaves net worth unchanged.
+- Standing workflow written into AGENT_PROMPT.md, INTAKE_GUIDE.md, QUESTIONS.md and DATA_MODEL.md (Account flow): every paycheck lands in Savings, money moves from Savings to Checking before each payment, Checking is a pass-through that ends at 0 once everything clears. A debt keeps its last reported balance until its payment posts.
+
+### Stage 6m: the Cash card
+
+The Cash card (title Cash, savings and checking) shows spendable cash as its one key number, a chip for the amount in transit to payments (posted minus spendable, only when above zero), and a closed About this fold with spendable, posted and one line per account. The Home Cash tile shows the same spendable number; the Net worth Cash tile keeps the posted number and says how much of it is in transit; a per-account card whose account is in transit carries an In transit chip.
+
+### Stage 6n: data-only stage
+
+No code changed. Values read from app screens that cannot be confirmed yet are labeled derived or stated, never reported, and each has a statement request.
+
+### Stage 6o: payoff cushion, basis on every number, two sided transfers, answers index
+
+- Payoff plan cushion (ARCHITECTURE.md 7.6, 8.3): the one-time cash shortfall is held out of month 1 only (carried into later months only when larger than the extra), instead of being cut from every month. The plan text, slider text, About text, paycheck plan and "what moves you up" all use the first-month extra (`extra_first`). New unit tests and invariant I36. The debt free date depends on the surplus input, so the page and the docs say to save the extra the user really expects to pay.
+- Answers index: `tools/answers.js` writes out/answers/answers.json (headline numbers, every asset and debt row, drift parts, the Needs list, changes since the previous index, a hash of the data). `--check` prints STALE and exits 1 when the data changed. runall.sh rebuilds it after the build. Rule: answer from it only after `--check` prints FRESH, and always state the basis and the as_of date.
+- `tools/today.js`: the tools default to the real date and accept `--today YYYY-MM-DD`; the tests pass a fixed date so fixtures never depend on the clock.
+- `value_basis` (reported, stated, derived, expected, estimated) and `source_kind` (statement, app_screen, document, owner_stated, calculation, assumption) on assets_other, liabilities, bills, cash_events and balance_log; `payment_basis` on liabilities; bills gain `as_of_date` and `source`. The free text note in assets_other moved to `value_basis_note`; the `expected_is_reported` flag was removed; `mortgage_statements.expected_after_oct_payment` became `expected_after_next_payment`. nw_rows, dti_calc, bills_calc and payoff_engine report the weakest basis and oldest as_of; the Estimate chip reads value_basis. tests/data_rules.js checks the lists.
+- Two sided transfers: cash_events.kind is a fixed list (pay_deposit, transfer, payment, purchase, hold, cash) with `kind_label` for the words; a transfer is two rows linked by `transfer_pair`; new columns `from_account`, `to_account`, `clearing`, `funding_source`. Drift reads both sides; new check C30 (Checking left over once waiting payments clear); invariant I37.
+- Merged repeated requests: `data_queue.waits_for`, `data_queue.merged_from`, `tasks.merged_from` and `needs_key`; every open task gets a priority by one rule.
+- Housekeeping: long notes move whole to `data_offpage/notes_log` (a loaded row keeps its latest short note); `bank_flows` and `bank_statements` are no longer loaded by the page (37 datasets load instead of 39) and live in `data_offpage/` with starter files in templates/offpage/; the in-page backup kit lists only loaded datasets, so data_offpage is copied with the rest of the database (BACKUP_FORMAT.md section 8a). tools/deadsize.js now also fails on an unused CSS rule. Staged data folders are scanned only when named (DATA_EXTRA). The browser suite runs in four parallel Chromium processes and tools/results.js merges them.
+- Documents: DATA_MODEL.md (Value basis, Account flow, Datasets kept off the page, field units), CALCS.md (calc notes), TILES.md, ARCHITECTURE.md 7.4, 7.6, 7.9, 7.17, 7.19, 17.1, 19, AGENT_PROMPT.md, INTAKE_GUIDE.md, QUESTIONS.md, RUNBOOK.md, PUBLISH.md, BACKUP_FORMAT.md, OPEN_ITEMS.md, INDEX.md.
 
 ## Bundle 1.0.0 (page stage 6i)
 

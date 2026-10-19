@@ -87,3 +87,23 @@ Status values the calc `profile_calc` returns per question: `have` (rows exist),
 | Two balances disagree | "Statement A says X and the dashboard says Y. Which date is right?" |
 | User says no to a category | "Understood. I will leave it out and not ask again." |
 | Unknown | "No problem. I will keep a task for it and ask again on the next check-in." |
+
+## Debit card payments (standing workflow)
+
+| Situation | Say |
+|---|---|
+| A debit card payment is reported | "Was that moved from Savings to Checking first? I will record the transfer and the Checking spend and keep Checking as a pass-through." |
+| Funding balance after the transfer unknown | "What is the Savings balance now? I will not guess it." |
+| A payment has not cleared | "Has it cleared yet? Until it does I keep the debt as it is and count the money as in transit." |
+| Transfer total does not match the payments | "The transfer of X does not add up to the payments I have (Y). Which payments did it cover? I keep it as unreconciled until the statement." |
+| Posted and available balance differ | "What does the app show as the available balance, after the pending holds?" |
+| The user says they moved money and paid from Checking | "Got it. I record the transfer and the Checking spend. Tell me each time you move money, and I will not assume a transfer you did not mention." |
+
+## Basis of a number
+
+| Situation | Say |
+|---|---|
+| A figure has no statement yet | "I will use your amount now and mark it stated until a statement proves otherwise. Can you send the downloaded statement?" |
+| A figure came from a screenshot | "I used the screenshot now. Please send the downloaded statement (PDF or CSV) so I can confirm it." |
+| A number is a budget or a guess | "That is an estimate. I will label it estimated and keep a Needs item until you have a real source." |
+| A plan depends on a monthly left over amount | "The payoff date depends on the extra you really expect to pay each month. What amount should I save as your extra?" |
