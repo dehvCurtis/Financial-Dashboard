@@ -1,0 +1,35 @@
+[
+ {
+  "log_id": "N1",
+  "kind": "long_note",
+  "dataset": "liabilities",
+  "row_id": "L2",
+  "field": "notes",
+  "text": "Example long note: the full text that used to sit in the notes cell, moved here whole so the loaded row keeps only its latest short note.",
+  "merged_into": null,
+  "moved_on": "2026-10-17",
+  "stage": "6o"
+ },
+ {
+  "log_id": "N2",
+  "kind": "merged_row",
+  "dataset": "data_queue",
+  "row_id": "Q9",
+  "field": null,
+  "text": "Example repeated request, kept whole: please send the downloaded statement.",
+  "merged_into": "Q3",
+  "moved_on": "2026-10-17",
+  "stage": "6o"
+ },
+ {
+  "log_id": "N3",
+  "kind": "alias",
+  "dataset": "data_queue",
+  "row_id": "Q9",
+  "field": null,
+  "text": "Q9 is now Q3",
+  "merged_into": "Q3",
+  "moved_on": "2026-10-17",
+  "stage": "6o"
+ }
+]

@@ -9,6 +9,15 @@
   "recurring": null,
   "note": null,
   "status": null,
-  "in_balances": null
+  "in_balances": null,
+  "kind_label": null,
+  "value_basis": null,
+  "source_kind": null,
+  "source": null,
+  "to_account": null,
+  "from_account": null,
+  "transfer_pair": null,
+  "clearing": null,
+  "funding_source": null
  }
 ]

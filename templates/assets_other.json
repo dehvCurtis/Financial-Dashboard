@@ -10,6 +10,10 @@
   "asset_id": null,
   "name": null,
   "type": null,
-  "value_point": null
+  "value_point": null,
+  "value_basis": null,
+  "source_kind": null,
+  "value_basis_note": null,
+  "spendable_value": null
  }
 ]

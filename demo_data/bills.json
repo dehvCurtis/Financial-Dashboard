@@ -6,7 +6,11 @@
   "monthly_amount": 135,
   "essential": "Yes",
   "notes": "example",
-  "due_day": 31
+  "due_day": 31,
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  },
  {
   "bill_id": "B2",
@@ -14,7 +18,11 @@
   "category": "Utilities",
   "monthly_amount": 202.5,
   "essential": "Yes",
-  "notes": "example"
+  "notes": "example",
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  },
  {
   "bill_id": "B3",
@@ -22,7 +30,11 @@
   "category": "Utilities",
   "monthly_amount": 67.5,
   "essential": "Yes",
-  "notes": "example"
+  "notes": "example",
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  },
  {
   "bill_id": "B4",
@@ -32,7 +44,11 @@
   "essential": "Yes",
   "notes": "example",
   "due_day": 1,
-  "last_paid": "2026-10"
+  "last_paid": "2026-10",
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  },
  {
   "bill_id": "B5",
@@ -40,7 +56,11 @@
   "category": "Entertainment",
   "monthly_amount": 27,
   "essential": "No",
-  "notes": "example"
+  "notes": "example",
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  },
  {
   "bill_id": "B6",
@@ -48,6 +68,10 @@
   "category": "Food",
   "monthly_amount": 540,
   "essential": "Yes",
-  "notes": "example"
+  "notes": "example",
+  "value_basis": "stated",
+  "source_kind": "owner_stated",
+  "as_of_date": "2026-10-13",
+  "source": "example note"
  }
 ]

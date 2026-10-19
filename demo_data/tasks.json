@@ -17,7 +17,8 @@
   "created": "2026-10-01",
   "queue_id": null,
   "id": "K1",
-  "task": "Enter the pay stubs"
+  "task": "Enter the pay stubs",
+  "merged_from": null
  },
  {
   "area": "Debt",
@@ -35,7 +36,8 @@
   "created": "2026-10-01",
   "queue_id": "Q2",
   "id": "K2",
-  "task": "Add the Example Card Alpha minimum payment"
+  "task": "Add the Example Card Alpha minimum payment",
+  "merged_from": null
  },
  {
   "area": "Debt",
@@ -53,7 +55,8 @@
   "created": "2026-10-01",
   "queue_id": "Q3",
   "id": "K3",
-  "task": "Send the downloaded statement for Example Card Beta"
+  "task": "Send the downloaded statement for Example Card Beta",
+  "merged_from": null
  },
  {
   "area": "Bills",
@@ -71,6 +74,7 @@
   "created": "2026-10-01",
   "queue_id": null,
   "id": "K4",
-  "task": "Review the bills"
+  "task": "Review the bills",
+  "merged_from": null
  }
 ]

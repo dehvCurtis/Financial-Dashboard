@@ -5,6 +5,7 @@ Every file is a valid dataset for the Money Operations Center: upload it as an a
 - User, history and queue datasets hold one row with every field null. The runtime cannot load an empty array, so this row stands in for "nothing yet"; the calcs strip it. Replace it with your first real row, or add rows and remove it. Never leave a dataset with zero rows.
 - Reference and config datasets (age_benchmarks, dti_benchmarks, ltv_benchmarks, contribution_limits, age_metrics_config, scores_config, assumptions) ship with content: published statistics with their source and year, and settings with defaults. Confirm the limits and statistics against the source each year (SOURCES_AND_BENCHMARKS.md); the contribution limits and assumptions here are examples.
 - planned/metric_snapshots.json is a PLANNED dataset. No page reads it yet (CORRELATIONS.md). Do not upload it until it is built.
+- offpage/ holds datasets the page does not load (notes_log, bank_flows, bank_statements): keep them in your database and file backup, do not upload them as page datasets (DATA_MODEL.md, BACKUP_FORMAT.md). One row, every field null, like the others.
 
 Field meanings, units and which calcs read each dataset: DATA_MODEL.md. What to ask for each: INTAKE_GUIDE.md and QUESTIONS.md.
 
@@ -18,8 +19,6 @@ Field meanings, units and which calcs read each dataset: DATA_MODEL.md. What to 
 | assets_other | user | one row, every field null | 1 |
 | assumptions | config | shipped content | 6 |
 | balance_log | history | one row, every field null | 1 |
-| bank_flows | user | one row, every field null | 1 |
-| bank_statements | user | one row, every field null | 1 |
 | bill_statements | user | one row, every field null | 1 |
 | bills | user | one row, every field null | 1 |
 | card_statements | user | one row, every field null | 1 |
@@ -50,3 +49,6 @@ Field meanings, units and which calcs read each dataset: DATA_MODEL.md. What to 
 | scores_history | history | one row, every field null | 1 |
 | tasks | queue | one row, every field null | 1 |
 | planned/metric_snapshots | history | PLANNED, one row, every field null | 1 |
+| offpage/bank_flows | history | not loaded by the page, one row, every field null | 1 |
+| offpage/bank_statements | history | not loaded by the page, one row, every field null | 1 |
+| offpage/notes_log | history | not loaded by the page, one row, every field null | 1 |

@@ -22,7 +22,11 @@
   "balance": 270000,
   "next_due": "2026-11-01",
   "amount_due": 2025,
-  "secured_by": "House"
+  "secured_by": "House",
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": 9,
@@ -45,7 +49,11 @@
   "name": "Example Credit Line",
   "type": "HELOC",
   "balance": 13500,
-  "secured_by": "House"
+  "secured_by": "House",
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": null,
@@ -67,7 +75,11 @@
   "liability_id": "L3",
   "name": "Support withholding",
   "type": "Support",
-  "balance": null
+  "balance": null,
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": null,
@@ -89,7 +101,11 @@
   "liability_id": "L4",
   "name": "Tax balance",
   "type": "Tax",
-  "balance": 1620
+  "balance": 1620,
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": 6,
@@ -112,7 +128,11 @@
   "name": "Example Auto Loan",
   "type": "Auto",
   "balance": 8100,
-  "secured_by": "Car"
+  "secured_by": "Car",
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": 24,
@@ -134,7 +154,11 @@
   "liability_id": "L6",
   "name": "Example Card Alpha",
   "type": "Credit card",
-  "balance": 2700
+  "balance": 2700,
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": null,
+  "source": "example statement"
  },
  {
   "rate_pct": 20,
@@ -156,7 +180,11 @@
   "liability_id": "L7",
   "name": "Example Card Beta",
   "type": "Credit card",
-  "balance": 675
+  "balance": 675,
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": "reported",
+  "source": "example statement"
  },
  {
   "rate_pct": null,
@@ -178,6 +206,10 @@
   "liability_id": "L8",
   "name": "Example Provider Group",
   "type": "Medical",
-  "balance": 405
+  "balance": 405,
+  "value_basis": "reported",
+  "source_kind": "statement",
+  "payment_basis": null,
+  "source": "example statement"
  }
 ]

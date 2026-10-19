@@ -21,6 +21,7 @@
   "ytd_total": null,
   "activity": null,
   "source": null,
-  "kind": null
+  "kind": null,
+  "expected_after_next_payment": null
  }
 ]

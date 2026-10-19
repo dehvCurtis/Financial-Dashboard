@@ -7,7 +7,9 @@
   "status": "Provided",
   "queue_id": "Q1",
   "task_id": null,
-  "source_kind": null
+  "source_kind": null,
+  "merged_from": null,
+  "waits_for": null
  },
  {
   "priority": 2,
@@ -17,7 +19,9 @@
   "status": "Needed",
   "queue_id": "Q2",
   "task_id": "K2",
-  "source_kind": null
+  "source_kind": null,
+  "merged_from": null,
+  "waits_for": null
  },
  {
   "priority": 3,
@@ -27,6 +31,8 @@
   "status": "Statement requested",
   "queue_id": "Q3",
   "task_id": "K3",
-  "source_kind": "screenshot, statement requested"
+  "source_kind": "screenshot, statement requested",
+  "merged_from": null,
+  "waits_for": null
  }
 ]

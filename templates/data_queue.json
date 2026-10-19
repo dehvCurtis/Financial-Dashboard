@@ -7,6 +7,8 @@
   "status": null,
   "queue_id": null,
   "task_id": null,
-  "source_kind": null
+  "source_kind": null,
+  "merged_from": null,
+  "waits_for": null
  }
 ]

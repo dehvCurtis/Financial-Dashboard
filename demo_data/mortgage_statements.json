@@ -31,6 +31,7 @@
    }
   ],
   "source": "example",
-  "kind": "statement"
+  "kind": "statement",
+  "expected_after_next_payment": null
  }
 ]
