@@ -22,6 +22,10 @@
   "balance": null,
   "next_due": null,
   "amount_due": null,
-  "secured_by": null
+  "secured_by": null,
+  "value_basis": null,
+  "source_kind": null,
+  "payment_basis": null,
+  "source": null
  }
 ]

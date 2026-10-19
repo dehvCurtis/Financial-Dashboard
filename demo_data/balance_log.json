@@ -5,7 +5,9 @@
   "account": "Savings",
   "kind": "Cash",
   "reported_balance": 5400,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  },
  {
   "log_id": "S2",
@@ -13,7 +15,9 @@
   "account": "Checking",
   "kind": "Cash",
   "reported_balance": 1350,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  },
  {
   "log_id": "S3",
@@ -21,7 +25,9 @@
   "account": "Example Card Beta",
   "kind": "Card",
   "reported_balance": 405,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  },
  {
   "log_id": "S4",
@@ -29,7 +35,9 @@
   "account": "Savings",
   "kind": "Cash",
   "reported_balance": 6750,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  },
  {
   "log_id": "S5",
@@ -37,7 +45,9 @@
   "account": "Checking",
   "kind": "Cash",
   "reported_balance": 1350,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  },
  {
   "log_id": "S6",
@@ -45,6 +55,8 @@
   "account": "Example Card Beta",
   "kind": "Card",
   "reported_balance": 675,
-  "source": "example"
+  "source": "example bank app",
+  "value_basis": "reported",
+  "source_kind": "app_screen"
  }
 ]

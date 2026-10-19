@@ -4,7 +4,7 @@ Use Claude scheduled tasks when the account has them; otherwise use data_queue i
 
 | Routine | When | Message text | Fallback |
 |---|---|---|---|
-| Monthly backup | the 1st, evening | "Monthly backup due. Open Data and backup, save the JSON and the kit, and tell Claude to put them in Google Drive." | data_queue item dated the 1st |
+| Monthly backup | the 1st, evening | "Monthly backup due. Open Data and backup, save the JSON and the kit, and tell Claude to put them in Google Drive together with the data_offpage files." | data_queue item dated the 1st |
 | Monthly check-in | the 1st or the first weekend | "Monthly check-in: send this month's statements and balances." | task "Monthly check-in" |
 | Pay day | each pay date (income_pay.first_pay_date and pay_schedule) | "Pay day: send the latest pay stub." | task |
 | Weekly balances | one chosen weekday | "Send the balance of every account on the same day." | task |

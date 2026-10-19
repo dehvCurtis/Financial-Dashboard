@@ -1,5 +1,5 @@
-bundle_version: 1.0.0
-page_stage: 6i
+bundle_version: 1.1.0
+page_stage: 6o
 backup_schema: mo-backup-2
 runtime_contract_observed: 0.2.67
 documents: 32

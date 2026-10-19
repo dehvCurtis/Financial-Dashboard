@@ -27,16 +27,18 @@ Read AGENT_PROMPT.md (the short context prompt, with the first message for a new
 | How to publish | PUBLISH.md |
 | Monthly and weekly routine | RUNBOOK.md, SCHEDULED_TASKS.md |
 | Backup and restore | BACKUP_FORMAT.md, BACKUP_GOOGLE_DRIVE.md |
+| Answering from the answers index | AGENT_PROMPT.md, INTAKE_GUIDE.md |
 
 ## Working loop for a change
 
 1. Read the dataset or calc entry in DATA_MODEL.md or CALCS.md. Check the code in `src/page/js` for the same name.
 2. Change the data (templates or the user's datasets) or the code. Keep datasets flat: nested cells only on the allow-list in ARCH 5.4.
 3. Build: `node tools/build_page.js && node tools/build_split.js`.
-4. Test: `bash runall.sh --full` (about eight minutes with the browser suites). Faster while working: `node tests/unit.js`, `node tests/inv_run.js`, `node tests/data_rules.js`, `node tests/static_scan.js`, `node tests/backup_verify.js`.
-5. Dead code and size: `node tools/deadsize.js` (unused functions, constants, calcs and CSS, and the bytes of every published file; it exits 1 on any unused function, const or calc). Remove what it finds, except what the user approved.
+4. Test: `bash runall.sh --full` (the browser suite runs in four parallel Chromium processes; a few minutes in all). Faster while working: `node tests/unit.js`, `node tests/inv_run.js`, `node tests/data_rules.js`, `node tests/static_scan.js`, `node tests/backup_verify.js`.
+5. Dead code and size: `node tools/deadsize.js` (unused functions, constants, calcs and CSS, and the bytes of every published file; it exits 1 on any unused function, const, calc or CSS rule). Remove what it finds, except what the user approved.
 6. Docs: `node tools/tiles_inventory.js && node tools/tiles_inventory.js --blank && node tools/docs_facts.js && node tools/gen_docs.js`, then `node tools/check_docs.js`. A render that does not match TILES.md fails the check.
-7. Only after all green and only if the user asked: publish (PUBLISH.md).
+7. Answering a question about a number: `node tools/answers.js --check` must print FRESH first (otherwise run `node tools/answers.js`); state the basis and the as_of date with the number (AGENT_PROMPT.md).
+8. Only after all green and only if the user asked: publish (PUBLISH.md).
 
 ## Runtime facts you will trip over
 

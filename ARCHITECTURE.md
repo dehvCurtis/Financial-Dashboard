@@ -1,6 +1,6 @@
 # Money Operations Center: architecture and build guide
 
-Document version: v4.0, refreshed to page stage 6i (see CHANGELOG.md and VERSION). Section numbers are stable: other documents in this bundle cite them, so they are never renumbered.
+Document version: v4.0, refreshed to page stage 6o (see CHANGELOG.md and VERSION). Section numbers are stable: other documents in this bundle cite them, so they are never renumbered.
 
 Two version series exist and must not be confused. Document versions number this file. Feature versions in CHANGELOG.md number the features. A feature version never means a document version.
 
@@ -20,11 +20,11 @@ Status key used on every page and card below:
 Placeholders used in this file: Item A, Card A, Account X, Plan Y, rate X percent, salary S, $0,000. They are never real. Money in examples is formatted $0,000.00.
 
 
-## 0.1 Build status at page stage 6i
+## 0.1 Build status at page stage 6o
 
-The reference build at stage 6i has 39 datasets, 58 calcs, 27 correlation checks, 28 profile questions and 64 mapped tiles on 10 pages (82 cards, 25 charts, 13 tables). The lists are generated from the code: DATA_MODEL.md, CALCS.md, TILES.md, CORRELATIONS.md, QUESTIONS.md.
+The reference build at stage 6o has 37 datasets, 58 calcs, 28 correlation checks, 28 profile questions and 64 mapped tiles on 10 pages (82 cards, 25 charts, 13 tables). The lists are generated from the code: DATA_MODEL.md, CALCS.md, TILES.md, CORRELATIONS.md, QUESTIONS.md.
 
-| Area | Status at 6i |
+| Area | Status at 6o |
 |---|---|
 | Data skeleton, missing-data protocol, Needs lines, tasks, data_queue, profile questions (sections 3 to 5, 15) | BUILT |
 | Debt page, payoff engine, bills, pay, cash, runway, drift (sections 7, 8, 10) | BUILT |
@@ -450,7 +450,7 @@ Status for every calc below: BUILT in the reference build unless marked PLANNED.
 
 `payoff_calc` is the single-debt baseline: monthly interest = b x rate_pct / 1200; b = b + interest minus payment; stop at 0 or 720 months; if payment <= interest flag "payment does not cover interest". It feeds the payoff timeline.
 
-`payoff_engine` (full rules in 8.3): surplus = take-home minus bills minus debt payments; extra E = max(0, surplus minus the cushion hold, 7.6); smart order; monthly compounding; Next payment recommendation; plan comparison (Smart, Highest rate, Smallest balance, Minimums only); per-debt trail. When Save for has a chosen plan, E is reduced by the plan's monthly amount (7.18).
+`payoff_engine` (full rules in 8.3): surplus = take-home minus bills minus debt payments; extra E = max(0, surplus) in every month, with the one-time cushion hold (7.6) taken out of month 1 only (it carries into month 2 and later only when it is larger than the extra); smart order; monthly compounding; Next payment recommendation; plan comparison (Smart, Highest rate, Smallest balance, Minimums only); per-debt trail. When Save for has a chosen plan, E is reduced by the plan's monthly amount (7.18).
 
 `debt_steps_calc`: for each debt with an original balance, steps at under 75, 50 and 25 percent and at 0; "Needs: original balance" otherwise.
 
@@ -472,9 +472,9 @@ Status for every calc below: BUILT in the reference build unless marked PLANNED.
 ### 7.6 Cash runway (runway_calc)
 
 - Inputs: payoff_engine, scores_calc, liabilities, balance_log, bills.
-- Months = liquid cash / must-pay per month. Liquid cash = balances of the accounts listed in scores_config.inputs as liquid, minus money set aside for Save for when `exclude_earmarked_from_cushion` is Y. Must-pay = essential bills + every debt payment + withheld amounts.
+- Months = liquid cash / must-pay per month. Liquid cash = the SPENDABLE value of the accounts listed in scores_config.inputs as liquid (`spendable_value` when set on an assets_other Cash row, otherwise `value_point`; a pass-through Checking with payments in transit counts 0, so in-transit money is never counted twice and never exceeds the posted cash, invariant I35), minus money set aside for Save for when `exclude_earmarked_from_cushion` is Y. Must-pay = essential bills + every debt payment + withheld amounts.
 - Steps at 0.5, 1, 2, 3 and 6 months; gap to a step = step x must-pay minus cash.
-- Cushion hold H = (must-pay x 1 month) minus cash, per month, never below 0 (the payoff engine keeps this back before sending extra to debt).
+- Cushion hold H = (must-pay x 1 month) minus cash, never below 0. It is a ONE-TIME shortfall: the payoff engine keeps it back from the extra in month 1 only (and in the next months only for the part the first month's extra could not cover), then sends the full extra to debt every later month. The plan page text, the slider text and the paycheck plan all use the first-month extra.
 - This month: take-home, bills, debt payments, left over (the same figures as obligations_calc).
 - Coming up: debts and bills due in the next 45 days from due dates; a debt with no due date lists as "Needs: due date".
 - Needs: cash balances and essential bills.
@@ -497,6 +497,7 @@ Status for every calc below: BUILT in the reference build unless marked PLANNED.
 ### 7.9 Dollar drift and accounts (drift_calc, drift_all, account_calc)
 
 - For two reported balances on the same account at dates d0 < d1: expected = bal(d0) + inflows in (d0, d1] minus outflows in (d0, d1]; drift = bal(d1) minus expected. Cards: expected = last balance + known charges minus known payments; a reported value above expected is "unexplained spending", shown as one positive number per account and in total, never an invented cause.
+- Transfers between the user's own accounts are two rows (kind transfer, opposite amounts, same date, linked by transfer_pair): they change the expected balance of both accounts and are never a known outflow. cash_events.kind is a fixed list (pay_deposit, transfer, payment, purchase, hold, cash; invariant I37). A payment on a pass-through Checking that has not posted (clearing waiting) is a waiting payment: it counts as a known outflow once confirmed, and check C30 shows what is left in Checking once every waiting payment clears (should be 0).
 - Events with account "Not confirmed" feed only a total-cash pair. ATM withdrawals and cash transfers carry an "ATM" label, count as a known outflow and are listed as "cash spending not tracked".
 - Each check point is saved in drift_history (first_drift kept). When data arrives, earlier points are recomputed and the page says "drift on date was X, after statements it is Y". A trend shows only with 3 or more check points.
 - Needs: a second reading per account: "Needs: the balance of Account X on a second date".
@@ -538,12 +539,19 @@ Section 16. Status per check is pass, needs (data missing) or fail.
 ### 7.17 Expected versus reported values
 
 - A reported value is what a bank, servicer or statement said on a date. An expected value is a projection: the last reported value plus every confirmed inflow minus every confirmed outflow after that date (for a loan, the balance the schedule gives after a confirmed payment).
-- Both are stored (reported_balance, reported_date, expected_balance, expected_date, expected_is_reported). Current totals use the expected value when it is newer than the reported one, labeled "expected from confirmed events on <date>, not a bank or servicer reading", with the reported value and date beside it. They are never merged into one number.
+- Both are stored (reported_balance, reported_date, expected_balance, expected_date) and the row's `value_basis` says which one the shown balance is (7.19). Current totals use the expected value when it is newer than the reported one, labeled "expected from confirmed events on <date>, not a bank or servicer reading", with the reported value and date beside it. They are never merged into one number.
 - Events not yet in any reported balance count as expected outflows after the last reading. An event with unknown effect is listed as an open question and not applied. One real movement is never applied twice. A pending event never changes a balance.
 
 ### 7.18 Save for (savefor_calc) PLANNED
 
 Section 11.3.
+
+### 7.19 Value basis, source kind and the answers index
+
+- Every money row (assets_other, liabilities, bills, cash_events, balance_log) carries `value_basis` (reported, stated, derived, expected, estimated), `source_kind` (statement, app_screen, document, owner_stated, calculation, assumption), `source` and `as_of_date`; liabilities also carry `payment_basis`. The user's amount stands until a statement proves otherwise; a row with no real source is estimated and has a Needs item. tests/data_rules.js enforces the lists.
+- Calcs that combine rows (nw_rows, dti_calc, bills_calc, payoff_engine, runway) report the weakest basis and the oldest as_of of the rows they used. The Estimate chip and the source on tap read these fields, so a number shows how sure it is. Total debts stays the sum of reported balances; the expected total is a second labeled number, never merged.
+- `tools/answers.js` writes out/answers/answers.json after each build: the headline numbers, every asset and debt row, the drift parts, the Needs list and what changed since the previous index, each with value, unit, calc, stored row, basis, as_of and source, plus the hash of data_all. `node tools/answers.js --check` prints STALE and exits 1 when the data changed after the index was written. Answers come from the index only when --check prints FRESH, and always state the basis and as_of with a number. The index is a cache: it is never a calc input and never a source of truth.
+- Datasets in `data_offpage/` (notes_log, bank_flows, bank_statements) are not loaded by the page; they live in the database and the file backup (DATA_MODEL.md, BACKUP_FORMAT.md section 8a).
 
 ## 8. Calculation rules in full
 
@@ -803,7 +811,7 @@ Housing on this page (generic):
 | Card (id) | Shows | Reads | Marks | Status |
 |---|---|---|---|---|
 | Cash runway (`cs-runway`) | months with a bar and a 3 month tick; the emergency fund ladder (0.5, 1, 2, 3, 6 months); This month box (take-home, bills, debt payments, left over); Coming up (items due in the next 45 days; a missing date is a Needs) | runway_calc | 2 (meter, ladder) | BUILT |
-| Cash balances (`cash-bal`, `t-balances`) | tiles per account and a table with as-of dates and sources | account_calc | 0 | BUILT |
+| Cash balances (`cash-bal`, `t-balances`) | the Cash card shows spendable cash as its one key number with an In transit chip (posted minus spendable); its closed fold lists spendable, posted and each account; tiles per account and a table with as-of dates and sources | account_calc, assets_other | 0 | BUILT |
 | Cash balance over time (`cs-balhist`) | a new chart of total cash from balance_log; the five cash tiles link here | balance_log | 1 | PLANNED |
 | Bills card (link) | the monthly bills number, a link to the Bills page | bills_calc | 0 | BUILT as a link |
 | Save for (`card-savefor`, `sf-plans`) | section 11 | savefor_calc | see 11 | PLANNED |
@@ -1216,6 +1224,8 @@ Each stage ships alone and passes the full suite before the next starts. The age
 
 Test (every stage): the harness suite (checks C1 to C28 that apply; unit tests for each new calc; the skip test for placeholders; text and id presence; mark counts; no em or en dash; no `innerHTML` or inline handlers; each part under 200 KB; each doc under 256 KB; titles at most 30 characters), then a browser pass at 390 px, light and dark, every fold open twice, console clean, no NaN or undefined in text, every link target exists, and the tile audit when tiles changed. Keep a regression baseline: freeze the datasets, run the calcs, save the outputs, and compare after every layout stage (dollar values to the cent).
 
+Test tooling (stage 6o): an ingest and diff report of every calc output a data update changed (tools/calcdiff.js, tools/numbers.js); a dependency map for affected-only runs (tools/depmap.js, tools/affected.js) with a full run mandatory before publish; fixed-date tests (the tests pass a fixed as-of date, the tools default to the real date, tools/today.js); the browser suite runs in four parallel Chromium processes and tools/results.js merges the shard files; one publish script (tools/publish.js: size limits, hashes, pins, live-shape check); inventories generated from code; and a dead code and size report (tools/deadsize.js, which also fails on an unused CSS rule). Staged data folders are scanned only when named with DATA_EXTRA.
+
 Publish (in this order): (1) upload changed datasets as assets, one JSON per publish call; (2) write the changed dataset docs in a batch pinned to the versions read; (3) publish page parts (templates, draw, calc, helpers); (4) publish the shell last. Use the exact urls the upload results return. Never write blind; on a version mismatch re-read and redo. Keep a PUBLISH_LIST for each release: file, bytes, sha256, pin, new description.
 
 Monitor (after every publish): open the live page and read the debug panel; read the runs document if the type provides one; run the monitor script against it. Expect: every dataset ok with its row count, every calc ran, no console errors, no NaN, no empty placeholders, and every "Needs:" text matches an allow-list entry that names the missing data and the task that asks for it. Static scan: no dashes, no `innerHTML`, `eval`, `new Function`, `document.write`, inline handlers, external scripts or links; storage limited to try/catch fallbacks; no personal identifiers (digit runs of 8 or more outside ISO dates, emails, SSN patterns, addresses). Report failures to you. A failure after publish is fixed and republished, or rolled back to the previous version from the backup.
@@ -1264,7 +1274,8 @@ Run this before every publish. It never removes gamified workflow, charts or gra
 ### 19.1 Dead code
 
 - [ ] Every calc id is listed as an input somewhere or read by a draw; an unused calc is removed or justified.
-- [ ] Every dataset is read by at least one calc or draw, or is a documented store-only dataset.
+- [ ] Every dataset is read by at least one calc or draw, or is a documented store-only dataset (data_offpage/ holds the ones the page does not load).
+- [ ] Every CSS class and id is used by the markup or the code (`node tools/deadsize.js` exits 1 on an unused function, constant, calc or CSS rule).
 - [ ] Every CSS class and id in the stylesheet exists in the markup or in a draw; removed cards leave no CSS behind (check the rules for the removed ids in 10.7).
 - [ ] Every function is called; every `data-goto-*`, `data-open`, `data-go` and `#anchor` points at an existing id.
 - [ ] No test-only globals or debug code in the shipped parts except the triple-tap readout.

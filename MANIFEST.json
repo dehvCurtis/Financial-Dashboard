@@ -1,10 +1,10 @@
 {
  "bundle": "Money Operations Center starter bundle",
- "bundle_version": "1.0.0",
- "page_stage": "6i",
+ "bundle_version": "1.1.0",
+ "page_stage": "6o",
  "backup_schema": "mo-backup-2",
  "runtime_contract_observed": "0.2.67",
- "file_count": 126,
+ "file_count": 128,
  "files": [
   {
    "path": ".gitignore",
@@ -13,38 +13,38 @@
   },
   {
    "path": "AGENT_PROMPT.md",
-   "bytes": 6590,
-   "sha256": "74461a63609411e94f9a011313c738341c3134b2b9c225ff6b49401806a5c8f2"
+   "bytes": 7982,
+   "sha256": "fc1cf4e8da6669c2f0397b23bd0aa4a5b96c5185f68feaa1d3568b941646d499"
   },
   {
    "path": "ARCHITECTURE.md",
-   "bytes": 160689,
-   "sha256": "408b6b5188228388a0f65bb12656aa80e71a076d919ba777f218a3a7a4666d3f"
+   "bytes": 164671,
+   "sha256": "3769ba174c8d4a7faabd4331bd7eb7dd2bc6b72696c1ef3ff5ee8c543552e9af"
   },
   {
    "path": "BACKUP_FORMAT.md",
-   "bytes": 29784,
-   "sha256": "fec63fec5ecef2061613caa393b1ef347446f25e2b0eb32560669535eb355d81"
+   "bytes": 31629,
+   "sha256": "d6f7b5a8409f914c0b6136c452f06ca4d3eeac48830f3aaeb4d83a825d36fd36"
   },
   {
    "path": "BACKUP_GOOGLE_DRIVE.md",
-   "bytes": 3825,
-   "sha256": "985d927c8cd9a86ec373d8c747f1dce0edc21e8583c9e087704b11caf2b02ad7"
+   "bytes": 3948,
+   "sha256": "6a5fd42ad7b444d7d0a7830d67d87459033ac628fa77ffaadc72d5395ebee6e0"
   },
   {
    "path": "CALCS.md",
-   "bytes": 42072,
-   "sha256": "233b4442f36bcb400fcaa839f07f00d5fdd3aa94c2da7e07999e513425692b1c"
+   "bytes": 44354,
+   "sha256": "9e8b39f6dbc8d2c357ba3832880cb4b6a1c11a01263a81f5f7048c36f5efa7ad"
   },
   {
    "path": "CHANGELOG.md",
-   "bytes": 11525,
-   "sha256": "08d4ae51d398de332946b35553cfe56f01dfff1895eefbbfecba6cd47bddd0c2"
+   "bytes": 16834,
+   "sha256": "58796762b6a5a7bd4588727c2cd2419fc1214a5327ebcf407bc3074cba791491"
   },
   {
    "path": "CLAUDE.md",
-   "bytes": 4041,
-   "sha256": "d708c9cf43e8546f336f913f7bd05772f93a1282190a72fcc96bdee23530cb2d"
+   "bytes": 4366,
+   "sha256": "e618989aa0f591bcf0e98bf3a6e33c543c130e4e22dcbe58e9df3b97133eefa2"
   },
   {
    "path": "COMPLETENESS_REVIEW.md",
@@ -53,23 +53,23 @@
   },
   {
    "path": "CORRELATIONS.md",
-   "bytes": 5741,
-   "sha256": "003c8788874b099f824f39064d809db44e33e9c78ef6ed50e98475aaf7137414"
+   "bytes": 6031,
+   "sha256": "f216452a0595ce8e4fe7b5a6c8d48199c6b8c1292164da01193bf2885ba540ca"
   },
   {
    "path": "DATA_MODEL.md",
-   "bytes": 46763,
-   "sha256": "3674a5eeb6a08da65ce4f5ea740ad77841c7ceeeaff1de4e9d267d3baa9d5c9c"
+   "bytes": 55504,
+   "sha256": "f4dcdfb161374e5a146fb7ee2218d1b0c3ecd5eaf0bb3e29353ade4ef91f7cd3"
   },
   {
    "path": "DEMO_DATA.md",
-   "bytes": 3185,
-   "sha256": "41a04ed06a1703bde7b5381da3f23ef5e978c43bc95ffc31690c03d8cc06e940"
+   "bytes": 3404,
+   "sha256": "e620a08f60e8dbe9a70e8139a2f07854c4cb53a908442d81a257fc96bdd2f630"
   },
   {
    "path": "ENVIRONMENT.md",
-   "bytes": 4592,
-   "sha256": "428e25d3034b6535bc5fa8c8e6e70a97b08d3dd66a5f5c71bcf86c09068f97d5"
+   "bytes": 4841,
+   "sha256": "4a8649e7bfcf267589d1e00e2014226bde90be2134410ba3e1f7c58ba582ac40"
   },
   {
    "path": "GLOSSARY.md",
@@ -78,13 +78,13 @@
   },
   {
    "path": "INDEX.md",
-   "bytes": 3736,
-   "sha256": "9655c432106c9a0f1433abc992366c00637392cdee2a9268a16e4a59cc2e07eb"
+   "bytes": 3923,
+   "sha256": "883d80be02eef30bdced23826049889c10f8e6e9a4b67f4d9aaaf752a615d3fb"
   },
   {
    "path": "INTAKE_GUIDE.md",
-   "bytes": 6188,
-   "sha256": "498fce2b116c248e268cf2eda5ea69538c0b382b1fdcdb64ff4d13a9db1adb6d"
+   "bytes": 9354,
+   "sha256": "37b2b519aebb176f272483bedde9b6feaa1213ccda01ca792ea3700af222ef44"
   },
   {
    "path": "LOCALIZATION.md",
@@ -93,8 +93,8 @@
   },
   {
    "path": "OPEN_ITEMS.md",
-   "bytes": 3222,
-   "sha256": "d18e66cb8a4d6782d727670f7054719f7b8769afeeb80ad6206d5589f482c122"
+   "bytes": 3887,
+   "sha256": "fdf181fdd5f445ed51bdc7d0608b64808e70cc2fe170b8b728b736c5f0629442"
   },
   {
    "path": "PROMPTS.md",
@@ -103,28 +103,28 @@
   },
   {
    "path": "PUBLISH.md",
-   "bytes": 3899,
-   "sha256": "b4baf41cba646222375933c9ccaeb5b52688392379ec5b6a589def390ecebc8e"
+   "bytes": 4272,
+   "sha256": "7913ee2678716a8ebd454fa8388cc1af0392df6dcee0c55a8889e904b70e120e"
   },
   {
    "path": "QUESTIONS.md",
-   "bytes": 10649,
-   "sha256": "3f4bba24a0ab50a603c115fc7fedaa8fc2161ab85ffae8cb0592cefaafc25070"
+   "bytes": 12300,
+   "sha256": "45d37a0e82626dc4f3828b9ed0fb4ebf030a659db6d3cc7f1a548229123d4d67"
   },
   {
    "path": "README.md",
    "bytes": 5773,
-   "sha256": "d1901c0ed6439cd5ee98e404604d061bf621a277b4c8046f750dc7eae7e49e7d"
+   "sha256": "cc3c7a331b3ff50e2f2553fc50482bce57535b80517718e0b4b0cf679103a169"
   },
   {
    "path": "REPORT.md",
-   "bytes": 3213,
-   "sha256": "c7cd9665f89a6869531337bdcaae4b9e21e8543990d8bbce2138f41e5589cb3f"
+   "bytes": 3287,
+   "sha256": "70ccf4293fbfe74aa9095a66424f5c6bb3404af8bbdd8f5c98451294d86e1fc4"
   },
   {
    "path": "RUNBOOK.md",
-   "bytes": 3311,
-   "sha256": "ccf83e98d735975bc1547f92f318df578a3e5ec41da94f76acca94d609af6c0c"
+   "bytes": 4711,
+   "sha256": "6695730bd46acfbaf328d54bb1b592cc42a8b6b3760b58615a1ea407af555a99"
   },
   {
    "path": "RUNTIME_CONTRACT.md",
@@ -133,8 +133,8 @@
   },
   {
    "path": "SCHEDULED_TASKS.md",
-   "bytes": 2626,
-   "sha256": "51c4306db654d7eca8a69bfb731507a555896354f36a8086cbca66e73519e5a6"
+   "bytes": 2663,
+   "sha256": "dd70fbb407324ae87a23d8e82f1792fe442e3607f3d28b8fb7ec12859b404fef"
   },
   {
    "path": "SCORING.md",
@@ -168,18 +168,18 @@
   },
   {
    "path": "TILES.md",
-   "bytes": 68866,
-   "sha256": "32dc40eed923d9d7e0819aaed18354347c8ab8d434974189e7310c1e28a1d14d"
+   "bytes": 70020,
+   "sha256": "a9725171e8a861f95c446206a6923f7b1a09549ff23701beee99fa4cf3cbdd03"
   },
   {
    "path": "VERSION",
    "bytes": 112,
-   "sha256": "829fcb8553b99d0c21ca51b9756c1f42ad2e645a710701091069d805384eff6f"
+   "sha256": "24a36165bd209514c7421110c595cd5411cf124c89f01a13f0fa039b1e1077bc"
   },
   {
    "path": "code-base.zip",
-   "bytes": 608144,
-   "sha256": "bba251b2a59ff5a9d1119aaa49c567497ea6e6c2fb2ebdf90412a59b3df53fa4"
+   "bytes": 626069,
+   "sha256": "86b8febaa0c9426594e901eba96f5ac4fd74aafcbcc6084a16f9bf0dab91ed7f"
   },
   {
    "path": "demo_data/acct_a_holdings.json",
@@ -208,8 +208,8 @@
   },
   {
    "path": "demo_data/assets_other.json",
-   "bytes": 1627,
-   "sha256": "e20a7ffdf6b24fb528ed317b3dad3230697a26e397e5be1712ec1ddd779f73f7"
+   "bytes": 2369,
+   "sha256": "a669dc98fdd8a940dec7534a87139456af051451d959cf8bcf9f438d01017d2b"
   },
   {
    "path": "demo_data/assumptions.json",
@@ -218,18 +218,8 @@
   },
   {
    "path": "demo_data/balance_log.json",
-   "bytes": 869,
-   "sha256": "2c836eae63ef440cd31a7fa99dde6042e3fc8b3a0be70969cd9151b6a538f410"
-  },
-  {
-   "path": "demo_data/bank_flows.json",
-   "bytes": 673,
-   "sha256": "ee96b9c98206a46d3d33ad9c380eb90ccff1e46ad8dc2ac1e5e8906616f425e5"
-  },
-  {
-   "path": "demo_data/bank_statements.json",
-   "bytes": 1752,
-   "sha256": "5e7dad47efbad4fe8f8061ba2a9f65eaf26bf72eb4088516db1d06ca180c0bc0"
+   "bytes": 1283,
+   "sha256": "bf31e144539d5116d60f37209690c5a7756c40a81fb6a1ec1b081c505529fb90"
   },
   {
    "path": "demo_data/bill_statements.json",
@@ -238,8 +228,8 @@
   },
   {
    "path": "demo_data/bills.json",
-   "bytes": 942,
-   "sha256": "939435cd797018402b82acd9dc71e9c0f3858b9fdd87e84a7f4f6268fb8b85af"
+   "bytes": 1650,
+   "sha256": "e88d5c7202f2d3c4e2b8bc9c88856616d30fd661115bd0e72cd857c1225d99e5"
   },
   {
    "path": "demo_data/card_statements.json",
@@ -253,8 +243,8 @@
   },
   {
    "path": "demo_data/cash_events.json",
-   "bytes": 471,
-   "sha256": "4edcc0fff844a9c61621d42b456ce5cd619e915c4dd982484900de88c12a7671"
+   "bytes": 1951,
+   "sha256": "f650f1de331ab2b8319ca26d2c4efe331d0233f3811c4b1badafe3c553ba4d2b"
   },
   {
    "path": "demo_data/contribution_limits.json",
@@ -273,8 +263,8 @@
   },
   {
    "path": "demo_data/data_queue.json",
-   "bytes": 596,
-   "sha256": "1448d39aa7f9d31ba42a57887cb04616c7495dcc41c058403eaf6993495fc7d0"
+   "bytes": 728,
+   "sha256": "6ad56c1a82940f71d48ec36ed20cc0a894a8ded3d682efbf5830d67f37cf515e"
   },
   {
    "path": "demo_data/drift_history.json",
@@ -298,8 +288,8 @@
   },
   {
    "path": "demo_data/liabilities.json",
-   "bytes": 4189,
-   "sha256": "3d14bca348a856b12759cf68580b72e46e5dea3b934725f033573bce1fdbc9ca"
+   "bytes": 5161,
+   "sha256": "4a7f2e474b84daba14ca5b6fd3b59aed9eba53724b033a44fd608dc09664d0db"
   },
   {
    "path": "demo_data/ltv_benchmarks.json",
@@ -313,13 +303,28 @@
   },
   {
    "path": "demo_data/mortgage_statements.json",
-   "bytes": 695,
-   "sha256": "05292d7e8285a90bf9591dfcde73b5dd0d273ba7cafc23f3da35135bee93a15f"
+   "bytes": 734,
+   "sha256": "bd51d18d7ac6dc6ae819f513e1c9f618cf5a42ebf4d0864830598a01ce7a9873"
   },
   {
    "path": "demo_data/networth_history.json",
    "bytes": 275,
    "sha256": "1e9854f217cd086428b9815aad5840cd01a5797fe7b2f9177229beb05ed1fca6"
+  },
+  {
+   "path": "demo_data/offpage/bank_flows.json",
+   "bytes": 673,
+   "sha256": "ee96b9c98206a46d3d33ad9c380eb90ccff1e46ad8dc2ac1e5e8906616f425e5"
+  },
+  {
+   "path": "demo_data/offpage/bank_statements.json",
+   "bytes": 1752,
+   "sha256": "5e7dad47efbad4fe8f8061ba2a9f65eaf26bf72eb4088516db1d06ca180c0bc0"
+  },
+  {
+   "path": "demo_data/offpage/notes_log.json",
+   "bytes": 801,
+   "sha256": "6ac03322e7da9d1acc93183324f00ecba1bdb24c114de6749a4bd6d098ccf5bb"
   },
   {
    "path": "demo_data/payoff_settings.json",
@@ -378,28 +383,28 @@
   },
   {
    "path": "demo_data/shots/cash.png",
-   "bytes": 359182,
-   "sha256": "4828ae375fa8f706718fd1c74c843fa89a744a50b686d16ebde7dbff03ad1637"
+   "bytes": 359206,
+   "sha256": "da8ce681dfb201abe28b5fd022cfdb29cc588d2924d986db5a763b6af1694b01"
   },
   {
    "path": "demo_data/shots/dark_home.png",
-   "bytes": 460589,
-   "sha256": "fc67369f38939615a126e54ed80a09a355188393a51a8f53969c930d47aebec6"
+   "bytes": 460505,
+   "sha256": "58326df390b88d7b18706bbb4c75bf40a66ac228e450e89767ffd64bd3aae3cf"
   },
   {
    "path": "demo_data/shots/data.png",
-   "bytes": 145115,
-   "sha256": "f85c4000385fa008dff057577b14dc5a1e5c3e8d3895bbfa3e1594ee38a57a6c"
+   "bytes": 148071,
+   "sha256": "f894ec3886e4aa165438fe4af83193dc377a228a478be1907ce80d34495c0b36"
   },
   {
    "path": "demo_data/shots/debt.png",
-   "bytes": 348415,
-   "sha256": "dc60515f762dbdf7c16eae06b24b6b0bf7d656e3c3dc8ed34ea9f0720b25748a"
+   "bytes": 349221,
+   "sha256": "8706038f5480da3c71d3d93775aa014a2d89702df3f11aa660be822823ebe71b"
   },
   {
    "path": "demo_data/shots/home.png",
-   "bytes": 453229,
-   "sha256": "0f32bd157555cea24c36733a64821ee07279db6c3ab6846ecb39d46390c32d80"
+   "bytes": 453165,
+   "sha256": "030b08560c676492fbd75939517ab054f29745336de3993f187d088f3eb66aad"
   },
   {
    "path": "demo_data/shots/investments.png",
@@ -413,8 +418,8 @@
   },
   {
    "path": "demo_data/shots/progress.png",
-   "bytes": 527630,
-   "sha256": "83fe8c41576424f39f29a0dc4c29f50a407c28d924a6c8612ad8c9b65e8ac2b1"
+   "bytes": 528128,
+   "sha256": "4816e17dc56214fa7674925f66d1e3f4794e9b9495100b8bcb14383e484f3c4d"
   },
   {
    "path": "demo_data/shots/retirement.png",
@@ -428,13 +433,13 @@
   },
   {
    "path": "demo_data/tasks.json",
-   "bytes": 1500,
-   "sha256": "851b413dedce5ebe91d4fbcf4b7e656baf13c0bf9b654152631fdd572ad28929"
+   "bytes": 1592,
+   "sha256": "eb5b53cb80352027917af27e78aab65180aad6c3c2d110a22439f0328075ac2f"
   },
   {
    "path": "templates/README.md",
-   "bytes": 3520,
-   "sha256": "48d83f976337e416b6e507890ff2972c57db2599cdf23e90180c084b776d71b7"
+   "bytes": 3928,
+   "sha256": "852a4fc8c2f8c2a1ff1be3368b08fe7756027c2477de2f4cfa8b0b61acd1d5d4"
   },
   {
    "path": "templates/acct_a_holdings.json",
@@ -463,8 +468,8 @@
   },
   {
    "path": "templates/assets_other.json",
-   "bytes": 244,
-   "sha256": "618c1b95b56f1d2d5565e5c914d7e3280343b9f7c9608cb7270e4809805d8e01"
+   "bytes": 345,
+   "sha256": "e44dc3d40935fcebc8bd3d6877586ef2406cb02dc77bf48c56f2424588b640dd"
   },
   {
    "path": "templates/assumptions.json",
@@ -473,18 +478,8 @@
   },
   {
    "path": "templates/balance_log.json",
-   "bytes": 124,
-   "sha256": "488622e446fc43162c6ad476a31530972af8ec66cd99d732b003c2c07f5bc584"
-  },
-  {
-   "path": "templates/bank_flows.json",
-   "bytes": 278,
-   "sha256": "82fab1a74b3aa9af69e9ebff2418c8a6430b9102b5a7d4c777531676a2256105"
-  },
-  {
-   "path": "templates/bank_statements.json",
-   "bytes": 842,
-   "sha256": "f9093ff1f6323a8a05f4ca4d2bd989b7c77a60ca0f79660e978ef4e7c1ce6549"
+   "bytes": 170,
+   "sha256": "dad8b7fbc67558bf3535f39b88f4293e1fc420ff60037cb315a9e109484138e0"
   },
   {
    "path": "templates/bill_statements.json",
@@ -493,8 +488,8 @@
   },
   {
    "path": "templates/bills.json",
-   "bytes": 168,
-   "sha256": "d4f9eb1faeaf4d501396d4958afff5fff6b521d378e60cfe71478fe665cc55c1"
+   "bytes": 254,
+   "sha256": "af44cacbfeb1151e15eaa1ee8e846f57e9143d77958c3c616e906b8a2c3d2ca4"
   },
   {
    "path": "templates/card_statements.json",
@@ -508,8 +503,8 @@
   },
   {
    "path": "templates/cash_events.json",
-   "bytes": 203,
-   "sha256": "796761f93c28229f9299486669add25c6c6a381f911836f2d4df5cb8890adf10"
+   "bytes": 406,
+   "sha256": "1b6178311b1296c5bf914cbe7352fc8e58aa4e7190b5a1f5a3a3f11d59b36f50"
   },
   {
    "path": "templates/contribution_limits.json",
@@ -528,8 +523,8 @@
   },
   {
    "path": "templates/data_queue.json",
-   "bytes": 156,
-   "sha256": "8c14aa78ad90355f0304a889afdb710b6abe10c4d1a36d203aad9f66560fceb3"
+   "bytes": 200,
+   "sha256": "dccd38936d053f81374d9b6b0a48a4aa129174a018ae1897c1a1bbcaa7f829b6"
   },
   {
    "path": "templates/drift_history.json",
@@ -553,8 +548,8 @@
   },
   {
    "path": "templates/liabilities.json",
-   "bytes": 540,
-   "sha256": "285b4274be7cfa2c36b97794e40447bc6501561541146507433be079a408cc14"
+   "bytes": 629,
+   "sha256": "066a0f36a538e7fe38ade4a86e63276813157e6398eb70b86227a569b6107f9c"
   },
   {
    "path": "templates/ltv_benchmarks.json",
@@ -568,13 +563,28 @@
   },
   {
    "path": "templates/mortgage_statements.json",
-   "bytes": 500,
-   "sha256": "27721ef4d215a236343f0f34db471ae14d4ed93ab956e0ba333bcbedf349c591"
+   "bytes": 539,
+   "sha256": "049e9e37f1989d478cba8b303ec9fb96df796a108705cd863f554013edd42890"
   },
   {
    "path": "templates/networth_history.json",
    "bytes": 119,
    "sha256": "cd548eb57e7071b21cd7fe73e0f08fc38cc1be7948f405be8ebe9a7008b28b24"
+  },
+  {
+   "path": "templates/offpage/bank_flows.json",
+   "bytes": 278,
+   "sha256": "82fab1a74b3aa9af69e9ebff2418c8a6430b9102b5a7d4c777531676a2256105"
+  },
+  {
+   "path": "templates/offpage/bank_statements.json",
+   "bytes": 842,
+   "sha256": "f9093ff1f6323a8a05f4ca4d2bd989b7c77a60ca0f79660e978ef4e7c1ce6549"
+  },
+  {
+   "path": "templates/offpage/notes_log.json",
+   "bytes": 173,
+   "sha256": "ab17d9540abd1b638c9e6c8afcd20fa5f90fd05fe76704fa3604872f4d690f47"
   },
   {
    "path": "templates/payoff_settings.json",
@@ -633,8 +643,8 @@
   },
   {
    "path": "templates/tasks.json",
-   "bytes": 319,
-   "sha256": "69d9ea40a3f68a9ac4be260e9375fc9f97290e2e3c20081218675cebcc2311ce"
+   "bytes": 342,
+   "sha256": "a8929d8d298fdd4019d070de6768219cd8d956e709aec8d8888d652165e18cb8"
   }
  ]
 }

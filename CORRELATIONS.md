@@ -4,7 +4,7 @@ A correlation check compares two numbers that must agree (a stub against a depos
 
 Design text of every check, with formulas and executors: ARCHITECTURE.md section 16. This file lists the checks the page runs today (generated from the code), the ones that live elsewhere, the data they read, and one planned dataset.
 
-## Checks run by the page (27 at this version)
+## Checks run by the page (28 at this version)
 
 | Check | Name | Calc that runs it |
 |---|---|---|
@@ -35,17 +35,18 @@ Design text of every check, with formulas and executors: ARCHITECTURE.md section
 | C27 | Bill statements belong to a bill | checks_more_calc |
 | C28 | Nothing assumed to exist | checks_more_calc |
 | C29 | Card statements belong to a card | checks_more_calc |
+| C30 | Cash left over after payments clear | checks_more_calc |
 
 The page checks are two calcs: `checks_calc` and `checks_more_calc` (CALCS.md). Each returns one row per check with `status`, a plain sentence, and the rows or values that disagree. The Data and backup page and the Home "Needs" count read them.
 
-Numbering note. The ids C1 to C29 match ARCHITECTURE.md section 16 except where the build changed a meaning: in the code C23 ties the year end interest form to the mortgage statements, C28 is "nothing assumed to exist" (a debt, bill or account the user answered no to must have no rows), and C29 ties card statements to a card. Checks C8, C20 and C28 of the design (card to liability at ingestion, regression, runtime shape) are run by Claude at ingestion or by the test suite, not by the page.
+Numbering note. The ids C1 to C30 match ARCHITECTURE.md section 16 except where the build changed a meaning: in the code C23 ties the year end interest form to the mortgage statements, C28 is "nothing assumed to exist" (a debt, bill or account the user answered no to must have no rows), C29 ties card statements to a card, and C30 (stage 6o) checks the cash left in a pass-through Checking once every payment that is still waiting has cleared (it should be 0; it needs when more than 25 away; the value is shown, never hidden). Checks C8, C20 and C28 of the design (card to liability at ingestion, regression, runtime shape) are run by Claude at ingestion or by the test suite, not by the page.
 
 ## Checks that live outside the page
 
 | Check | Where it runs | How to run it |
 |---|---|---|
 | Runtime shape (every dataset loads, size, titles, no test globals, no calc errors) | tests/data_rules.js, tools/engine.js | `node tests/data_rules.js` |
-| Page invariants (34 rules on the data, the fixture, and every dataset emptied one at a time) | tests/inv_run.js, page/invariants.js (also run inside the page self test) | `node tests/inv_run.js` |
+| Page invariants (37 rules on the data, the fixture, and every dataset emptied one at a time) | tests/inv_run.js, page/invariants.js (also run inside the page self test) | `node tests/inv_run.js` |
 | Backup file integrity (hashes, counts, schema, no dashes, no account numbers) | tools/verify_backup.js | `node tools/verify_backup.js <backup.json or kit.zip>` |
 | Privacy and dash scan | tests/static_scan.js | `node tests/static_scan.js` |
 | Docs against code (every rendered tile in TILES.md, every dataset and calc named) | tools/check_docs.js | `node tools/check_docs.js` |
@@ -54,10 +55,10 @@ Numbering note. The ids C1 to C29 match ARCHITECTURE.md section 16 except where 
 
 | If this changes | These must be rechecked |
 |---|---|
-| liabilities (balance, payment, rate) | C9, C17, C22, C25, C26, DTI, payoff plan, scores |
+| liabilities (balance, payment, rate, value_basis) | C9, C17, C22, C25, C26, DTI, payoff plan, scores |
 | bills | C11, C25, C26, C27, obligations, runway |
 | paystubs | C4, C5, C6, C7, C21, take-home |
-| balance_log, cash_events, bank_flows | C12 (drift), C7, C11, runway |
+| balance_log, cash_events | C12 (drift), C30 (Checking left over), C7, C11, runway |
 | assets_other, holding_snapshots | C1, C2, C3, net worth, retirement start balance |
 | contribution_plan, contribution_limits | C21, the 401(k) percent card |
 | statements (card, bank, bill, mortgage) | C8, C24, C27, C29 |
@@ -65,7 +66,7 @@ Numbering note. The ids C1 to C29 match ARCHITECTURE.md section 16 except where 
 
 ## PLANNED: metric_snapshots
 
-Status: PLANNED. Not in the 39 datasets of stage 6i, no page reads it. A template with one all-null row is in templates/metric_snapshots.json so a future build can adopt it without a schema change.
+Status: PLANNED. Not in the datasets of stage 6o, no page reads it. A template with one all-null row is in templates/metric_snapshots.json so a future build can adopt it without a schema change.
 
 Purpose: a monthly record of the headline numbers so the dashboard can draw a trend that does not depend on rebuilding history from every statement. It is a history dataset (dated rows are allowed here, as with scores_history and networth_history).
 

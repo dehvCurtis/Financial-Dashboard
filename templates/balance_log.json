@@ -5,6 +5,8 @@
   "account": null,
   "kind": null,
   "reported_balance": null,
-  "source": null
+  "source": null,
+  "value_basis": null,
+  "source_kind": null
  }
 ]

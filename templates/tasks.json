@@ -15,6 +15,7 @@
   "created": null,
   "queue_id": null,
   "id": null,
-  "task": null
+  "task": null,
+  "merged_from": null
  }
 ]

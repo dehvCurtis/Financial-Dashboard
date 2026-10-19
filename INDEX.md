@@ -9,7 +9,7 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 | README.md | what the bundle is and how to start |
 | AGENT_PROMPT.md | the short context prompt every Claude reads first, with the first message for a new user |
 | CLAUDE.md | the working rules for the agent |
-| ARCHITECTURE.md | full build guide, sections 0 to 20, refreshed to page stage 6i |
+| ARCHITECTURE.md | full build guide, sections 0 to 20, refreshed to page stage 6o |
 | STYLE-GUIDE.md | tokens, layout, the measured bottom bar shell, accessibility |
 | ENVIRONMENT.md | machine, packages, browser, test suites, variables |
 | RUNTIME_CONTRACT.md | the Artifact runtime facts that broke builds |
@@ -43,9 +43,9 @@ Integrity: MANIFEST.json lists every file with its size and sha256; CHECKSUMS.sh
 
 | Path | Content |
 |---|---|
-| templates/ | one starter file per dataset (one all-null row, or shipped reference content), planned/metric_snapshots.json, README.md |
-| demo_data/ | the invented dataset, one JSON per dataset, and shots/ with one PNG per page |
-| code-base.zip | src/: page, tools, tests with synthetic fixtures, docs_src (the sources of the generated documents) |
+| templates/ | one starter file per dataset (one all-null row, or shipped reference content), planned/metric_snapshots.json, offpage/ (starter files for the datasets the page does not load), README.md |
+| demo_data/ | the invented dataset, one JSON per dataset, offpage/ (the datasets the page does not load) and shots/ with one PNG per page |
+| code-base.zip | src/: page, tools (including answers.js and today.js), tests with synthetic fixtures, data_all and data_offpage (invented), docs_src (the sources of the generated documents) |
 | MANIFEST.json | file list with sizes and sha256, bundle metadata |
 | CHECKSUMS.sha256 | the same hashes for `sha256sum -c` |
 | VERSION | bundle, schema, stage and contract versions |

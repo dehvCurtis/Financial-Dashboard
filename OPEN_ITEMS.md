@@ -12,6 +12,9 @@
 | D7 | Contact address for security reports | add it to SECURITY.md before the repository is public |
 | D8 | Git author identity of the first commits | check `git log --format='%an %ae'`; rewrite history before publishing if the identity should not be public |
 | D9 | Net worth rows and copy name a house and a truck (page/js/10_calcs_base.js nw_rows, 40_draw_tabs.js, 80_draw_v3_v4.js) | make the labels generic (Property, Vehicles) from the asset types the user has; change the approved inventories and tests in the same change; until then the labels appear even when the user owns neither |
+| D10 | Where notes_log lives and how it is backed up | keep it as a local file in data_offpage/, copied with the monthly backup (BACKUP_FORMAT.md section 8a); the alternative is to publish it as a document the page does not read |
+| D11 | Whether the payoff plan should use the whole monthly surplus as its extra | no: save the extra you really expect to pay each month; the debt free date depends on it (ARCHITECTURE.md 8.3) |
+| D12 | Whether a merged request count should lower the Risk score | accept it, or change the Data completeness row to count distinct questions another way; merging repeated requests lowers the still-needed share without any new fact |
 
 ## Not built (PLANNED)
 

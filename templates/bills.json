@@ -7,6 +7,10 @@
   "essential": null,
   "notes": null,
   "due_day": null,
+  "value_basis": null,
+  "source_kind": null,
+  "as_of_date": null,
+  "source": null,
   "last_paid": null
  }
 ]
